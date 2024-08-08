@@ -1,0 +1,211 @@
+[
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/beep",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/buttondemo",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/environment",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/event",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/gyro",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/led",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/message",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/mutex",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/oled",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/radar_led",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_RADAR_STA = y",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/radar_led",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_RADAR_SOFTAP = y",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/semaphore",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/servo",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/sle_throughput",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_SERVER_SPEED = y",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/sle_throughput",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_CLIENT_SPEED = y",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/thread",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/timer",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/trafficlight",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/tricolored",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/uartdemo",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/ultrasonic",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/wifiap",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },
+  {
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/wifista",
+    "chip": "WS63",
+    "buildDef": "",
+    "needSmoke": "false"
+  },{
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/sle_distribute_network",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_DISTRIBUTE_NETWORK_SERVER=y",
+    "needSmoke": "false"
+  },{
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/sle_distribute_network",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_DISTRIBUTE_NETWORK_CLIENT=y",
+    "needSmoke": "false"
+  },{
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/sle_wifi_coexist",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_WIFI_COEXIST_SERVER=y",
+    "needSmoke": "false"
+  },{
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/sle_wifi_coexist",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_WIFI_COEXIST_CLIENT=y",
+    "needSmoke": "false"
+  },{
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/wifidemo",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_WIFI_SOFTAP=y",
+    "needSmoke": "false"
+  },{
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/wifidemo",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_WIFI_STA=y",
+    "needSmoke": "false"
+  },{
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/sle_led",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_LED_SERVER=y",
+    "needSmoke": "false"
+  },{
+    "buildTarget": "ws63-liteos-app",
+    "relativePath": "demo/sle_led",
+    "chip": "WS63",
+    "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_LED_CLIENT=y",
+    "needSmoke": "false"
+  }
+]

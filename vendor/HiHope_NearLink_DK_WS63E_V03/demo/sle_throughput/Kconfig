@@ -1,0 +1,19 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+config SAMPLE_SUPPORT_SLE_SERVER_SPEED
+    bool
+    prompt "Support SLE_SERVER_SPEED Sample."
+    default n
+    depends on SAMPLE_SUPPORT_SLE_THROUGHPUT
+    help
+        This option means support SLE_SERVER_SPEED Sample.
+
+config SAMPLE_SUPPORT_SLE_CLIENT_SPEED
+    bool
+    prompt "Support SLE_CLIENT_SPEED  Sample."
+    default n
+    depends on SAMPLE_SUPPORT_SLE_THROUGHPUT
+    help
+        This option means support SLE_CLIENT_SPEED Sample.

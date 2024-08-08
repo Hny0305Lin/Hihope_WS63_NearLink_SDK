@@ -1,0 +1,1 @@
+set(SOURCES "${SOURCES}" "${CMAKE_CURRENT_SOURCE_DIR}/gpio_led_pwm_demo.c" PARENT_SCOPE)
