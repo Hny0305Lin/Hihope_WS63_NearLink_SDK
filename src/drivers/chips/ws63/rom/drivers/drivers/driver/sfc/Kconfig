@@ -1,0 +1,21 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config SFC_SUPPORT_DMA
+    bool
+    prompt "SFC Support DMA"
+    default y
+    depends on DRIVER_SUPPORT_SFC
+
+config SFC_ALLOW_ERASE_WRITEBACK
+    bool
+    prompt "Allows Erase at Any Address, needs 4KB RAM at least"
+    default n
+    depends on DRIVER_SUPPORT_SFC
+
+config SFC_ALREADY_INIT
+    bool
+    prompt "SFC has been inited, need not to set reg in init/deinit func."
+    default n
+    depends on DRIVER_SUPPORT_SFC

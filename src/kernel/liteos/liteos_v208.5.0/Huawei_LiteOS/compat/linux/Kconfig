@@ -1,0 +1,73 @@
+config LOSCFG_COMPAT_LINUX
+    bool "Enable Linux"
+    default y
+    select LOSCFG_KERNEL_MEM_ALLOC
+    select LOSCFG_BASE_IPC_EVENT
+    help
+      Answer Y to enable LiteOS support linux interface.
+
+if LOSCFG_COMPAT_LINUX
+
+config LOSCFG_COMPAT_LINUX_PENDLIST
+    bool
+    default n
+
+config LOSCFG_COMPAT_LINUX_TIMER
+    bool "Enable Timer"
+    default n
+    select LOSCFG_BASE_CORE_SWTMR
+
+config LOSCFG_COMPAT_LINUX_HRTIMER
+    bool "Enable Hrtimer"
+    default n
+
+config LOSCFG_COMPAT_LINUX_IRQ
+    bool "Enable Irq Interrupt"
+    default n
+    select LOSCFG_HWI_WITH_ARG
+    depends on LOSCFG_ARCH_INTERRUPT_TAKEOVER
+
+config LOSCFG_COMPAT_LINUX_SEMAPHORE
+    bool "Enable Semaphore"
+    default n
+    select LOSCFG_BASE_IPC_SEM
+
+config LOSCFG_COMPAT_LINUX_RW_SEMAPHORE
+    bool "Enable Rw Semaphore"
+    default n
+    select LOSCFG_BASE_IPC_RWSEM
+
+config LOSCFG_COMPAT_LINUX_COMPLETION
+    bool "Enable Completion"
+    default n
+    select LOSCFG_COMPAT_LINUX_PENDLIST
+
+config LOSCFG_COMPAT_LINUX_WAITQUEUE
+    bool "Enable Waitqueue"
+    default n
+    select LOSCFG_BASE_IPC_EVENT
+
+config LOSCFG_COMPAT_LINUX_WORKQUEUE
+    bool "Enable Workqueue"
+    default n
+    select LOSCFG_COMPAT_LINUX_TIMER
+    select LOSCFG_COMPAT_LINUX_PENDLIST
+
+config LOSCFG_COMPAT_LINUX_DRIVER_BASE
+    bool "Enable Driver Base"
+    default n
+    select LOSCFG_DRIVERS_BASE
+
+config LOSCFG_COMPAT_LINUX_WAKELOCK
+    bool "Enable Wakelock"
+    default n
+
+config LOSCFG_COMPAT_LINUX_USED
+    bool
+    default n
+
+config LOSCFG_COMPAT_LINUX_CRC32
+    bool "Enable Crc32"
+    default n
+
+endif #LOSCFG_COMPAT_LINUX

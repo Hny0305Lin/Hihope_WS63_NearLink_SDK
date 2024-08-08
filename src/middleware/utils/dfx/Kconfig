@@ -1,0 +1,14 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config DFX_SUPPORT_USERS_PRINT
+    bool
+    prompt "ENABLE USER TO REGISTER LOG API."
+    default y
+    depends on MIDDLEWARE_SUPPORT_DFX
+config DFX_SUPPORT_PRINT
+    bool
+    prompt "dfx print with level limit"
+    default n
+    depends on MIDDLEWARE_SUPPORT_DFX

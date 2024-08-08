@@ -1,0 +1,40 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config TSENSOR_USING_V150
+    bool
+    prompt "Using Tsensor V150"
+    default y
+    depends on DRIVER_SUPPORT_TSENSOR
+
+config TSENSOR_USING_V151
+    bool
+    prompt "Using Tsensor V151"
+    default y
+    depends on DRIVER_SUPPORT_TSENSOR
+
+config TSENSOR_TEMP_COMPENSATION
+    bool
+    prompt "Switch of temperature compensation in Tsensor"
+    default y
+    depends on DRIVER_SUPPORT_TSENSOR
+
+config TSENSOR_DELAY_TIME
+    int
+    prompt "Reporting delay time of Tsensor"
+    range 0 3
+    default 1
+    depends on DRIVER_SUPPORT_TSENSOR
+
+config TSENSOR_WAIT_TIME_MS
+    int
+    prompt "Wait time of Tsensor get temperature"
+    default 5
+    depends on DRIVER_SUPPORT_TSENSOR
+
+config TSENSOR_MULTILEVEL
+    bool
+    prompt "Switch of Multi-level temperature in Tsensor"
+    default y
+    depends on DRIVER_SUPPORT_TSENSOR

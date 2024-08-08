@@ -1,0 +1,76 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+
+config ENABLE_BT_SAMPLE
+    bool
+    prompt "Enable the Sample of BT."
+    default n
+    depends on SAMPLE_ENABLE
+    help
+        This option means enable the sample of BT.
+
+if ENABLE_BT_SAMPLE
+osource "application/samples/bt/Kconfig"
+endif
+
+config ENABLE_PERIPHERAL_SAMPLE
+    bool
+    prompt "Enable the Sample of peripheral."
+    default n
+    depends on SAMPLE_ENABLE
+    help
+        This option means enable the sample of peripheral.
+
+if ENABLE_PERIPHERAL_SAMPLE
+osource "application/samples/peripheral/Kconfig"
+endif
+
+config ENABLE_WIFI_SAMPLE
+    bool
+    prompt "Enable the Sample of WIFI."
+    default n
+    depends on SAMPLE_ENABLE
+    help
+        This option means enable the sample of WIFI.
+
+if ENABLE_WIFI_SAMPLE
+osource "application/samples/wifi/Kconfig"
+endif
+
+config ENABLE_PRODUCTS_SAMPLE
+    bool
+    prompt "Enable the Sample of products."
+    default n
+    depends on SAMPLE_ENABLE
+    help
+        This option means enable the sample of products.
+
+if ENABLE_PRODUCTS_SAMPLE
+osource "application/samples/products/Kconfig"
+endif
+
+config ENABLE_RADAR_SAMPLE
+    bool
+    prompt "Enable the Sample of RADAR."
+    default n
+    depends on SAMPLE_ENABLE
+    help
+        This option means enable the sample of RADAR.
+
+if ENABLE_RADAR_SAMPLE
+osource "application/samples/radar/Kconfig"
+endif
+
+config ENABLE_NFC_SAMPLE
+    bool
+    prompt "Enable the Sample of NFC."
+    default n
+    depends on SAMPLE_ENABLE
+    help
+        This option means enable the sample of NFC.
+
+if ENABLE_NFC_SAMPLE
+osource "application/samples/nfc/Kconfig"
+endif

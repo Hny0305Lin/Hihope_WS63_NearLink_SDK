@@ -1,0 +1,211 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+
+# module config
+config SECURITY_UNIFIED_SUPPORT_DEEP_SLEEP
+    bool
+    prompt "Support deepsleep feature"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config SECURITY_UNIFIED_SUPPORT_SYMC
+    bool
+    prompt "security_unified support symc"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config SECURITY_UNIFIED_SUPPORT_HASH
+    bool
+    prompt "security_unified support hash"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config SPACC_IRQ_ENABLE
+    bool
+    prompt "security_unified support spacc irq"
+    default n
+    depends on SECURITY_UNIFIED_SUPPORT_HASH || SECURITY_UNIFIED_SUPPORT_SYMC
+
+config SECURITY_UNIFIED_SUPPORT_TRNG
+    bool
+    prompt "security_unified support trng"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config SECURITY_UNIFIED_SUPPORT_KM
+    bool
+    prompt "security_unified support km"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config SECURITY_UNIFIED_SUPPORT_FAPC
+    bool
+    prompt "security_unified support fapc"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config SECURITY_UNIFIED_SUPPORT_PKE
+    bool
+    prompt "security_unified support pke"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config PKE_IRQ_ENABLE
+    bool
+    prompt "security_unified support pke irq"
+    default n
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+# support curve config
+config PKE_SUPPORT_ECC_FIPS_P192R
+    bool
+    prompt "security_unified support ecc fips192r"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_FIPS_P224R
+    bool
+    prompt "security_unified support ecc fips224r"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_FIPS_P256R
+    bool
+    prompt "security_unified support ecc fips256r"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_FIPS_P384R
+    bool
+    prompt "security_unified support ecc fips384r"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_FIPS_P521R
+    bool
+    prompt "security_unified support ecc fips521r"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_BP256R
+    bool
+    prompt "security_unified support ecc brainpool p256r"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_BP384R
+    bool
+    prompt "security_unified support ecc brainpool p384r"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_BP512R
+    bool
+    prompt "security_unified support ecc brainpool p512r"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_CURVE
+    bool
+    prompt "security_unified support RFC7748"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_CURVE_25519
+    bool
+    prompt "security_unified support curve 25519"
+    default y
+    depends on PKE_SUPPORT_CURVE
+
+config PKE_SUPPORT_ECC_CURVE_448
+    bool
+    prompt "security_unified support curve 448"
+    default y
+    depends on PKE_SUPPORT_CURVE
+
+config PKE_SUPPORT_EDWARD
+    bool
+    prompt "security_unified support RFC8032"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_ED25519
+    bool
+    prompt "security_unified support Edward 25519"
+    default y
+    depends on PKE_SUPPORT_EDWARD
+
+config PKE_SUPPORT_ECC_ED448
+    bool
+    prompt "security_unified support Edward 448"
+    default n
+    depends on PKE_SUPPORT_EDWARD
+
+config PKE_SUPPORT_SM2
+    bool
+    prompt "security_unified support sm2"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_SM2_SIGN
+    bool
+    prompt "security_unified support sm2 sign"
+    default y
+    depends on PKE_SUPPORT_SM2
+
+config PKE_SUPPORT_SM2_VERIFY
+    bool
+    prompt "security_unified support sm2 verify"
+    default y
+    depends on PKE_SUPPORT_SM2
+
+config PKE_SUPPORT_SM2_CRYPTO
+    bool
+    prompt "security_unified support sm2 crypto"
+    default y
+    depends on PKE_SUPPORT_SM2
+
+config PKE_SUPPORT_RSA
+    bool
+    prompt "security_unified support RSA"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+# feature config, eg. sign, verify, crypto, ecdh, gen_key
+config PKE_SUPPORT_ECC_SIGN
+    bool
+    prompt "security_unified support ecc sign"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_VERIFY
+    bool
+    prompt "security_unified support ecc verify"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_ECDH
+    bool
+    prompt "security_unified support ecc ecdh"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_GEN_KEY
+    bool
+    prompt "security_unified support ecc generate key"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_ECC_CAL
+    bool
+    prompt "security_unified support ecc big number calculation"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE
+
+config PKE_SUPPORT_BIG_NUMBER
+    bool
+    prompt "security_unified support big number calculation"
+    default y
+    depends on SECURITY_UNIFIED_SUPPORT_PKE

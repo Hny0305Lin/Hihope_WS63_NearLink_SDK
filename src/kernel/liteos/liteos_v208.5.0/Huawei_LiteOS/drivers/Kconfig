@@ -1,0 +1,43 @@
+menu "Driver"
+
+osource "drivers/base/Kconfig"
+osource "drivers/interrupt/Kconfig"
+osource "drivers/timer/Kconfig"
+
+config LOSCFG_DRIVERS_UART_LINUX
+    bool
+    help
+      uart is implemented using the Linux driver framework.
+
+config LOSCFG_DRIVERS_UART_LITEOS
+    bool
+    help
+      uart is implemented using the LiteOS driver framework.
+
+osource "drivers/uart/Kconfig"
+
+osource "drivers/gpio/Kconfig"
+
+osource "drivers/i2c/Kconfig"
+osource "drivers/mem/Kconfig"
+osource "drivers/iommu/Kconfig"
+
+config LOSCFG_DRIVERS_MTD
+    bool "Enable MTD"
+    default y
+    depends on LOSCFG_FS_VFS
+    select LOSCFG_COMPAT_LINUX
+    select LOSCFG_COMPAT_LINUX_DRIVER_BASE
+    help
+      Answer Y to enable LiteOS support yaffs and jffs2 multipartion.
+
+osource "drivers/mtd/nand/Kconfig"
+osource "drivers/mtd/spi_nor/Kconfig"
+osource "drivers/random/Kconfig"
+osource "drivers/rtc/Kconfig"
+osource "drivers/spi/Kconfig"
+osource "drivers/usb/adapt_liteos/Kconfig"
+osource "drivers/video/Kconfig"
+osource "drivers/cipher/Kconfig"
+
+endmenu

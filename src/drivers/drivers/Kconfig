@@ -1,0 +1,544 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config DRIVER_SUPPORT_ADC
+    bool
+    prompt "ADC"
+    default n
+    help
+        This option means support ADC.
+        DRIVER_SUPPORT_ADC
+
+if DRIVER_SUPPORT_ADC
+menu "ADC Configuration"
+    comment "Config ADC"
+    osource "drivers/drivers/driver/adc/Kconfig"
+    osource "drivers/drivers/hal/adc/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_CAN_FD
+    bool
+    prompt "CAN-FD"
+    default n
+    help
+        This option means support edge.
+
+if DRIVER_SUPPORT_CAN_FD
+menu "CAN_FD Configuration"
+    comment "Config CAN-FD"
+    osource "drivers/drivers/driver/can_fd/Kconfig"
+    osource "drivers/drivers/hal/can_fd/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_CPUTRACE
+    bool
+    prompt "CPUTRACE"
+    default n
+    help
+        This option means support CPUTRACE.
+
+if DRIVER_SUPPORT_CPUTRACE
+menu "CPUTRACE Configuration"
+    comment "Config  CPUTRACE"
+    osource "drivers/drivers/driver/cpu_trace/Kconfig"
+    osource "drivers/drivers/hal/cpu_trace/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_DMA
+    bool
+    prompt "DMA"
+    default n
+    help
+        This option means support DMA.
+
+if DRIVER_SUPPORT_DMA
+menu "DMA Configuration"
+    comment "Config DMA"
+    osource "drivers/drivers/driver/dma/Kconfig"
+    osource "drivers/drivers/hal/dma/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_EDGE
+    bool
+    prompt "EDGE"
+    default n
+    help
+        This option means support EDGE.
+
+if DRIVER_SUPPORT_EDGE
+menu "EDGE Configuration"
+    comment "Config EDGE"
+    osource "drivers/drivers/driver/edge/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_EFLASH
+    bool
+    prompt "EFLASH"
+    default n
+    help
+        This option means support EFLASH.
+
+if DRIVER_SUPPORT_EFLASH
+menu "EFLASH configuration"
+    comment "Config EFLASH"
+    osource "drivers/drivers/hal/eflash/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_EFUSE
+    bool
+    prompt "EFUSE"
+    default n
+    help
+        This option means support EFUSE.
+
+if DRIVER_SUPPORT_EFUSE
+menu "EFUSE Configuration"
+    comment "Config EFUSE"
+    osource "drivers/drivers/hal/efuse/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_FLASH
+    bool
+    prompt "FLASH"
+    default n
+    help
+        This option means support FLASH.
+
+if DRIVER_SUPPORT_FLASH
+menu "FLASH Configuration"
+    comment "Config FLASH"
+    osource "drivers/drivers/driver/flash/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_GPIO
+    bool
+    prompt "GPIO"
+    default n
+    help
+        This option means support GPIO.
+
+if DRIVER_SUPPORT_GPIO
+menu "GPIO Configuration"
+    comment "Config GPIO"
+    osource "drivers/drivers/driver/gpio/Kconfig"
+    osource "drivers/drivers/hal/gpio/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_HASH
+    bool
+    prompt "Hash"
+    default n
+    help
+        This option means support HASH.
+
+if DRIVER_SUPPORT_HASH
+menu "Hash Configuration"
+    comment "Config Hash"
+    osource "drivers/drivers/driver/security/hash/Kconfig"
+    osource "drivers/drivers/hal/security/hal_hash/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_I2C
+    bool
+    prompt "I2C"
+    default y
+    help
+        This option means support I2C.
+
+if DRIVER_SUPPORT_I2C
+menu "I2C Configuration"
+    comment "Config I2C. User must choose one of master or slave at least, if support I2C."
+    osource "drivers/drivers/driver/i2c/Kconfig"
+    osource "drivers/drivers/hal/i2c/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_I2S
+    bool
+    prompt "I2S"
+    default y
+    help
+        This option means support I2S.
+
+if DRIVER_SUPPORT_I2S
+    menu "I2S Configuration"
+        comment "Config I2S. User must choose one of master or slave at least, if support I2S."
+        osource "drivers/drivers/driver/i2s/Kconfig"
+        osource "drivers/drivers/hal/sio/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_IPC
+    bool
+    prompt "IPC"
+    default n
+    help
+        This option means support IPC.
+
+if DRIVER_SUPPORT_IPC
+menu "IPC Configuration"
+    comment "Config IPC"
+    osource "drivers/drivers/driver/ipc/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_KEYSCAN
+    bool
+    prompt "KEYSCAN"
+    default n
+    help
+        This option means support KEYSCAN.
+
+if DRIVER_SUPPORT_KEYSCAN
+menu "KEYSCAN Configuration"
+    comment "Config  KEYSCAN"
+    osource "drivers/drivers/driver/keyscan/Kconfig"
+    osource "drivers/drivers/hal/keyscan/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_MEM_MONITOR
+    bool
+    prompt "MEM_MONITOR"
+    default n
+    help
+        This option means support MEM_MONITOR.
+        DRIVER_SUPPORT_MEM_MONITOR
+
+if DRIVER_SUPPORT_MEM_MONITOR
+menu "MEM_MONITOR Configuration"
+    comment "Config MEM_MONITOR"
+    osource "drivers/drivers/hal/memory_monitor/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_MPU
+    bool
+    prompt "MPU"
+    default n
+    help
+        This option means support MPU.
+
+if DRIVER_SUPPORT_MPU
+menu "MPU Configuration"
+    comment "Config MPU"
+    osource "drivers/drivers/driver/mpu/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_PCM
+    bool
+    prompt "PCM"
+    default y
+    help
+        This option means support PCM.
+
+if DRIVER_SUPPORT_PCM
+    menu "PCM Configuration"
+        comment "Config PCM. User must choose one of master or slave at least, if support PCM."
+        osource "drivers/drivers/driver/pcm/Kconfig"
+        osource "drivers/drivers/hal/sio/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_PDM
+    bool
+    prompt "PDM"
+    default n
+    help
+        This option means support PDM.
+
+if DRIVER_SUPPORT_PDM
+menu "PDM Configuration"
+    comment "Config PDM"
+    osource "drivers/drivers/driver/pdm/Kconfig"
+    osource "drivers/drivers/hal/pdm/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_PINCTRL
+    bool
+    prompt "PINCTRL"
+    default y
+    help
+        This option means support PINCTRL.
+
+if DRIVER_SUPPORT_PINCTRL
+menu "PINCTRL Configuration"
+    comment "Config  PINCTRL"
+    osource "drivers/drivers/driver/pinmux/Kconfig"
+    osource "drivers/drivers/hal/pinmux/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_PM
+    bool
+    prompt "PM"
+    default y
+    help
+        This option means support PM.
+        DRIVER_SUPPORT_PM
+
+if DRIVER_SUPPORT_PM
+menu "PM Configuration"
+    comment "Config pm"
+    osource "drivers/drivers/driver/pm/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_PMP
+    bool
+    prompt "PMP"
+    default y
+    help
+        This option means support PMP.
+
+if DRIVER_SUPPORT_PMP
+menu "PMP Configuration"
+    comment "Config pmp"
+    osource "drivers/drivers/driver/pmp/Kconfig"
+    osource "drivers/drivers/hal/pmp/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_PWM
+    bool
+    prompt "PWM"
+    default n
+    help
+        This option means support PWM.
+
+if DRIVER_SUPPORT_PWM
+menu "PWM Configuration"
+    comment "Config PWM"
+    osource "drivers/drivers/hal/pwm/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_RTC
+    bool
+    prompt "RTC"
+    default n
+    help
+        This option means support RTC.
+
+if DRIVER_SUPPORT_RTC
+menu "RTC Configuration"
+    comment "Config RTC"
+    osource "drivers/drivers/driver/rtc_unified/Kconfig"
+    osource "drivers/drivers/hal/rtc_unified/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_SDIO
+    bool
+    prompt "SDIO"
+    default n
+    help
+        This option means support SDIO.
+
+if DRIVER_SUPPORT_SDIO
+menu "SDIO Configuration"
+    comment "Config SDIO"
+    osource "drivers/drivers/driver/sdio/Kconfig"
+    osource "drivers/drivers/hal/sdio/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_SEC
+    bool
+    prompt "SEC"
+    default n
+    help
+        This option means support SECURITY.
+
+if DRIVER_SUPPORT_SEC
+menu "SEC Configuration"
+    comment "Config SEC"
+endmenu
+endif
+
+config DRIVER_SUPPORT_SECURITY_UNIFIED
+    bool
+    prompt "SECURITY_UNIFIED"
+    default y
+    help
+        This option means support SECURITY_UNIFIED.
+
+if DRIVER_SUPPORT_SECURITY_UNIFIED
+menu "SECURITY_UNIFIED Configuration"
+    comment "Config security_unified"
+    osource "drivers/drivers/driver/security_unified/Kconfig"
+    osource "drivers/drivers/hal/security_unified/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_SFC
+    bool
+    prompt "SFC"
+    default y
+    help
+        This option means support SFC.
+
+if DRIVER_SUPPORT_SFC
+menu "SFC Configuration"
+    comment "Config  SFC"
+    osource "drivers/drivers/driver/sfc/Kconfig"
+    osource "drivers/drivers/hal/sfc/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_SPI
+    bool
+    prompt "SPI"
+    default n
+    help
+        This option means support SPI.
+
+if DRIVER_SUPPORT_SPI
+menu "SPI Configuration"
+    comment "Config SPI"
+    osource "drivers/drivers/driver/spi/Kconfig"
+    osource "drivers/drivers/hal/spi/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_SSI
+    bool
+    prompt "SSI Master"
+    default n
+    help
+        This option means support SSI MASTER.
+
+if DRIVER_SUPPORT_SSI
+menu "SSI Configuration"
+    comment "Config SSI"
+endmenu
+endif
+
+config DRIVER_SUPPORT_SYSTICK
+    bool
+    prompt "SYSTICK"
+    default n
+    help
+        This option means support SYSTICK.
+
+if DRIVER_SUPPORT_SYSTICK
+menu "SYSTICK Configuration"
+    comment "Config SYSTICK"
+    osource "drivers/drivers/driver/systick/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_TCXO
+    bool
+    prompt "TCXO"
+    default n
+    help
+        This option means support TCXO.
+
+if DRIVER_SUPPORT_TCXO
+menu "TCXO Configuration"
+    comment "Config TCXO"
+    osource "drivers/drivers/driver/tcxo/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_TIMER
+    bool
+    prompt "TIMER"
+    default n
+    help
+        This option means support TIMER.
+
+if DRIVER_SUPPORT_TIMER
+menu "TIMER Configuration"
+    comment "Config TIMER"
+    osource "drivers/drivers/driver/timer/Kconfig"
+    osource "drivers/drivers/hal/timer/Kconfig"
+    endmenu
+endif
+
+config DRIVER_SUPPORT_TSENSOR
+    bool
+    prompt "TSENSOR"
+    default n
+    help
+        This option means support TSENSOR.
+        DRIVER_SUPPORT_TSENSOR
+
+if DRIVER_SUPPORT_TSENSOR
+menu "TSENSOR Configuration"
+    comment "Config TSENSOR"
+    osource "drivers/drivers/hal/tsensor/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_UART
+    bool
+    prompt "UART"
+    default n
+    help
+        This option means support UART.
+
+if DRIVER_SUPPORT_UART
+menu "Uart Configuration"
+    comment "Config uart"
+    osource "drivers/drivers/driver/uart/Kconfig"
+    osource "drivers/drivers/hal/uart/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_USB
+    bool
+    prompt "USB"
+    default n
+    help
+        This option means support USB.
+
+if DRIVER_SUPPORT_USB
+menu "USB Configuration"
+    comment "Config USB"
+    osource "drivers/drivers/driver/usb_unified/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_WDT
+    bool
+    prompt "Watchdog"
+    default n
+    help
+        This option means support WATCHDOG.
+
+if DRIVER_SUPPORT_WDT
+menu "Watchdog Configuration"
+    comment "Config watchdog"
+    osource "drivers/drivers/driver/watchdog/Kconfig"
+    osource "drivers/drivers/hal/watchdog/Kconfig"
+endmenu
+endif
+
+config DRIVER_SUPPORT_AUDIO
+    bool
+    prompt "AUDIO"
+    default n
+    help
+        This option means support audio
+
+if DRIVER_SUPPORT_AUDIO
+menu "AUDIO Configuration"
+    comment "Config audio"
+    osource "drivers/drivers/driver/audio/riscv_codec/codec/Kconfig"
+endmenu
+endif

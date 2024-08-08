@@ -1,0 +1,34 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config PWM_USING_V151
+    bool
+    prompt "Using PWM V151"
+    default y
+    depends on DRIVER_SUPPORT_PWM
+
+config PWM_USING_V150
+    bool
+    prompt "Using PWM V150"
+    default y
+    depends on DRIVER_SUPPORT_PWM
+
+config PWM_GROUP_NUM
+    int
+    prompt "number of groups in PWM"
+    range 1 16
+    default 6
+    depends on DRIVER_SUPPORT_PWM
+
+config PWM_CHANNEL_NUM
+    int
+    prompt "PWM channel number"
+    default 6
+    depends on DRIVER_SUPPORT_PWM
+
+config PWM_PRELOAD
+    bool
+    prompt "Using PWM PRELOAD"
+    default n
+    depends on PWM_USING_V151

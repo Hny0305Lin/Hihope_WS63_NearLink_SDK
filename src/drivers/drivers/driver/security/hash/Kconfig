@@ -1,0 +1,9 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config HASH_SUPPORT_SHA512
+    bool
+    prompt "Hash support SHA512"
+    default n
+    depends on DRIVER_SUPPORT_HASH

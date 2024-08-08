@@ -1,0 +1,5 @@
+config LOSCFG_FS_COMPAT_NUTTX
+    bool "Enable Compat Nuttx"
+    default n
+    help
+      Answer Y to enable FS Compat Nuttx interface.

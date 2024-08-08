@@ -1,0 +1,73 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config SAMPLE_SUPPORT_I2C_MASTER
+    bool
+    prompt "Support I2C Master Sample."
+    default n
+    depends on SAMPLE_SUPPORT_I2C
+    help
+        This option means support I2C Master Sample.
+
+config I2C_MASTER_BUS_ID
+    int
+    prompt "Choose I2C master bus id."
+    depends on SAMPLE_SUPPORT_I2C_MASTER
+    default 2
+
+config I2C_SCL_MASTER_PIN
+    int
+    prompt "Choose I2C SCL master pin."
+    depends on SAMPLE_SUPPORT_I2C_MASTER
+    default 8
+
+config I2C_SDA_MASTER_PIN
+    int
+    prompt "Choose I2C SDA master pin."
+    depends on SAMPLE_SUPPORT_I2C_MASTER
+    default 9
+
+config I2C_MASTER_PIN_MODE
+    int
+    prompt "Choose I2C master pin mode."
+    depends on SAMPLE_SUPPORT_I2C_MASTER
+    default 3
+
+config SAMPLE_SUPPORT_I2C_SLAVE
+    bool
+    prompt "Support I2C Slave Sample."
+    default n
+    depends on SAMPLE_SUPPORT_I2C
+    help
+        This option means support I2C Slave Sample.
+
+config I2C_SLAVE_BUS_ID
+    int
+    prompt "Choose I2C slave bus id."
+    depends on SAMPLE_SUPPORT_I2C_SLAVE
+    default 2
+
+config I2C_SCL_SLAVE_PIN
+    int
+    prompt "Choose I2C SCL slave pin."
+    depends on SAMPLE_SUPPORT_I2C_SLAVE
+    default 8
+
+config I2C_SDA_SLAVE_PIN
+    int
+    prompt "Choose I2C SDA slave pin."
+    depends on SAMPLE_SUPPORT_I2C_SLAVE
+    default 9
+
+config I2C_SLAVE_PIN_MODE
+    int
+    prompt "Choose I2C slave pin mode."
+    depends on SAMPLE_SUPPORT_I2C_SLAVE
+    default 3
+
+config I2C_TRANSFER_LEN
+    int
+    prompt "Choose I2C transfer length."
+    depends on SAMPLE_SUPPORT_I2C
+    default 8

@@ -1,0 +1,65 @@
+{
+    "WS63": {
+        "WS63": {
+            "cmake": {
+                "support_task": [
+                    "build",
+                    "clean",
+                    "rebuild",
+                    "upload",
+                    "portion of upload",
+                    "stack analysis",
+                    "image analysis",
+                    "kconfig"
+                ],
+                "build": {
+                    "build_command": "./build.py",
+                    "build_argv": "ws63-liteos-app",
+                    "custom_build_command": {
+                        "ws63-liteos-app": {
+                            "build_command": "./build.py",
+                            "build_argv": "ws63-liteos-app"
+                        },
+                        "ws63-liteos-app-radar": {
+                            "build_command": "./build.py",
+                            "build_argv": "ws63-liteos-app-radar"
+                        }
+                    }
+                },
+                "stack analysis": {
+                    "analysis_elf_path": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.elf",
+                    "analysis_compiler_path": "./tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_fp_win/bin",
+                    "build_config_path": ""
+                },
+                "image analysis": {
+                    "analysis_elf_path": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.elf",
+                    "analysis_map_path": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.map",
+                    "analysis_compiler_path": "./tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_fp_win/bin",
+                    "build_config_path": ""
+                },
+                "upload": {
+                    "upload_speed": "921600",
+                    "upload_partitions": "./output/ws63/fwpkg/ws63-liteos-app/ws63-liteos-app_all.fwpkg",
+                    "upload_protocol": ""
+                },
+                "debug": {
+                    "debug_client": "gdb",
+                    "debug_tool": "jlink",
+                    "debug_interface": "swd",
+                    "debug_device": "CPU CORE|RISC-V|RISC-V",
+                    "debug_elf": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.elf"
+                },
+                "kconfig": {
+                    "menu_config_file_path": "./config.in",
+                    "menu_config_build_target": "ws63-liteos-app",
+                    "menu_config_core": "acore",
+                    "menu_config_target_path": "./build/config/target_config/ws63/menuconfig/acore"
+                },
+                "chip config": {
+                    "series_name": "ws63",
+                    "board_build.mcu": "ws63"
+                }
+            }
+        }
+    }
+}

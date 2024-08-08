@@ -1,0 +1,21 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config ADC_SUPPORT_AUTO_SCAN
+    bool
+    prompt "ADC Support auto scan"
+    default y
+    depends on DRIVER_SUPPORT_ADC
+
+config ADC_SUPPORT_LONG_SAMPLE
+    bool
+    prompt "ADC Support long sample mode"
+    default n
+    depends on ADC_SUPPORT_AUTO_SCAN
+
+config ADC_SUPPORT_QUERY_REGS
+    bool
+    prompt "ADC support query regs values"
+    default n
+    depends on DRIVER_SUPPORT_ADC

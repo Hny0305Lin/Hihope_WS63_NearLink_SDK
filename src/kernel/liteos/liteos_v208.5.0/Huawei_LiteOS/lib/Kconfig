@@ -1,0 +1,72 @@
+menu "Lib"
+
+config LOSCFG_LIB_LIBSEC
+    bool "Enable LibSec"
+    default y
+    help
+      Answer Y to enable LiteOS support secure c.
+
+config LOSCFG_LIB_LIBC
+    bool "Enable Libc"
+    default y
+    depends on !LOSCFG_ARCH_XTENSA
+    help
+      Answer Y to enable LiteOS support libc.
+
+menuconfig LOSCFG_COMPAT_POSIX
+    bool "Enable Posix"
+    default y
+    depends on LOSCFG_LIB_LIBC
+    select LOSCFG_TASK_JOINABLE
+    select LOSCFG_KERNEL_MEM_ALLOC
+    select LOSCFG_BASE_IPC_MUX
+    select LOSCFG_BASE_IPC_SEM
+    select LOSCFG_BASE_IPC_EVENT
+    select LOSCFG_BASE_CORE_SWTMR
+    select LOSCFG_BASE_IPC_QUEUE
+    select LOSCFG_QUEUE_DYNAMIC_ALLOCATION
+    select LOSCFG_TASK_STACK_DYNAMIC_ALLOCATION
+    help
+      Answer Y to enable LiteOS support posix interface.
+
+config LOSCFG_LIB_VENDORNAME
+    string "User-defined nodename for uname"
+    default "vendor"
+    depends on LOSCFG_COMPAT_POSIX
+    help
+      Config nodename for uname api, default is "vendor".
+
+config LOSCFG_LIB_LIBM
+    bool "Enable Math"
+    default y
+    depends on LOSCFG_LIB_LIBC
+    help
+      Answer Y to enable LiteOS support math function.
+
+config LOSCFG_LIB_FORMAT
+    bool "Enable Format"
+    default y
+    depends on LOSCFG_LIB_LIBC
+    select LOSCFG_LIB_LIBM
+    help
+      Answer Y to enable LiteOS support format function.
+
+config LOSCFG_LIB_STDIO
+    bool "Enable Stdio"
+    default y
+    depends on LOSCFG_LIB_LIBC && LOSCFG_FS_VFS
+    select LOSCFG_LIB_FORMAT
+    select LOSCFG_COMPAT_POSIX
+    select LOSCFG_LIB_LIBM
+    help
+      Answer Y to enable LiteOS support I/O function.
+
+config LOSCFG_SUPPORT_LONG_DOUBLE
+    bool "Support Long Double Float Type"
+    default y
+    depends on LOSCFG_LIB_STDIO || LOSCFG_LIB_LIBM || LOSCFG_COMPAT_POSIX || LOSCFG_LIB_FORMAT
+    help
+      Answer Y to enable LiteOS support long double float type.
+
+endmenu
+

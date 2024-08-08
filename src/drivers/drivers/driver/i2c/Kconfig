@@ -1,0 +1,75 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config I2C_SUPPORT_MASTER
+    bool
+    prompt "I2C SUPPORT MASTER."
+    default y
+    depends on DRIVER_SUPPORT_I2C
+
+config I2C_SUPPORT_SLAVE
+    bool
+    prompt "I2C SUPPORT SLAVE"
+    default y
+    depends on DRIVER_SUPPORT_I2C
+
+config I2C_WAIT_CONDITION_TIMEOUT
+    hex
+    prompt "The timeout of I2C wait condition when I2C write and read, uint is ms"
+    default 0x3E8
+    depends on DRIVER_SUPPORT_I2C
+
+config I2C_SUPPORT_INT
+    bool
+    prompt "I2C SUPPORT INTERRUPT"
+    default n
+    depends on DRIVER_SUPPORT_I2C && !I2C_SUPPORT_POLL_AND_DMA_AUTO_SWITCH
+
+config I2C_SUPPORT_IN_CHIP_LOOPBACK
+    bool
+    prompt "I2C Support loopback, which can read and write in one chip with two diferrent I2C buses"
+    default n
+    depends on I2C_SUPPORT_INT
+
+config I2C_SUPPORT_DMA
+    bool
+    prompt "I2C SUPPORT DMA"
+    default n
+    depends on DRIVER_SUPPORT_I2C
+
+config I2C_SUPPORT_LPC
+    bool
+    prompt "I2C Support low power control, control power and clock"
+    default n
+    depends on DRIVER_SUPPORT_I2C
+
+config I2C_SUPPORT_LPM
+    bool
+    prompt "I2C Support low power mode, supend and reusme"
+    default n
+    depends on DRIVER_SUPPORT_I2C
+
+config I2C_SUPPORT_CONCURRENCY
+    bool
+    prompt "I2C Support concurrency"
+    default y
+    depends on DRIVER_SUPPORT_I2C
+
+config I2C_SUPPORT_POLL_AND_DMA_AUTO_SWITCH
+    bool
+    prompt "I2C support poll and dma auto switch"
+    default n
+    depends on I2C_SUPPORT_DMA
+
+config I2C_POLL_AND_DMA_AUTO_SWITCH_THRESHOLD
+    hex
+    prompt "I2C poll and dma auto switch threshold"
+    default 0x10
+    depends on I2C_SUPPORT_POLL_AND_DMA_AUTO_SWITCH
+
+config I2C_SUPPORT_QUERY_REGS
+    bool
+    prompt "I2C support query regs values"
+    default n
+    depends on DRIVER_SUPPORT_I2C

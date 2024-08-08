@@ -1,0 +1,63 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config DRIVER_SUPPORT_LITEOS_208_6_0_B017_CAT1
+    bool
+    prompt "LiteOS_208_6_0_B017_CAT1"
+    default n
+    help
+        This option means support LiteOS_208_6_0.
+    depends on DRIVER_SUPPORT_LITEOS
+
+if DRIVER_SUPPORT_LITEOS_208_6_0_B017_CAT1
+    osource "kernel/liteos/liteos_v208.6.0_b017_cat1/Kconfig"
+endif
+
+config DRIVER_SUPPORT_LITEOS_208_6_0_B017
+    bool
+    prompt "LiteOS_208_6_0_B017"
+    default n
+    help
+        This option means support LiteOS_208_6_0.
+    depends on DRIVER_SUPPORT_LITEOS
+
+if DRIVER_SUPPORT_LITEOS_208_6_0_B017
+    osource "kernel/liteos/liteos_v208.6.0_b017/Kconfig"
+endif
+
+config DRIVER_SUPPORT_LITEOS_208_5_0_B004
+    bool
+    prompt "LiteOS_208_5_0_B004"
+    default n
+    help
+        This option means support LiteOS_208_5_0.
+    depends on DRIVER_SUPPORT_LITEOS
+
+if DRIVER_SUPPORT_LITEOS_208_5_0
+    osource "kernel/liteos/liteos_v208.5.0_b004/Kconfig"
+endif
+
+config DRIVER_SUPPORT_LITEOS_208_5_0
+    bool
+    prompt "LiteOS_208_5_0"
+    default n
+    help
+        This option means support LiteOS_208_5_0.
+    depends on DRIVER_SUPPORT_LITEOS
+
+if DRIVER_SUPPORT_LITEOS_208_5_0
+    osource "kernel/liteos/liteos_v208.5.0/Kconfig"
+endif
+
+config DRIVER_SUPPORT_LITEOS_207_0_0
+    bool
+    prompt "LiteOS_207_0_0"
+    default y
+    help
+        This option means support LiteOS_207_0_0.
+    depends on DRIVER_SUPPORT_LITEOS
+
+if DRIVER_SUPPORT_LITEOS_207_0_0
+    osource "kernel/liteos/liteos_v207.0.0/Kconfig"
+endif

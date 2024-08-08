@@ -1,0 +1,107 @@
+{
+	"chipName": "ws63",
+	"seriesName": "cfbb",
+	"board": "ws63",
+	"compile": {
+		"custom_build_command": "ws63-liteos-app",
+		"tool_chain": [
+			"cfbb"
+		],
+		"map_path": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.elf"
+	},
+	"debug": {
+		"elf_path": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.elf",
+		"breakpoints_limitation": "7",
+		"client": [
+			"gdb"
+		],
+		"tool": [
+			"jlink"
+		],
+		"params": [
+			{
+				"name": "jlink",
+				"param": {
+					"interface": [
+						"swd",
+						"jtag"
+					],
+					"speed": "5000",
+					"port": "3333"
+				}
+			}
+		],
+		"timeout_list": [
+			"15000",
+			"30000",
+			"60000",
+			"120000",
+			"-1"
+		],
+		"timeout_default": "60000"
+	},
+	"upload": {
+		"bin_path": "./output/ws63/fwpkg/ws63-liteos-app/ws63-liteos-app_all.fwpkg",
+		"reset": 1,
+		"burn_verification": 0,
+		"protocol": [
+			"serial",
+			"swd"
+		],
+		"baudList": [
+			"2400",
+			"4800",
+			"9600",
+			"19200",
+			"38400",
+			"57600",
+			"115200",
+			"230400",
+			"460800",
+			"500000",
+			"750000",
+			"921600",
+			"2000000"
+		],
+		"params": [
+			{
+				"name": "serial",
+				"param": {
+					"port": "",
+					"baud": "921600",
+					"stop_bit": "0",
+					"parity": "N",
+					"inside_protocol": ""
+				}
+			}
+		]
+	},
+	"console": {
+		"serial_port": "",
+		"baud": "115200",
+		"stop_bit": "0",
+		"parity": "N"
+	},
+	"need_sdk": true,
+	"need_project_path": true,
+	"chip_config": false,
+	"gui": false,
+	"platform": "cfbb",
+	"project_type": [
+		{
+			"name": "cfbb",
+			"base_on_sdk": true
+		}
+	],
+	"analysis": {
+		"elf_path": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.elf",
+		"map_path": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.map",
+		"tool_path": "./tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_fp_win/bin"
+	},
+	"kConfig": {
+		"menu_config_file_path": "config.in",
+		"menu_config_build_target": "ws63-liteos-app",
+		"menu_config_core": "acore",
+		"menu_config_target_path": "build/config/target_config/ws63/menuconfig/acore"
+	}
+}

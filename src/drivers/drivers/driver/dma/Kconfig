@@ -1,0 +1,27 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config DMA_SUPPORT_LLI
+    bool
+    prompt "DMA Support lli"
+    default y
+    depends on DRIVER_SUPPORT_DMA
+
+config DMA_SUPPORT_CIRCULAR_LLI
+    bool
+    prompt "DMA Support circular lli"
+    default n
+    depends on DMA_SUPPORT_LLI
+
+config DMA_SUPPORT_LPM
+    bool
+    prompt "DMA Support low power mode"
+    default y
+    depends on DRIVER_SUPPORT_DMA
+
+config DMA_SUPPORT_QUERY_REGS
+    bool
+    prompt "DMA support query regs values"
+    default n
+    depends on DRIVER_SUPPORT_DMA

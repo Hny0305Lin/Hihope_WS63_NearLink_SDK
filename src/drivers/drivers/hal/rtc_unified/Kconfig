@@ -1,0 +1,125 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config RTC_USING_V100
+    bool
+    prompt "Using rtc V100."
+    default y
+    depends on DRIVER_SUPPORT_RTC
+
+config RTC_USING_V150
+    bool
+    prompt "Using rtc V150."
+    default n
+    depends on DRIVER_SUPPORT_RTC
+
+config RTC_MAX_NUM
+    int
+    prompt "RTC max low layer nums."
+    default 5
+    depends on DRIVER_SUPPORT_RTC
+
+config RTC_0_WIDTH_64
+    int
+    prompt "Using 64 bits width of rtc0."
+    range 0 1
+    default 0
+    depends on RTC_USING_V150
+
+config RTC_1_WIDTH_64
+    int
+    prompt "Using 64 bits width of rtc1."
+    range 0 1
+    default 0
+    depends on RTC_USING_V150 && RTC_MAX_NUM > 1
+
+config RTC_2_WIDTH_64
+    int
+    prompt "Using 64 bits width of rtc2."
+    range 0 1
+    default 0
+    depends on RTC_USING_V150 && RTC_MAX_NUM > 2
+
+config RTC_3_WIDTH_64
+    int
+    prompt "Using 64 bits width of rtc3."
+    range 0 1
+    default 0
+    depends on RTC_USING_V150 && RTC_MAX_NUM > 3
+
+config RTC_4_WIDTH_64
+    int
+    prompt "Using 64 bits width of rtc4."
+    range 0 1
+    default 1
+    depends on RTC_USING_V150 && RTC_MAX_NUM > 4
+
+config RTC_5_WIDTH_64
+    int
+    prompt "Using 64 bits width of rtc5."
+    range 0 1
+    default 1
+    depends on RTC_USING_V150 && RTC_MAX_NUM > 5
+
+config RTC_6_WIDTH_64
+    int
+    prompt "Using 64 bits width of rtc6."
+    range 0 1
+    default 1
+    depends on RTC_USING_V150 && RTC_MAX_NUM > 6
+
+config RTC_7_WIDTH_64
+    int
+    prompt "Using 64 bits width of rtc7."
+    range 0 1
+    default 1
+    depends on RTC_USING_V150 && RTC_MAX_NUM > 7
+
+config RTC_STOP_DELAY_SUPPORT
+    bool
+    prompt "Support hal_rtc delay 32us after stop."
+    default n
+    depends on RTC_USING_V150
+
+config RTC_STOP_DELAY_USING_OSAL
+    bool
+    prompt "Using osal to delay."
+    default n
+    depends on RTC_STOP_DELAY_SUPPORT
+
+config RTC_STOP_DELAY_USING_TCXO
+    bool
+    prompt "Using TCXO to delay."
+    default n
+    depends on RTC_STOP_DELAY_SUPPORT
+
+config RTC_STOP_DELAY_USING_SYSTICK
+    bool
+    prompt "Using systick to delay."
+    default n
+    depends on RTC_STOP_DELAY_SUPPORT
+
+config RTC_START_DELAY_SUPPORT
+    bool
+    prompt "Support hal_rtc delay 65us after start."
+    default n
+    depends on RTC_USING_V150
+
+config RTC_START_DELAY_USING_OSAL
+    bool
+    prompt "Using osal to delay."
+    default n
+    depends on RTC_START_DELAY_SUPPORT
+
+config RTC_START_DELAY_USING_TCXO
+    bool
+    prompt "Using TCXO to delay."
+    default n
+    depends on RTC_START_DELAY_SUPPORT
+
+config RTC_START_DELAY_USING_SYSTICK
+    bool
+    prompt "Using systick to delay."
+    default n
+    depends on RTC_START_DELAY_SUPPORT

@@ -1,0 +1,31 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config RADAR_DBG
+    bool
+    prompt "Enable Radar Dbg."
+    default n
+    help
+        This option means support Radar Dbg.
+
+config RADAR_AI
+    bool
+    prompt "Enable Radar AI."
+    default n
+    help
+        This option means support Radar AI.
+
+config RADAR_MFG
+    bool
+    prompt "Enable Radar MFG."
+    default n
+    help
+        This option means support Radar MFG.
+
+config RADAR_MIPS
+    bool
+    prompt "Enable Radar MIPS."
+    default n
+    help
+        This option means support Radar MIPS.

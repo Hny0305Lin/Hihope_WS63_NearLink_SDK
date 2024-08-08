@@ -1,0 +1,97 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config SAMPLE_SUPPORT_SPI_MASTER
+    bool
+    prompt "Support SPI Master Sample."
+    default n
+    depends on SAMPLE_SUPPORT_SPI
+    help
+        This option means support SPI Master Sample.
+
+config SPI_MASTER_BUS_ID
+    int
+    prompt "Choose SPI master bus id."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 2
+
+config SPI_DI_MASTER_PIN
+    int
+    prompt "Choose SPI DI master pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 16
+
+config SPI_DO_MASTER_PIN
+    int
+    prompt "Choose SPI DO master pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 17
+
+config SPI_CLK_MASTER_PIN
+    int
+    prompt "Choose SPI CLK master pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 18
+
+config SPI_CS_MASTER_PIN
+    int
+    prompt "Choose SPI CS master pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 19
+
+config SPI_MASTER_PIN_MODE
+    int
+    prompt "Choose SPI master pin mode."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 1
+
+config SAMPLE_SUPPORT_SPI_SLAVE
+    bool
+    prompt "Support SPI Slave Sample."
+    default n
+    depends on SAMPLE_SUPPORT_SPI
+    help
+        This option means support SPI Slave Sample.
+
+config SPI_SLAVE_BUS_ID
+    int
+    prompt "Choose SPI slave bus id."
+    depends on SAMPLE_SUPPORT_SPI_SLAVE
+    default 4
+
+config SPI_DI_SLAVE_PIN
+    int
+    prompt "Choose SPI DI slave pin."
+    depends on SAMPLE_SUPPORT_SPI_SLAVE
+    default 12
+
+config SPI_DO_SLAVE_PIN
+    int
+    prompt "Choose SPI DO slave pin."
+    depends on SAMPLE_SUPPORT_SPI_SLAVE
+    default 13
+
+config SPI_CLK_SLAVE_PIN
+    int
+    prompt "Choose SPI CLK slave pin."
+    depends on SAMPLE_SUPPORT_SPI_SLAVE
+    default 14
+
+config SPI_CS_SLAVE_PIN
+    int
+    prompt "Choose SPI CS slave pin."
+    depends on SAMPLE_SUPPORT_SPI_SLAVE
+    default 15
+
+config SPI_SLAVE_PIN_MODE
+    int
+    prompt "Choose SPI slave pin mode."
+    depends on SAMPLE_SUPPORT_SPI_SLAVE
+    default 5
+
+config SPI_TRANSFER_LEN
+    int
+    prompt "Choose SPI transfer length."
+    depends on SAMPLE_SUPPORT_SPI
+    default 8

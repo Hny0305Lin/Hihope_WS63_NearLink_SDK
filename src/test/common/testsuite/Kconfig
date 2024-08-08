@@ -1,0 +1,24 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config TEST_SUITE_FUNCTIONS_MAX_FUNCS
+    int
+    prompt "number of testsuite max function"
+    range 1 300
+    default 200
+    depends on TEST_SUPPORT_TESTSUITE
+
+config TEST_CONSOLE_HISTORY_LEN
+    int
+    prompt "number of test command buffer size"
+    range 0 10
+    default 10
+    depends on TEST_SUPPORT_TESTSUITE
+
+config TEST_SUITE_TASK_STACK_SIZE
+    hex
+    prompt "number of test suit task stack size"
+    range 0 0x4000
+    default 0x800
+    depends on TEST_SUPPORT_TESTSUITE

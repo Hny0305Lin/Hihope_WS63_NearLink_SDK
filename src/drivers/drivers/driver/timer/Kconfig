@@ -1,0 +1,33 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config TIMER_MAX_TIMERS_NUM
+    int
+    prompt "Max timers num"
+    default 16
+    depends on DRIVER_SUPPORT_TIMER
+
+config TIMER_CLOCK_VALUE
+    int
+    prompt "Timer clock value in Hz."
+    default 32000000
+    depends on DRIVER_SUPPORT_TIMER
+
+config TIMER_SUPPORT_LPC
+    bool
+    prompt "Timer Support low power control, control power and clock"
+    default n
+    depends on DRIVER_SUPPORT_TIMER
+
+config TIMER_USING_OLD_VERSION
+    bool
+    prompt "TIMER ip using old version, load count must be aligned with 0xF."
+    default n
+    depends on DRIVER_SUPPORT_TIMER
+
+config TIMER_SUPPORT_LPM
+    bool
+    prompt "Timer Support low power resume"
+    default n
+    depends on DRIVER_SUPPORT_TIMER

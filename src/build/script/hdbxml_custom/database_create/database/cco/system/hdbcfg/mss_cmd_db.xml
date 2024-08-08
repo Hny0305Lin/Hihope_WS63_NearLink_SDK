@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DebugKits>
+  <GROUP NAME="MAC" DATA_STRUCT_FILE="..\diag\mac_struct_def.txt" MULTIMODE="NBIOT" PLUGIN="0x111,0x110(1),0x252">
+
+  </GROUP>
+  <GROUP NAME="PHY" DATA_STRUCT_FILE="..\diag\phy_struct_def.txt" MULTIMODE="LTE">
+
+  </GROUP>
+  <GROUP NAME="DBK" DATA_STRUCT_FILE="..\diag\struct_def.txt" MULTIMODE="NBIOT">
+    <CMD ID="0x5314" TYPE="IND" NAME="msg_sys" PLUGIN="0x110(1)" DESCRIPTION="MSG上报（SYS）"></CMD>
+	<CMD ID="0x5315" TYPE="IND" NAME="msg_layer(dev)" PLUGIN="0x110(1)" DESCRIPTION="MSG上报（LAYER）"></CMD>
+    <CMD ID="0x5316" TYPE="IND" NAME="msg_usr" PLUGIN="0x110(1),0x110(5)" DESCRIPTION="MSG上报（USR）"></CMD>
+    <CMD ID="0x5304" TYPE="IND" NAME="msg_air" PLUGIN="0x110(1),0x110(5)" DESCRIPTION="MSG上报（AIR）"></CMD>
+    <CMD ID="0x5310" TYPE="IND" NAME="msg_set_sys" PLUGIN="0x110(1)" DESCRIPTION="MSG上报（SYS）"></CMD>
+	<CMD ID="0x5311" TYPE="IND" NAME="msg_set_layer(dev)" PLUGIN="0x110(1)" DESCRIPTION="MSG上报（LAYER）"></CMD>
+    <CMD ID="0x5312" TYPE="IND" NAME="msg_set_usr" PLUGIN="0x110(1),0x110(5)" DESCRIPTION="MSG上报（USR）"></CMD>
+    <CMD ID="0x5512" TYPE="IND" NAME="msg_set_air" PLUGIN="0x110(1),0x110(5)" DESCRIPTION="MSG上报（USR）"></CMD>
+    <CMD ID="0x7000" TYPE="IND" NAME="sal_mac_diag_chl" PLUGIN="0x100,0x102,0x252,0x260" DESCRIPTION=""></CMD>
+    <CMD ID="0xF1000000" TYPE="IND" NAME="GTR" PLUGIN="0x110(1)" DESCRIPTION=""></CMD>
+    <CMD ID="0x3013" NAME="ver" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_cmd_soft_new_ver_stru" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x5331" NAME="sdm_attd" DESCRIPTION="attach debug mode" PLUGIN="0x100,0x102(2)" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x5332" NAME="sdm_dttd" DESCRIPTION="detach debug mode" PLUGIN="0x100,0x102(2)" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x7003" NAME="syserr" DESCRIPTION="" PLUGIN="0x100,0x252" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="soc_syserr_info" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x3017" NAME="mini_syserr" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <CNF STRUCTURE="diag_cmd_new_syserr_qry_stu" TYPE="Auto" RESULT_CODE="" />
+      <IND STRUCTURE="diag_cmd_new_syserr_qry_stu" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x7004" NAME="clssyserr" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x5322" NAME="sdm_ef" DESCRIPTION="" PLUGIN="0x100,0x102(2)" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <CNF STRUCTURE="soc_syserr_info" TYPE="Auto" RESULT_CODE="" />
+      <IND STRUCTURE="soc_syserr_info" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x7005" TYPE="IND" NAME="syserrdump" PLUGIN="0x252,0x260" DESCRIPTION="">
+      <IND STRUCTURE="dump_data_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x7008" TYPE="REQ" NAME="dumpfile" PLUGIN="0x100" DESCRIPTION="">
+     <REQ STRUCTURE="dump_bin_req_stru" TYPE="Auto" PARAM_VALUE="{0x10000000,4096,1024,0}" />
+     <IND STRUCTURE="dump_bin_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+     <CMD ID="0x7009" TYPE="IND" NAME="md2k" PLUGIN="0x100" DESCRIPTION="">
+      <IND STRUCTURE="dump_data2k_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x7030" TYPE="IND" NAME="sysdumpfinish" PLUGIN="0x252,0x260" DESCRIPTION="">
+      <IND STRUCTURE="u32_type_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x7006" TYPE="REQ" NAME="dosyserr" PLUGIN="0x100" DESCRIPTION="">
+      <REQ STRUCTURE="u32_type_stru" TYPE="Auto" PARAM_VALUE="{0}" />
+    </CMD>
+    <CMD ID="0x7007" TYPE="IND" NAME="prompt" PLUGIN="0x100,0x252" DESCRIPTION="">
+      <IND STRUCTURE="str_type" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x7012" NAME="sdm_sys" DESCRIPTION="" PLUGIN="0x100,0x102(2)" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_cmd_sal_sys_sdm" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x5501" NAME="sdm_nvw" DESCRIPTION="" PLUGIN="0x100,0x102(2)" TYPE="REQ">
+      <REQ STRUCTURE="nv_req_stru" TYPE="Auto" PARAM_VALUE="" />
+      <CNF STRUCTURE="diag_cmd_nv_wr_cnf_stru" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x5503" NAME="sdm_nvr" DESCRIPTION="" PLUGIN="0x100,0x102(2)" TYPE="REQ">
+      <REQ STRUCTURE="u32_type_stru" TYPE="Auto" PARAM_VALUE="" />
+      <CNF STRUCTURE="nv_ack_stru" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x550f" NAME="setuart" DESCRIPTION="" PLUGIN="0x100,0x102(2)" TYPE="REQ">
+      <REQ STRUCTURE="soc_uart_attr" TYPE="Auto" PARAM_VALUE="" />
+      <CNF STRUCTURE="null_stru" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+
+  </GROUP>
+  <GROUP NAME="System" DATA_STRUCT_FILE="..\diag\sys_struct_def.txt" MULTIMODE="NBIOT">
+    <CMD ID="0x3014" NAME="diag_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <CNF STRUCTURE="soc_stat_diag_qry" TYPE="Auto" RESULT_CODE="" />
+      <IND STRUCTURE="soc_stat_diag_qry" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x3430" TYPE="IND" NAME="stat" PLUGIN="0x100" DESCRIPTION="">
+      <REQ STRUCTURE="SOC_DBG_STAT_Q_S" TYPE="Auto" PARAM_VALUE="" />
+      <CNF STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xB101" NAME="report_mac_ul_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="report_mac_ul_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB102" NAME="report_rlc_dl_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="report_rlc_dl_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB103" NAME="report_rlc_ul_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="report_rlc_ul_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB104" NAME="report_pdcp_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="report_pdcp_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB105" NAME="report_ll1_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="report_ll1_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB200" NAME="report_nas_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="report_nas_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB201" NAME="report_rrc_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="report_rrc_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB301" NAME="aGetMemInfo" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="soc_mem_info" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xB303" NAME="aGetUartExtra" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE="SOC_DBG_STAT_Q_S" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_uart_driver_extra" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xB304" NAME="aGetResourceStat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="soc_os_resource_use_stat_s" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xB305" NAME="aGetSyserrInfo" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_syserr_info" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xB382" NAME="pGetLpcStat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="soc_lpc_info" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xB383" NAME="pGetUartExtra" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE="SOC_DBG_STAT_Q_S" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_uart_driver_extra" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xB385" NAME="pGetSyserrInfo" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_syserr_info" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xB400" NAME="report_at_stat" DESCRIPTION="" PLUGIN="0x100" TYPE="REQ">
+      <REQ STRUCTURE=" null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="report_at_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xA301" TYPE="IND" NAME="aCoreTest" PLUGIN="0x100" DESCRIPTION="">
+      <IND STRUCTURE="soc_stat_diag_qry" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xA384" TYPE="IND" NAME="pCoreLpcStat" PLUGIN="0x100" DESCRIPTION="">
+      <IND STRUCTURE="soc_lpc_stat_p" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xA385" TYPE="IND" NAME="pCoreLpcProcessCtrl" PLUGIN="0x100" DESCRIPTION="">
+      <IND STRUCTURE="soc_lpc_process_ctrl_p_s" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+	<CMD ID="0xA010" TYPE="IND" NAME="提示" PLUGIN="0x100,0x252,0x303" DESCRIPTION="">
+      <IND STRUCTURE="str_type" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+	<CMD ID="0xA011" TYPE="IND" NAME="提示" PLUGIN="0x100,0x252,0x303" DESCRIPTION="">
+      <IND STRUCTURE="str_type" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0xA500" NAME="atiny参数统计" TYPE="IND" PLUGIN="0x100" DESCRIPTION="">
+      <IND STRUCTURE="atiny_critical_information" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0xB500" NAME="get_platform_state" DESCRIPTION="" PLUGIN="0x100, 0x259" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="atiny_platform_state" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB501" NAME="get_retrans_data" DESCRIPTION="" PLUGIN="0x100, 0x259" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="atiny_retrans_data" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB502" NAME="get_ota_data" DESCRIPTION="" PLUGIN="0x100, 0x259" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="atiny_ota_data" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB503" NAME="get_retry_count" DESCRIPTION="" PLUGIN="0x100, 0x259" TYPE="REQ">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="atiny_retry_counter" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xA600" NAME="BLE HCI统计" TYPE="IND" PLUGIN="0x100" DESCRIPTION="">
+      <IND STRUCTURE="tl_dfx_stru" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0xA601" NAME="BLE sleep time" TYPE="IND" PLUGIN="0x100" DESCRIPTION="">
+      <IND STRUCTURE="bt_sleep_dfx" TYPE="Auto" />
+    </CMD>
+  </GROUP>
+  <GROUP NAME="APP" DATA_STRUCT_FILE="..\diag\app_struct_def.txt" MULTIMODE="NBIOT">
+
+    <CMD ID="0xB124" NAME="SOC_DSID_SDM_QUERY_INFO" DESCRIPTION="" PLUGIN="0x100, 0x259" TYPE="REQ">
+      <REQ STRUCTURE="soc_dump_info_req" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="soc_dump_info_ind" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0xB125" NAME="SOC_DSID_SDM_QUERY_CONTENT" DESCRIPTION="" PLUGIN="0x100, 0x259" TYPE="REQ">
+      <REQ STRUCTURE="soc_dump_content_req" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="soc_dump_content_ind" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+  </GROUP>
+  <GROUP NAME="OS" DATA_STRUCT_FILE="..\diag\os_struct_def.txt" MULTIMODE="NBIOT">
+    <CMD ID="0x3001" NAME="osm" TYPE="REQ" PLUGIN="0x100,0x252" DESCRIPTION="">
+      <REQ STRUCTURE="str_type" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="str_type" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x3002" NAME="ossm" TYPE="REQ" PLUGIN="0x100,0x252" DESCRIPTION="">
+      <REQ STRUCTURE="str_type" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="str_type" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x3009" NAME="osreset" TYPE="REQ" PLUGIN="0x100" DESCRIPTION="">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <CNF STRUCTURE="str_type" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x3071" NAME="test_cmd" TYPE="REQ" PLUGIN="0x100" DESCRIPTION="">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="null_stru" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x3072" NAME="test_cmd2" TYPE="REQ" PLUGIN="0x100" DESCRIPTION="">
+      <REQ STRUCTURE="null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="null_stru" TYPE="Auto" />
+    </CMD>
+
+  </GROUP>
+  <GROUP NAME="Pseudo Cmd" DATA_STRUCT_FILE="..\diag\pseudo_cmd_struct_def.txt" MULTIMODE="NBIOT">
+
+  </GROUP>
+</DebugKits>

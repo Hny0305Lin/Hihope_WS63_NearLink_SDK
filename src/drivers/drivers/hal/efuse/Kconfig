@@ -1,0 +1,22 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config EFUSE_USING_V151
+    bool
+    prompt "Using EFUSE V151"
+    default y
+    depends on DRIVER_SUPPORT_EFUSE
+
+config EFUSE_SWITCH_EN
+    bool
+    prompt "Using EFUSE SWITCH EN"
+    default n
+    depends on DRIVER_SUPPORT_EFUSE
+
+config EFUSE_REGION_NUM
+    int
+    prompt "Max REGION of the EFUSE"
+    range 1 3
+    default 1
+    depends on EFUSE_USING_V151

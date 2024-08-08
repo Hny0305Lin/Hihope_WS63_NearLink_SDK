@@ -1,0 +1,17 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2023. All rights reserved.
+#===============================================================================
+config AT_SUPPORT_PLT
+    bool
+    prompt "platform at command"
+    default n
+    help
+        This option means at support plt.
+
+if AT_SUPPORT_PLT
+menu "Config AT CFBB"
+    comment "Config AT CFBB"
+    osource  "middleware/utils/at/at/Kconfig"
+endmenu
+endif

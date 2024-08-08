@@ -1,0 +1,33 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config WATCHDOG_USING_V151
+    bool
+    prompt "Using watchdog V151"
+    default y
+    depends on DRIVER_SUPPORT_WDT
+
+config WATCHDOG_USING_V100
+    bool
+    prompt "Using watchdog v100"
+    default y
+    depends on DRIVER_SUPPORT_WDT
+
+config WATCHDOG_USING_V151_RST_PL
+    int
+    prompt "Using watchdog_V151 rst_pl"
+    range 1 7
+    default 7
+    depends on WATCHDOG_USING_V151
+    help
+       <System reset signal effective length configuration register
+       3b'000: reset signal effective length is 8'h2
+       3b'001: reset signal effective length is 8'h4
+       3b'010: reset signal effective length is 8'h8
+       3b'011: reset signal effective length is 8'h10
+       3b'100: reset signal effective length is 8'h20
+       3b'101: reset signal effective length is 8'h40
+       3b'110: reset signal effective length is 8'h80
+       3b'111: reset signal effective length is 8'h100>
+

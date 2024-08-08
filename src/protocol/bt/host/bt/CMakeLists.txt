@@ -1,0 +1,26 @@
+#===============================================================================
+# @brief    cmake file
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+set(MODULE_NAME "bth")
+set(AUTO_DEF_FILE_ID False)
+if((${CHIP} MATCHES "bs25") AND (DEFINED ROM_COMPONENT))
+    set(MODULE_NAME "bt")
+    include(bt_rom.cmake)
+    add_subdirectory_if_exist(ahi/ahi_b)
+elseif("${CHIP}" STREQUAL "brandy" AND "bt_app" IN_LIST TARGET_COMPONENT)
+    include(bt_app.cmake)
+    add_subdirectory_if_exist(sdk)
+    add_subdirectory_if_exist(bt_audio_wrapper)
+    add_subdirectory_if_exist(bt_sample)
+else()
+    if("bt_app" IN_LIST TARGET_COMPONENT)
+        include(bt_app.cmake)
+    endif()
+    if("bth_sdk" IN_LIST TARGET_COMPONENT)
+        add_subdirectory_if_exist(sdk)
+    endif()
+    if("bt_host" IN_LIST TARGET_COMPONENT)
+        include(bt_host.cmake)
+    endif()
+endif()

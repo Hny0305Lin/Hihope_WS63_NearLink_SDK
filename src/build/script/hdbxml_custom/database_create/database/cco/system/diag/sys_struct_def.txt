@@ -1,0 +1,761 @@
+#include "base_datatype_def.txt"
+
+
+
+
+
+
+
+
+typedef struct {
+} null_stru;
+
+typedef struct
+{
+    osal_u32 id;
+} SOC_DBG_STAT_Q_S;
+
+typedef struct {
+    osal_u8 a;
+    osal_u8 b;
+} soc_stat_diag_p_qry;
+
+typedef struct {
+    osal_u16 send_uart_fail_cnt;
+    osal_u16 ack_ind_malloc_fail_cnt;
+    osal_u16 msg_malloc_fail_cnt;
+    osal_u16 msg_send_fail_cnt;
+    osal_u16 msg_overbig_cnt;
+    osal_u16 ind_send_fail_cnt;
+    osal_u16 ind_malloc_fail_cnt;
+    osal_u8 diag_queue_used_cnt;
+    osal_u8 diag_queue_total_cnt;
+    osal_u8 dec_fail_cnt;
+    osal_u8 enc_fail_cnt;
+    osal_u16 pkt_size_err_cnt;
+    osal_u32 local_req_cnt;
+    osal_u32 remote_req_cnt;
+    osal_u16 req_cache_overflow_cnt;
+    osal_u8 conn_excep_cnt;
+    osal_u8 conn_bu_cnt;
+    osal_u8 chl_busy_cnt;
+    osal_u8 req_overbig1_cnt;
+    osal_u16 rx_remote_req_cnt;
+    osal_u16 rx_remote_req_invalid_cnt;
+    osal_u8 cmd_list_total_cnt;
+    osal_u8 cmd_list_used_cnt;
+    osal_u8 stat_list_total_cnt;
+    osal_u8 stat_list_used_cnt;
+    osal_u8 req_overbig2_cnt;
+    osal_u8 invalid_dec_id;
+    osal_u8 heart_beat_timeout_cnt;
+    osal_u8 rx_start_flag_wrong_cnt;
+    osal_u8 rx_ver_wrong_cnt;
+    osal_u8 rx_pkt_data_size_wrong_cnt;
+    osal_u8 rx_crc16_req_wrong_cnt;
+    osal_u8 rx_crc16_mux_wrong_cnt;
+    osal_u8 pad[2];
+} soc_stat_diag_qry;
+
+typedef struct tag_atiny_critical_information {
+    osal_u16 network_access_count_total;
+    osal_u16 bs_reg_retry_count_total[3];
+    osal_u16 reg_retry_count_total[3];
+    osal_u16 send_data_last_mid;
+    osal_u16 recv_data_last_mid;
+    osal_u32 send_data_total;
+    osal_u32 recv_data_total;
+} atiny_critical_information;
+
+typedef struct tag_atiny_platform_state {
+    osal_u8 context_state[3];
+    osal_u8 lwm2m_state[3];
+    osal_u8 bootstrap_state[3];
+    osal_u8 dtls_state[3];
+} atiny_platform_state;
+
+typedef struct tag_atiny_retrans_data {
+    osal_u32 mid[9];
+    osal_u8 retrans_count[9];
+    osal_u8 dtls_retrans_count[3];
+} atiny_retrans_data;
+
+
+typedef struct tag_atiny_ota_data {
+    osal_u16 req_fota_block_size;
+    osal_bool force_suspend_firmware;
+    osal_bool sota_update_flag;
+} atiny_ota_data;
+
+typedef struct tag_atiny_retry_counter {
+    osal_u8 bs_reg_retry_count_current[3];
+    osal_u8 reg_retry_count_current[3];
+} atiny_retry_counter;
+
+typedef struct {
+    osal_u16 cmd_cnt;
+    osal_u16 evt_cnt;
+    osal_u16 cmd_opcode[10];
+    osal_u32 cmd_time_stamp[10];
+    osal_u16 evt_opcode[10];
+    osal_u32 evt_time_stamp[10];
+    osal_u8 evt_status[10];
+} tl_dfx_stru;
+
+typedef struct {
+    osal_u32 sleep_cnt;
+    osal_u32 wakeup_cnt;
+    osal_u32 ble_int_mask;
+    osal_u32 adv_miss_cnt;
+    osal_u32 idx;
+    osal_u32 wakeup_finetarget[10];
+    osal_u32 ble_finetarget[10];
+    osal_u32 ble_grosstarget[10];
+    osal_u32 wakeup_end_clkn[10];
+} bt_sleep_dfx;
+
+typedef struct {
+    osal_bool en_print_period;
+    osal_u32 ds_proc_times;
+    osal_u32 ds_wake_times;
+    osal_u32 lp3_ds_times;
+    osal_u32 n_ds_kick_reson;
+    osal_u32 n_ds_os_schedule;
+    osal_u32 n_ds_veto_reson[29];
+    osal_u32 stat_end;
+} soc_lpc_stat_a;
+
+typedef struct {
+    osal_bool en_print_period;
+    osal_u32 ds_proc_times;
+    osal_u32 ds_wake_times;
+    osal_u32 lp3_ds_times;
+    osal_u32 n_ds_kick_reson;
+    osal_u32 n_ds_os_schedule;
+    osal_u32 n_ds_veto_reson[12];
+    osal_u32 stat_end;
+} soc_lpc_stat_p;
+
+typedef struct {
+    osal_bool backup_watchdog;
+    osal_bool enable;
+    osal_u32 ds_os_schedule_tick;
+    osal_u32 ds_veto;
+    osal_u32 clk_veto;
+    c_ulonglong clk_permit_ms;
+    c_ulonglong ds_permit_ms;
+    osal_u32 g_restore_funcs[29];
+    osal_u32 g_restore_param[29];
+    osal_u32 g_check_funcs[29];
+    osal_u32 g_check_param[29];
+    osal_u32 veto_lp3;
+    osal_u32 en_magic;
+    osal_u32 en_idle_time;
+    osal_u32 en_no_action_time;
+} soc_lpc_process_ctrl_a_s;
+
+typedef struct {
+    osal_bool backup_watchdog;
+    osal_bool enable;
+    osal_u32 ds_os_schedule_tick;
+    osal_u32 ds_veto;
+    osal_u32 clk_veto;
+    c_ulonglong clk_permit_ms;
+    c_ulonglong ds_permit_ms;
+    osal_u32 g_restore_funcs[12];
+    osal_u32 g_restore_param[12];
+    osal_u32 g_check_funcs[12];
+    osal_u32 g_check_param[12];
+    osal_u32 veto_lp3;
+    osal_u32 en_magic;
+    osal_u32 en_idle_time;
+    osal_u32 en_no_action_time;
+} soc_lpc_process_ctrl_s;
+
+typedef struct {
+    osal_u32 total;
+    osal_u32 used;
+    osal_u32 free;
+    osal_u32 free_node_num;
+    osal_u32 used_node_num;
+    osal_u32 max_free_node_size;
+    osal_u32 malloc_fail_count;
+    osal_u32 peek_size;
+} soc_mem_info;
+
+typedef struct {
+    osal_u32 will_ds_times;
+    osal_u32 real_ds_times;
+    osal_u32 nds_kick_times;
+    osal_u32 ds_veto;
+    osal_u32 lpc_max_id;
+    osal_u32 real_lp3_times;
+    osal_u32 lp3_veto;
+    c_ulonglong ds_permit_ms;
+} soc_lpc_info;
+
+typedef struct {
+    osal_u32 dfx_write_cnt;
+    osal_u32 dfx_read_cnt;
+    osal_u32 dfx_writed_cnt;
+    osal_u32 dfx_readed_cnt;
+    osal_u8 deinit_fail_times;
+    osal_u8 pad[3];
+    osal_u32 tx_mux;
+} diag_uart_driver_extra;
+
+typedef struct {
+    osal_u8 timer_usage;
+    osal_u8 task_usage;
+    osal_u8 sem_usage;
+    osal_u8 queue_usage;
+    osal_u8 mux_usage;
+    osal_u8 pad[3];
+    osal_u32 err_info;
+} soc_os_resource_use_stat_s;
+
+typedef struct {
+    osal_bool valid;
+    osal_bool last;
+    osal_u32 crash_sec;
+    osal_u32 main_type;
+    osal_u32 sub_type;
+    osal_u32 core;
+    osal_u32 data[5];
+    osal_u32 mepc;
+    osal_u32 mstatus;
+    osal_u32 mtval;
+    osal_u32 mcause;
+    osal_u32 ccause;
+    osal_u32 ra;
+    osal_u32 sp;
+    osal_u32 mem_total;
+    osal_u32 mem_used;
+    osal_u32 mem_free;
+    osal_u32 mem_peek_size;
+} diag_syserr_info;
+
+typedef enum {
+    AT_CMD_EXECUTE_SET,
+    AT_CMD_EXECUTE_READ,
+    AT_CMD_EXECUTE_EXEC,
+    AT_CMD_EXECUTE_TEST,
+} at_cmd_execute_type;
+
+typedef struct {
+    osal_u8                 cmd_id;
+    at_cmd_execute_type     type;
+} at_cmd_record;
+
+typedef struct {
+    at_cmd_record     last_at_cmd_record;
+    osal_bool         at_cmd_in_progress;
+    osal_u16          app_data_of_bytes;
+    osal_u16          async_list_node_count;
+    osal_u16          reboot_reset_reason;
+} report_at_stat;
+
+typedef struct {
+    osal_u8             psm_status;
+    osal_u8             psm_enter_action;
+    osal_u8             psm_exit_action;
+    osal_bool           as_deactivating_pover_save;
+    osal_bool           psm_enhance;
+} mmc_psm_mng_t_report;
+
+typedef struct {
+    osal_u8                 sim_present_status;
+    osal_u8                 ps_reg_status;
+    mmc_psm_mng_t_report    psm_mng_info;
+    osal_bool               user_reselection_in_progress;
+    osal_bool               switch_off_pending;
+    osal_bool               force_power_off;
+} mmc_mml_context_report;
+
+typedef struct {
+    osal_u8                    spec_plmn_search_state;
+    osal_u8                    as_cell_camp_on;
+    osal_u8                    selection_mode;
+    osal_bool                  is_first_search;
+    osal_bool                  is_stored_search;
+    osal_bool                  is_need_deep_search;
+    osal_bool                  out_of_service;
+    osal_bool                  is_need_abort_rsp;
+    osal_u8                    select_plmn[3];
+    osal_u8                    user_spec_plmn_id[3];
+    osal_u8                    user_reselect_plmn_id[3];
+    osal_u16                   plmn_search_time_out_count;
+    osal_u16                   stored_search_max_count;
+    osal_u16                   stored_search_count;
+    osal_u8                    search_cause;
+    osal_u8                    abort_cause;
+    osal_u8                    coverage_state;
+    osal_u8                    ps_reg_additional_action;
+} mmc_plmn_search_report;
+
+typedef struct {
+    mmc_plmn_search_report  plmn_search_ctrl;
+    osal_u8                 attach_pending;
+    osal_bool               attach_locked;
+    osal_u8                 detach_pending;
+    osal_bool               plmn_search_in_progress;
+    osal_bool               bg_search_in_progress;
+    osal_bool               only_forbidden_plmns_found;
+    osal_bool               cell_available;
+    osal_u32                search_period;
+    osal_bool               user_plmn_search_req_pending;
+    osal_bool               plmn_search_may_be_resumed;
+} mmc_context_ctrl_info_report;
+
+typedef struct {
+    osal_u8              sim_state;
+    osal_u8              autostart_state;
+    osal_u8              reg_state;
+} at_info_report;
+
+typedef struct {
+    osal_bool           nslpi;
+    osal_bool           need_reattach;
+    osal_bool           is_cplane_cntx;
+    osal_u8             cid;
+    osal_u8             ebi;
+    osal_u8             h_comp;
+    osal_u8             trigger;
+    osal_u8             ul_data_route;
+    osal_bool           t3396_is_running;
+    osal_u32            pdp_fsm_contx_state;
+} taf_pdp_cntx_report;
+
+typedef struct {
+    osal_u8             ps_status;
+    osal_u8             service_status;
+    osal_u8             plmn_eps_max;
+    osal_u8             plmn[3];
+} esm_ctx_t_report;
+
+typedef struct {
+    osal_bool enabled;
+    osal_u8   f[4];
+    osal_u8   c_pdn[4];
+} esm_rpm_param;
+
+typedef struct {
+    esm_ctx_t_report        ctx;
+    osal_u8                 def_pdn_cid;
+    osal_u8                 attach_cid;
+    osal_u8                 pdn_num;
+    osal_u8                 eps_num;
+    osal_u8                 pti_num;
+    osal_u16                data_num;
+    osal_u16                excpt_num;
+    osal_u16                ping_num;
+    osal_u16                wait_cnf_num;
+    osal_u8                 current_state;
+    esm_rpm_param           rpm_param;
+} esm_entry_report;
+
+typedef struct {
+    osal_u8               attach_type;
+    osal_bool             reg_without_pdn;
+    osal_u8               camped_type;
+    osal_bool             roaming;
+    osal_u8               attempt_count;
+    osal_u8               attach_complete_count;
+} emm_attach_report;
+
+typedef struct {
+    osal_u8                                detach_mode;
+    osal_bool                              detach_req_send_succ;
+    osal_u8                                detach_atmp_cnt;
+    osal_u8                                cause;
+} emm_detach_report;
+
+typedef struct {
+    osal_bool enabled;
+    osal_u8   n1;
+    osal_u8   t1;
+    osal_u8   c_br_1;
+    osal_u8   c_r_1;
+    osal_u8   cur_n1_count;
+}emm_rpm_ctrl_data;
+
+typedef struct {
+    osal_u8       ksiasme;
+    osal_u32      ul_nas_count;
+    osal_u32      dl_nas_count;
+    osal_u32      fail_times;
+    osal_u8       integrity_check_fail_times;
+} emm_secu_report;
+
+typedef struct {
+    osal_u8                   ser_start_cause;
+    osal_u8                   est_cause;
+    osal_bool                 data_valid;
+    osal_u8                   attempt_count;
+    osal_bool                 start_in_conn;
+} emm_ser_report;
+
+typedef struct {
+    osal_u8                      emm_tau_type;
+    osal_u8                      tau_start_cause;
+    osal_u8                      tau_attempt_cnt;
+    osal_bool                    idle_tau;
+    osal_bool                    active_flag;
+    osal_bool                    signalling_active_flag;
+    osal_bool                    t3412_expired;
+    osal_u8                      param_changes;
+    osal_bool                    settings_synced;
+    osal_u8                      trigger_tau_rrc_rel;
+    osal_bool                    local_bearer_deactivation;
+    osal_bool                    wait_as_camp_on;
+} emm_tau_report;
+
+typedef struct {
+    osal_u8                        as_state;
+    osal_u8                        drb_status;
+    osal_u8                        sim_stat;
+    osal_u8                        ps_sim_validity;
+} emm_pub_info_report;
+
+typedef struct {
+    osal_u8                      bar_attempt_counter;
+    osal_u16                     bar_req_cause_mask;
+    osal_u8                      bar_rel_action;
+} emm_bar_rel_timer_info;
+
+typedef struct {
+    osal_bool                   low_priority_flag;
+    osal_bool                   exception_flag;
+    osal_u8                     backoff_plmn[3];
+    osal_u32                    start_time;
+    osal_u8                     expiry_action;
+} emm_backoff_timer_info;
+
+typedef struct { 
+    osal_u8        emm_main_state;
+    osal_u8        emm_sub_state;
+    osal_u8        secu_main_state;
+    osal_u8        secu_sub_state;
+    osal_u8        msg_buff_count;
+    osal_u8        rrc_conn_state;
+} emm_main_context_report;
+
+typedef struct {
+    osal_u32              usim_update_count;
+    osal_u32              usim_cur_state;
+    osal_u32              usim_deactive_cause;
+    osal_u32              pres_timer_status;
+    osal_u32              sleep_veto_active;
+    osal_u32              usim_ind_status;
+} usim_info_report;
+
+typedef struct {
+    mmc_mml_context_report          mmc_mml_ctx;
+    mmc_context_ctrl_info_report    mmc_context;
+    at_info_report                  at_info;
+    taf_pdp_cntx_report             taf_pdp_cntx[11];
+    esm_entry_report                esm_entry;
+    emm_attach_report               emm_attach;
+    emm_detach_report               emm_detach;
+    emm_rpm_ctrl_data               emm_rpm;
+    emm_secu_report                 emm_secu;
+    emm_ser_report                  emm_ser;
+    emm_tau_report                  emm_tau;
+    emm_pub_info_report             emm_pub_info;
+    osal_u8                         emm_t3440_rel_cau;
+    emm_bar_rel_timer_info          emm_bar_rel_timer;
+    emm_backoff_timer_info          emm_backoff_timer;
+    emm_main_context_report         emm_main_context;
+    usim_info_report                usim_info;
+} report_nas_stat;
+
+typedef osal_u32 secnds;
+
+typedef struct {
+    osal_s8                               default_s_search_delta_p;
+} nb_iot_relaxed_monitoring_config_t;
+
+typedef struct {
+    osal_s8        meas_threshold_sinr_db;
+    osal_s8        meas_offset_sinr_db;
+    osal_u8       max_sinr_enable_times;
+    osal_u8       max_sinr_disable_times;
+} nb_iot_sinr_meas_control_config_t;
+
+typedef struct {
+    osal_bool                             reselection_enabled;
+    osal_u8                               resel_min_coverage_level;
+    osal_s8                               srxlev_meas_disable_hyst_db;
+    osal_bool                             relaxed_monitoring_enabled;
+    nb_iot_relaxed_monitoring_config_t  relaxed_monitoring_config;
+    osal_bool                             sinr_meas_control_enabled;
+    nb_iot_sinr_meas_control_config_t   sinr_meas_control_config;
+} nb_iot_cell_reselection_config_t;
+
+typedef struct {
+    osal_u8       max_pcell_mib_sib_attempt_counter;
+    osal_u8       max_ncell_mib_sib_attempt_counter;
+    osal_u16      band_scan_puncture_rate;
+    osal_s32      fast_search_threshold;
+    osal_s32      slow_search_threshold;
+    secnds      data_inactivity_timeout;
+    secnds      sib16_read_period_s;
+    nb_iot_cell_reselection_config_t    cell_reselection_config;
+    osal_bool     serving_cell_idle_meas_report_enabled;
+    osal_bool     multi_carrier_enabled;
+    osal_bool     early_contention_resolution_report_enabled;
+} rrc_nvconfig_info_t;
+
+typedef enum {
+    RRC_BAR_CAUSE_CELL_SELECTION,
+    RRC_BAR_CAUSE_CELL_RESELECTION
+} rrc_barred_cause;
+
+typedef enum {
+    TRANS_OUT_OF_CONNECTED_STATE,
+    SERVING_CELL_LOST_TRANS_TO_SEARCH,
+    IDLE_STATE_TRANS_TO_SEARCH,
+    REESTAB_SERVING_CELL_LOST_TRANS_TO_SEARCH,
+    REESTAB_ABORT_CONTINUE_SEARCH,
+} rrc_oos_cause;
+
+typedef struct {
+    osal_u16         est_fail_count;
+    osal_u16         asn_decode_fail_count;
+    osal_u16         asn_encode_fail_count;
+    osal_u16         reselect_count;
+    osal_u16         search_count;
+    osal_u32         last_search_start_time;
+    osal_u32         last_search_time;
+    osal_u32         search_avg_time;
+    rrc_barred_cause last_bar_cause;
+    rrc_oos_cause    last_oos_cause;
+} rrc_debug_info_t;
+
+typedef enum {
+    RRC_TOP_FSM_STATE_SEARCH,
+    RRC_TOP_FSM_STATE_DEACTIVATED,
+    RRC_TOP_FSM_STATE_IDLE,
+    RRC_TOP_FSM_STATE_CONNECTED,
+    RRC_TOP_FSM_STATE_CONNECTING,
+    RRC_TOP_FSM_STATE_REESTAB,
+    RRC_TOP_FSM_STATE_NULL,
+    MAX_NUM_TOP_FSM_STATES
+} rrc_top_fsm_state_t;
+
+typedef struct {
+    rrc_nvconfig_info_t         rrc_nvcfg;
+    rrc_debug_info_t            rrc_debug_info;
+    rrc_top_fsm_state_t         rrc_current_state;
+    rrc_top_fsm_state_t         rrc_next_state;
+    osal_u32                    rrc_last_msg_id;
+
+    /* g_rrc_ctxt */
+    osal_bool  rrc_cell_select_req_running;
+    osal_bool  ll1_l2_deactivated;
+    osal_bool  bg_search_active;
+    osal_bool  as_security_active;
+} report_rrc_stat;
+
+typedef osal_u32 sf_count;
+
+typedef struct {
+    /* mac_l2_context */
+    osal_u16        crnti;
+    osal_bool       rai_activation;
+} report_mac_ul_stat;
+
+typedef enum {
+    RLC_DL_FSM_STATE_ACTIVATED,
+    RLC_DL_FSM_STATE_INITIALISED,
+    RLC_DL_FSM_STATE_SUSPENDED,
+} rlc_dl_fsm_state_t;
+
+typedef struct {
+    rlc_dl_fsm_state_t          rlc_dl_fsm[5];
+} report_rlc_dl_stat;
+
+typedef osal_u16  l2_size;
+
+typedef enum {
+    RLC_UL_FSM_STATE_ACTIVATED,
+    RLC_UL_FSM_STATE_INITIALISED,
+    RLC_UL_FSM_STATE_SUSPENDED,
+} rlc_ul_fsm_state_t;
+
+typedef struct {
+    rlc_ul_fsm_state_t          rlc_ul_fsm[5];
+    /* rlc_ul_buffer_status */
+    l2_size                     srb0_datalen;
+    osal_u16                    rlc_ul_byte_without_poll[4];
+    osal_u16                    rlc_ul_pdu_num_without_poll[4];
+} report_rlc_ul_stat;
+
+typedef struct {
+    osal_u32  cipher_decipher_failure_count;
+    osal_u32  intefrity_check_failure_count;
+} security_debug_info_t;
+
+typedef enum {
+    PDCP_SRB_FSM_STATE_FIRST_PDU_RECEIVED,
+    PDCP_SRB_FSM_STATE_IDLE,
+    PDCP_SRB_FSM_STATE_INTEGRITY_CHECKED,
+    PDCP_SRB_FSM_STATE_INTEGRITY_FAILED,
+    PDCP_SRB_FSM_STATE_READ_INTEGRITY_CHECK_STATUS,
+    PDCP_SRB_FSM_STATE_REESTABLISHED,
+    PDCP_SRB_FSM_STATE_SECURED,
+    PDCP_SRB_FSM_STATE_SUSPENDED,
+} pdcp_srb_fsm_state_t;
+
+typedef enum {
+    PDCP_DRB_FSM_STATE_CIPHERED,
+    PDCP_DRB_FSM_STATE_REESTABLISHED,
+    PDCP_DRB_FSM_STATE_SUSPENDED,
+    PDCP_DRB_FSM_STATE_UNINITIALISED,
+} pdcp_drb_fsm_state_t;
+
+typedef struct {
+    pdcp_srb_fsm_state_t        pdcp_srb_fsm[1];
+    pdcp_drb_fsm_state_t        pdcp_drb_fsm[1];
+    security_debug_info_t       security_debug_info;
+} report_pdcp_stat;
+
+typedef struct {
+    osal_u16   direct_ind_rx_count;       
+    osal_u16   paging_rx_count;       
+    osal_u16   missed_paging_count;  
+    osal_u16   missed_paging_opportunity; 
+} report_paging_stat;
+
+typedef struct {
+    osal_u16   rar_fail_count;  
+    osal_u16   contention_resolution_fail_count;  
+    osal_u16   rach_fail_count;    
+} report_rach_stat;
+
+typedef struct {
+    osal_u16 nack_pdu;
+    osal_u16 total_pdu;
+    osal_u32 rate;
+} mac_uldl_stat;
+
+typedef struct {
+    mac_uldl_stat ul;
+    mac_uldl_stat dl;
+} report_mac_trans_stat;
+
+typedef osal_u32  nb_iot_earfcn;
+typedef osal_s16 centibels;
+typedef enum {
+    LL1_NULL,
+    LL1_INIT,
+    LL1_CELL_SEARCH,
+    LL1_IDLE,
+    LL1_CONNECTED,
+    LL1_RADIO_TEST,
+} ll1_states;
+
+typedef struct {
+    nb_iot_earfcn earfcn;
+    osal_u16      pci;
+    osal_u16     rsrp;
+    osal_u16     snr;  
+} report_signal_stat;
+
+typedef struct {
+    ll1_states              current_state;
+    ll1_states              previous_state;
+} report_fsm_state;
+
+typedef enum {
+    LL1_ERROR_TAG_DSP_COMPLETION_IGNORED_TX,
+    LL1_ERROR_TAG_DSP_COMPLETION_IGNORED_RX,
+    LL1_ERROR_TAG_MSG_DROPPED_NOT_INTER_THREAD,
+    LL1_ERROR_TAG_MSG_DROPPED_NOT_INTER_THREAD_IDLE,
+    LL1_ERROR_TAG_PDCCH_ORDER_NPRACH_REPETITION_NUMBER_INDEX_TOO_LARGE,
+    LL1_ERROR_TAG_UNKNOWN_STATE,
+    LL1_ERROR_TAG_UNKNOWN_EVENT,
+    LL1_ERROR_TAG_INVALID_PRACH_NUM_REP_PER_PREAMBLE,
+    LL1_ERROR_TAG_INVALID_RNTI_TYPE,
+    LL1_ERROR_TAG_INVALID_RNTI_TYPE_PDSCH,
+    LL1_ERROR_TAG_INVALID_DCI_FORMAT_DELAY,
+    LL1_ERROR_TAG_INVALID_DCI_FORMAT_LOG,
+    LL1_ERROR_TAG_INVALID_DCI_FORMAT_LOAD_PUSCH,
+    LL1_ERROR_TAG_INVALID_DCI_FORMAT_SEND_PUSCH,
+    LL1_ERROR_TAG_INVALID_DCI_FORMAT_RAR,
+    LL1_ERROR_TAG_INVALID_DCI_FORMAT_MSG4,
+    LL1_ERROR_TAG_INVALID_DCI_FORMAT_MSG4_SDU,
+    LL1_ERROR_TAG_INVALID_RACH_INITIATOR,
+    LL1_ERROR_TAG_INVALID_RACH_INITIATOR_RETRY,
+    LL1_ERROR_TAG_INVALID_RACH_INITIATOR_MSG4_SDU,
+    LL1_ERROR_TAG_INVALID_RACH_INITIATOR_MSG3_SENT,
+    LL1_ERROR_TAG_INVALID_PRACH_PREAMBLE_RANGE,
+    LL1_ERROR_TAG_INVALID_PRACH_PREAMBLE_RANGE_LIB,
+    LL1_ERROR_TAG_UNEXPECTED_STATE,
+    LL1_ERROR_TAG_UNEXPECTED_STATE_KICK,
+    LL1_ERROR_TAG_UNEXPECTED_STATE_LEAVING,
+    LL1_ERROR_TAG_UNEXPECTED_STATE_RACH_REQ,
+    LL1_ERROR_TAG_PAGING_OCCASSION_CALC,
+    LL1_ERROR_TAG_FREQ_CHANGE_ALREADY_SAVED,
+    LL1_ERROR_TAG_INVALID_DRX_CYCLE_LENGTH,
+    LL1_ERROR_TAG_SCHEDULE_DETECTION_FAILED,
+    LL1_ERROR_TAG_CANNOT_MEASURE_CELL,
+    LL1_ERROR_TAG_CANNOT_MEASURE_CELL_NO_CELL,
+    LL1_ERROR_TAG_INVALID_SUBCARRIER_SPACE,
+    LL1_ERROR_TAG_INVALID_SUBCARRIER_SPACE_PUSCH,
+    LL1_ERROR_TAG_INVALID_SUBCARRIER_SPACE_PUCCH,
+    LL1_ERROR_TAG_INVALID_SUBCARRIER_IND,
+    LL1_ERROR_TAG_INVALID_SUBCARRIER_IND_DURATION,
+    LL1_ERROR_TAG_CELL_SELECT_ALREADY_PENDING,
+    LL1_ERROR_TAG_INVALID_THREE_TONE_SET,
+    LL1_ERROR_TAG_INVALID_SIX_TONE_SET,
+    LL1_ERROR_TAG_INVALID_SUBCARRIER_FREQ,
+    LL1_ERROR_TAG_UNSUPPORTED_DSP_COMMAND,
+    LL1_ERROR_TAG_UNSUPPORTED_DSP_COMMAND_FLASH,
+    LL1_ERROR_TAG_CONNECTED_LPM_RESYNC_FAILURE,
+    LL1_ERROR_TAG_CELL_DETECT_EXCEEDS_MAX,
+    LL1_ERROR_TAG_INVALID_CARRIER_TYPE_PDSCH,
+    LL1_ERROR_TAG_INVALID_CARRIER_TYPE_SELECT,
+    LL1_ERROR_TAG_INVALID_CARRIER_TYPE_PDCCH,
+    LL1_ERROR_TAG_INVALID_CARRIER_TYPE_GET_MODE,
+    LL1_ERROR_TAG_INVALID_BASE_SUBFRAME_PATTERN,
+    LL1_ERROR_TAG_RF_MULTITONE_READ_FAILED,
+    LL1_ERROR_TAG_RF_SET_CALIBRATION_FAILURE,
+    LL1_ERROR_TAG_RF_RX_NOT_ACTIVE,                        
+    LL1_ERROR_TAG_INVALID_ANCHOR_CARRIER_DL_RASTER_OFFSET,
+    LL1_ERROR_TAG_NO_HARQ_WAITING_FOR_MAC_DATA,
+    LL1_ERROR_TAG_NO_DL_HARQ_PENDING,
+    LL1_ERROR_TAG_INVALID_HARQ_ID_DATA_DROPPED,
+    LL1_ERROR_TAG_INVALID_HARQ_ID_DATA_DROPPED_PUSCH,
+    LL1_ERROR_TAG_INVALID_HARQ_ID_DATA_DROPPED_REQ_HANDLER,
+    LL1_ERROR_TAG_INVALID_NPDCCH_COMPLETION_STATE,
+    LL1_ERROR_TAG_CARRIER_HAS_NO_RACH_RESOURCE_FOR_ECL,
+    LL1_ERROR_TAG_DIDNT_LOG_RF_EVENTS,
+    LL1_ERROR_TAG_MALLOC_FAILURE_SOFT_COMBINING,
+    LL1_ERROR_TAG_SSS_RESYNC_STATE_INVALID,
+    LL1_ERROR_TAG_SIB1_SCHD_INFO_INVALID,
+} ll1_log_error_value_tag_t;
+
+typedef enum {
+    LL1_WARNING_TAG_RE_TX_UL_TBS_MISMATCH,
+    LL1_WARNING_TAG_RE_TX_UL_TBS_MISMATCH_N0,
+    LL1_WARNING_TAG_RACH_OPPORTUNITY_PASSED,
+    LL1_WARNING_TAG_PAGING_OPPORTUNITY_PASSED,
+    LL1_WARNING_TAG_NWUS_OPPORTUNITY_PASSED,
+    LL1_WARNING_MCS_BIGGER_THAN_TWO_WITHOUT_EDT,
+    LL1_WARNING_CONN_RACH_DCI_N1_RECEIVED_WITH_TCRNTI,
+} ll1_log_warning_value_tag_t;
+
+
+typedef struct {
+    report_paging_stat       paging_stat;
+    osal_u16                 power_ratio_fail_count;
+    report_rach_stat         rach_stat;
+    report_mac_trans_stat    mac_trans_stat;
+    osal_u16                 cell_switch_count;
+    osal_u16                 rlf_out_sync_count;
+    ll1_log_error_value_tag_t last_error_log;
+    ll1_log_warning_value_tag_t last_warning_log;
+    report_signal_stat       signal_stat;
+    report_fsm_state         fsm_state;
+} report_ll1_stat;

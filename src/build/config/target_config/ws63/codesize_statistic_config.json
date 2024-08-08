@@ -1,0 +1,43 @@
+'component_group': [
+    'efuse_driver',
+    'efuse_hal',
+    'efuse_port',
+    'sfc_driver',
+    'sfc_hal',
+    'sfc_port',
+    'watchdog_driver',
+    'watchdog_hal',
+    'watchdog_port',  
+    'timer_driver',
+    'timer_hal',
+    'timer_port',
+    'pinmux_driver',
+    'pinmux_hal',
+    'pinmux_port',
+    'systick_driver',
+    'systick_hal',
+    'systick_port',
+    'tcxo_driver'
+],
+    
+group_details = {
+    'efuse_driver'   : ['efuse']
+    'efuse_hal'      : ['hal_efuse_v151']
+    'efuse_port'     : ['efuse_port']
+    'sfc_driver'     : ['sfc']
+    'sfc_hal'        : ['hal_sfc']
+    'sfc_port'       : ['sfc_port_ws63']
+    'watchdog_driver': ['watchdog']
+    'watchdog_hal'   : ['hal_watchdog']
+    'watchdog_port'  : ['watchdog_port']
+    'timer_driver'   : ['drv_timer']
+    'timer_hal'      : ['hal_timer']
+    'timer_port'     : ['timer_port']
+    'pinmux_driver'  : ['pinctrl']
+    'pinmux_hal'     : ['hal_pinctrl']
+    'pinmux_port'    : ['pinctrl_port_ws63']
+    'systick_driver' : ['ws63_systick']
+    'systick_hal'    : ['hal_systick']
+    'systick_port'   : ['systick_port']
+    'tcxo'           : ['ws63_tcxo']
+}

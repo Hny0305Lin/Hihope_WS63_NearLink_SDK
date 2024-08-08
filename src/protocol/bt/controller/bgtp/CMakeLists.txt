@@ -1,0 +1,63 @@
+#===============================================================================
+# @brief    cmake file
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+option (RUN_ON_LINUX "Dts use C PUBLIC LIB" OFF)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
+# 定义BGTP_PROJECT是为了将各平台不同方式项目名称定义转化为统一的bgtp内部的定义, 防止平台修改定义方式后bgtp内部散弹式修改cmake文件
+# 切换CodeHub源后的项目，平台采用全新的货架化架构，编译系统套件采用CFBB编译系统，与原gerrit上的编译套件不兼容
+if(${CHIP} MATCHES "bs25")
+    set(BGTP_PROJECT "bs25")
+    set(BGTP_OS_MODE "LITEOS")
+    include(bs25.cmake)
+elseif(${PROJECT_NAME} MATCHES "73")
+    set(BGTP_PROJECT "ws73")
+    get_property(TARGET_DEFINES GLOBAL PROPERTY TARGET_DEFINES)
+    if("-DBGLE_ATE" IN_LIST TARGET_DEFINES)
+        include(ws73_ate.cmake)
+    else()
+        set(BGTP_OS_MODE "NONOS")
+        include(ws73.cmake)
+    endif()
+elseif(${CHIP} MATCHES "bs20|bs21|bs21e|bs21a|bs22|bs26")
+    set(BGTP_PROJECT "bs21")
+    set(BGTP_OS_MODE "LITEOS")
+    include(bs21.cmake)
+elseif(${CHIP} MATCHES "ws63")
+    # 有BGLE_ATE宏定义， 则编译ATE版本
+    if("BGLE_ATE" IN_LIST DEFINES)
+        include(ws63_ate.cmake)
+    else()
+        set(BGTP_PROJECT "ws63")
+        set(BGTP_OS_MODE "LITEOS")
+        include(ws63.cmake)
+    endif()
+    # ws63代码正常编译作为静态库, 供sparklyzer调用
+    if("SPARKLYZER_ACTIVATED" IN_LIST DEFINES)
+        option (SPARKLYZER "" ON)
+        include(sparklyzer.cmake)
+    endif()
+elseif(${CHIP} MATCHES "ws53")
+    # 有BGLE_ATE宏定义， 则编译ATE版本
+    if("BGLE_ATE" IN_LIST DEFINES)
+        include(ws53_ate.cmake)
+    else()
+        set(BGTP_PROJECT "ws53")
+        set(BGTP_OS_MODE "NONOS")
+        include(ws53.cmake)
+    endif()
+elseif(${project_name} MATCHES "mp17c")
+    set(BGTP_PROJECT "1107C")
+    set(BGTP_OS_MODE "LITEOS")
+    include(hi1107.cmake)
+elseif(${CHIP} MATCHES "sw39")
+    set(BGTP_PROJECT "sw39")
+    set(BGTP_OS_MODE "LITEOS")
+    include(sw39.cmake)
+elseif(${CHIP} MATCHES "sw21")
+    set(BGTP_PROJECT "sw21")
+    set(BGTP_OS_MODE "LITEOS")
+    include(sw21.cmake)
+endif()

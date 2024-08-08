@@ -1,0 +1,19 @@
+# Copyright (c) Huawei Technologies Co., Ltd. 2020-2020. All rights reserved.
+
+.PHONY += menuconfig savemenuconfig
+.PHONY += defconfig allyesconfig allnoconfig
+
+menuconfig:
+	python3  $(LITEOSTOPDIR)/build/menuconfig/usr_config.py
+
+savemenuconfig:
+	python3  $(LITEOSTOPDIR)/build/menuconfig/usr_config.py savemenuconfig
+
+defconfig:
+	python3  $(LITEOSTOPDIR)/build/menuconfig/usr_config.py defconfig
+
+allyesconfig:
+	python3  $(LITEOSTOPDIR)/build/menuconfig/usr_config.py allyesconfig
+
+allnoconfig:
+	python3  $(LITEOSTOPDIR)/build/menuconfig/usr_config.py allnoconfig

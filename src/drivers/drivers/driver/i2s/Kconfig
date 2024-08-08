@@ -1,0 +1,75 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2023. All rights reserved.
+#===============================================================================
+config I2S_BUS_MAX_NUM
+    int
+    prompt "I2S_BUS_MAX_NUM"
+    default 1
+    depends on DRIVER_SUPPORT_I2S
+
+config I2S_SUPPORT_LOOPBACK
+    bool
+    prompt "I2S_SUPPORT_LOOPBACK"
+    default y
+    depends on DRIVER_SUPPORT_I2S
+
+config I2S_SUPPORT_DMA
+    bool
+    prompt "I2S SUPPORT DMA"
+    default n
+    depends on DRIVER_SUPPORT_I2S
+
+config I2S_SCLK_PIN
+    int
+    prompt "Choose I2S SCLK pin."
+    depends on DRIVER_SUPPORT_I2S
+    default 13
+
+config I2S_WS_PIN
+    int
+    prompt "Choose I2S WS pin."
+    depends on DRIVER_SUPPORT_I2S
+    default 14
+
+config I2S_DO_PIN
+    int
+    prompt "Choose I2S DO pin."
+    depends on DRIVER_SUPPORT_I2S
+    default 15
+
+config I2S_DI_PIN
+    int
+    prompt "Choose I2S DI pin."
+    depends on DRIVER_SUPPORT_I2S
+    default 16
+
+config I2S_SCLK_PIN_MODE
+    int
+    prompt "Choose I2S SCLK pin mode."
+    depends on DRIVER_SUPPORT_I2S
+    default 35
+
+config I2S_WS_PIN_MODE
+    int
+    prompt "Choose I2S WS pin mode."
+    depends on DRIVER_SUPPORT_I2S
+    default 36
+
+config I2S_DO_PIN_MODE
+    int
+    prompt "Choose I2S DO pin mode."
+    depends on DRIVER_SUPPORT_I2S
+    default 37
+
+config I2S_DI_PIN_MODE
+    int
+    prompt "Choose I2S DI pin mode."
+    depends on DRIVER_SUPPORT_I2S
+    default 38
+
+config I2S_SUPPORT_QUERY_REGS
+    bool
+    prompt "I2S support query regs values"
+    default n
+    depends on DRIVER_SUPPORT_I2S

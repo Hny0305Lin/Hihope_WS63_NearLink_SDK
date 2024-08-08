@@ -1,0 +1,21 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+
+choice
+    prompt "SLE Sample"
+
+config SAMPLE_SUPPORT_SLE_UUID_SERVER_SAMPLE
+    bool "Support SLE UUID Server Sample."
+
+config SAMPLE_SUPPORT_SLE_UUID_CLIENT_SAMPLE
+    bool "Support SLE UUID Client Sample."
+
+config SAMPLE_SUPPORT_SLE_SPEED_SERVER_SAMPLE
+    bool "Support SLE Throughput Server Sample."
+
+config SAMPLE_SUPPORT_SLE_SPEED_CLIENT_SAMPLE
+    bool "Support SLE Throughput Client Sample."
+
+endchoice

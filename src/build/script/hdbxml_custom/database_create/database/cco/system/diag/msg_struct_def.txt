@@ -1,0 +1,4 @@
+#include "base_datatype_def.txt"
+
+#include "extern_datatype_def.txt"
+

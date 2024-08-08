@@ -1,0 +1,13 @@
+config MIDDLEWARE_SUPPORT_TIOT
+    bool
+    prompt "TIoT porting"
+    default n
+    help
+        This option means support TIoT.
+
+if MIDDLEWARE_SUPPORT_TIOT
+menu "TIoT porting Configuration"
+    comment "Config TIoT porting"
+    osource  "middleware/services/srv_tiot_host/Kconfig"
+endmenu
+endif

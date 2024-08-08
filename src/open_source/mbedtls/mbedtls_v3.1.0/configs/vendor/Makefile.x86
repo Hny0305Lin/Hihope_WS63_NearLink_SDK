@@ -1,0 +1,29 @@
+WARNING_CFLAGS ?=  -Wall -Wextra -Wformat=2 -Wno-format-nonliteral
+LDFLAGS ?=
+
+LOCAL_CFLAGS = $(WARNING_CFLAGS) -I../include -D_FILE_OFFSET_BITS=64
+LOCAL_LDFLAGS =
+
+ifdef DEBUG
+LOCAL_CFLAGS += -g3
+endif
+
+OBJS_CRYPTO = asn1parse.o bignum.o md.o oid.o pkcs5.o platform.o constant_time.o rsa_alt_helpers.o rsa.o sha1.o sha256.o sha512.o
+
+.PHONY: all static  clean
+
+all: static
+
+static: libmini_mbedcrypto.a
+
+# crypto
+libmini_mbedcrypto.a: $(OBJS_CRYPTO)
+	echo "  AR    $@"
+	$(AR) crv $@ $(OBJS_CRYPTO)
+
+%.o:%.c
+	echo "  CC  $<"
+	$(CC) $(LOCAL_CFLAGS) $(CFLAGS) -c $<
+
+clean:
+	rm -f *.o libmini*

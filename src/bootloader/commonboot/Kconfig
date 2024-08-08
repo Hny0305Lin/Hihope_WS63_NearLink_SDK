@@ -1,0 +1,101 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2023. All rights reserved.
+#===============================================================================
+
+config BOOT_SUPPORT_HASH
+    bool
+    prompt "Hash"
+    default n
+    depends on BOOT_SUPPORT_SEC
+    help
+        This option means boot support hash check.
+
+config BOOT_SUPPORT_ECC_VERIFY
+    bool
+    prompt "Ecc Verify"
+    default n
+    depends on BOOT_SUPPORT_SECURE_VERIFY
+    help
+        This option means boot support ecc verify.
+
+config BOOT_SUPPORT_SM2_VERIFY
+    bool
+    prompt "Sm2 Verify"
+    default n
+    depends on BOOT_SUPPORT_SECURE_VERIFY
+    help
+        This option means boot support sm2 verify.
+
+config BOOT_SUPPORT_RSA3072_VERIFY
+    bool
+    prompt "Rsa3072 Verify"
+    default n
+    depends on BOOT_SUPPORT_SECURE_VERIFY
+    help
+        This option means boot support rsa3072 verify.
+
+config BOOT_SUPPORT_RSA4096_VERIFY
+    bool
+    prompt "Rsa4096 Verify"
+    default n
+    depends on BOOT_SUPPORT_SECURE_VERIFY
+    help
+        This option means boot support rsa4096 verify.
+
+config BOOT_SUPPORT_SOFT_VERIFY
+    bool
+    prompt "Soft Verify"
+    default n
+    depends on BOOT_SUPPORT_SECURE_VERIFY
+    help
+        This option means boot support soft verify.
+
+config FLASH_BOOT_SUPPORT_ROM_API
+    bool
+    prompt "flashboot support rom API"
+    default n
+    depends on BOOT_SUPPORT_SECURE_VERIFY
+    help
+        This option means flashboot support rom API.
+
+if CHIP_WS63 || CHIP_WS53
+    config ROM_EXPEND_SUPPORT_NOT_ALIGNED
+        bool
+        prompt "expand rom sha256 API to support data_length not 64 bytes aligned. only need by ws63 & ws53."
+        default n
+        depends on FLASH_BOOT_SUPPORT_ROM_API
+        help
+            This option means the sha256 data_length support not 64 bytes aligned.
+endif
+
+config LOADERBOOT_SUPPORT_SW_HASH
+    bool
+    prompt "Loaderboot Support Software Hash"
+    default n
+    depends on LOADERBOOT_SUPPORT_EFUSE_BURN
+    help
+        This option means flashboot support software hash.
+
+config LOADERBOOT_SUPPORT_DYNAMIC_PACKET_SIZE
+    bool
+    prompt "Loaderboot Support Dynamic Download Packet Size."
+    default n
+    help
+        This option means loaderboot support dynamic packet size.
+
+config YMODEM_PACKET_BUFFER_SZIE
+    int
+    prompt "ymodem buffer size in loaderboot."
+    depends on LOADERBOOT_SUPPORT_DYNAMIC_PACKET_SIZE
+    default 1024
+    help
+        This option means the max buffer size to store ymodem packet.
+
+config FLASH_WRITE_SIZE
+    int
+    prompt "flash write size for one time in loaderboot."
+    depends on LOADERBOOT_SUPPORT_DYNAMIC_PACKET_SIZE
+    default 1024
+    help
+        This option means write flash size for one time.

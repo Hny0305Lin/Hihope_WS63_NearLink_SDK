@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--插件ID定义：DCL:0x100; ACL:0x101,CG:0x102,LV:0x110,SG:0x111,MV:0x112,DS:0x120,NVI:0x121,MS:0x122,LCM:0x123-->
+
+<!--V1.0-->
+<DebugKits>
+  <GROUP NAME="AUTO" DATA_STRUCT_FILE="..\diag\apps_core_hso_msg_struct_def.txt" MULTIMODE="Firefly" PLUGIN="0x111,0x110(1),0x252">
+  </GROUP>
+  <GROUP NAME="FIX" DATA_STRUCT_FILE="..\diag\fix_struct_def.txt" MULTIMODE="Firefly" AUTO_STRUCT="YES" PLUGIN="0x111,0x110(1),0x252">
+    <CMD ID="0x5071" NAME="get_mem_info" DESCRIPTION="get_mem_info" PLUGIN="0x100,0x102" TYPE="REQ_IND">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="ext_mdm_mem_info" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x71C0" NAME="diag_dfx" DESCRIPTION="diag_test_cmd" PLUGIN="0x100,0x252" TYPE="REQ_IND">
+      <REQ STRUCTURE="diag_dfx_cmd_req_st" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_dfx_cmd_ind_st" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x71C1" NAME="ind_diag_dfx_stat" DESCRIPTION="diag_test_cmd" PLUGIN="0x100,0x252" TYPE="IND">
+      <IND STRUCTURE="zdiag_dfx_stat" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x5073" NAME="get_task_info" DESCRIPTION="get_task_info" PLUGIN="0x100,0x102" TYPE="REQ_IND">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="ext_task_info" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x5074" NAME="mem32" DESCRIPTION="mem32" PLUGIN="0x100,0x102,0x259" TYPE="REQ_IND">
+      <REQ STRUCTURE="mem_read_cmd_t" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="mem_read32_ind_t" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x5075" NAME="mem16" DESCRIPTION="mem16" PLUGIN="0x100,0x102,0x259" TYPE="REQ_IND">
+      <REQ STRUCTURE="mem_read_cmd_t" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="mem_read16_ind_t" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+     <CMD ID="0x5076" NAME="mem8" DESCRIPTION="mem8" PLUGIN="0x100,0x102,0x259" TYPE="REQ_IND">
+      <REQ STRUCTURE="mem_read_cmd_t" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="mem_read8_ind_t" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+     <CMD ID="0x5077" NAME="w1" DESCRIPTION="w1" PLUGIN="0x100,0x102,0x259" TYPE="REQ_IND">
+      <REQ STRUCTURE="mem_write_cmd_t" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="mem_write_ind_t" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+     <CMD ID="0x5078" NAME="w2" DESCRIPTION="w2" PLUGIN="0x100,0x102,0x259" TYPE="REQ_IND">
+      <REQ STRUCTURE="mem_write_cmd_t" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="mem_write_ind_t" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+     <CMD ID="0x5079" NAME="w4" DESCRIPTION="w4" PLUGIN="0x100,0x102,0x259" TYPE="REQ_IND">
+      <REQ STRUCTURE="mem_write_cmd_t" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="mem_write_ind_t" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x7180" NAME="uart_cfg" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ_IND">
+      <REQ STRUCTURE="uart_attr_t" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="tool_str_type" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x7181" NAME="get_uart_cfg" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ_IND">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="uart_attr_t" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x7182" NAME="mocked_shell_enable" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ_IND">
+      <REQ STRUCTURE="tool_u32" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="tool_str" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x7183" NAME="offline_log_cfg" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ_IND">
+      <REQ STRUCTURE="tool_u32" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="tool_str" TYPE="Auto" RESULT_CODE="" />
+    </CMD>
+    <CMD ID="0x7194" NAME="tranmit_reply" DESCRIPTION="" PLUGIN="0x259,0x261" TYPE="IND">
+      <IND STRUCTURE="transmit_data_reply_pkt" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71D2" NAME="sample_data" DESCRIPTION="" PLUGIN="0x100,0x259" TYPE="REQ_IND">
+      <REQ STRUCTURE="diag_sample_data_cmd_t" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_sample_data_ind_t" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71D3" NAME="rftest" DESCRIPTION="" PLUGIN="0x100,0x102(2),0x259" TYPE="REQ">
+      <REQ STRUCTURE="transmit_state_notify_pkt" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="tool_null_stru" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71A3" NAME="last_dump_start" DESCRIPTION="" PLUGIN="0x110,0x261" TYPE="IND">
+      <IND STRUCTURE="last_dump_start_ind_t" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71A4" NAME="last_dump" DESCRIPTION="" PLUGIN="0x110,0x261" TYPE="IND">
+      <IND STRUCTURE="last_dump_data_ind_t" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71A5" NAME="last_dump_finish" DESCRIPTION="" PLUGIN="0x110,0x261" TYPE="IND">
+      <IND STRUCTURE="last_dump_data_ind_finish_t" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71A7" NAME="last_dump_end" DESCRIPTION="" PLUGIN="0x110,0x261" TYPE="IND">
+      <IND STRUCTURE="last_dump_start_ind_t" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71A6" NAME="last_word" DESCRIPTION="" PLUGIN="0x100,0x110" TYPE="IND">
+      <IND STRUCTURE="diag_last_word_ind_t" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71B1" NAME="upg_prepare" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="upg_prepare_info_t" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71B2" NAME="upg_request" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71D0" NAME="psd_enable" DESCRIPTION="" PLUGIN="0x100,0x102(2),0x259" TYPE="REQ">
+      <REQ STRUCTURE="psd_enable_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71D1" NAME="psd_report" DESCRIPTION="" PLUGIN="0x100,0x102(2),0x259" TYPE="IND">
+      <IND STRUCTURE="psd_report_stru" TYPE="Auto" />
+    </CMD>
+    <CMD ID="0x71B3" NAME="upg_start" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71E0" NAME="audio_proc_ai" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71E1" NAME="audio_proc_sea" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71E2" NAME="audio_proc_adec" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71E3" NAME="audio_proc_aenc" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71E4" NAME="audio_proc_ao" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71E5" NAME="audio_proc_ab" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x71E6" NAME="audio_proc_sys" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x5500" NAME="nv_read" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="nv_key_info_t" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x5501" NAME="sdm_nvw" DESCRIPTION="" PLUGIN="0x100,0x121" TYPE="REQ_IND">
+      <REQ STRUCTURE="nv_req_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x5503" NAME="sdm_nvr" DESCRIPTION="" PLUGIN="0x100,0x121" TYPE="REQ">
+      <REQ STRUCTURE="u32_type_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x5511" NAME="nv_write_with_attr" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="nv_key_write_with_attr_info_t" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x5510" NAME="nv_read_with_attr" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="nv_key_info_t" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+    <CMD ID="0x5512" NAME="nv_get_store_status" DESCRIPTION="" PLUGIN="0x100,0x102" TYPE="REQ">
+      <REQ STRUCTURE="tool_null_stru" TYPE="Auto" PARAM_VALUE="" />
+    </CMD>
+  </GROUP>
+  <GROUP NAME="TOOL_FIX" DATA_STRUCT_FILE="..\diag\tool_fix_struct_def.txt" MULTIMODE="Firefly" PLUGIN="0x111,0x110(1),0x252">
+	<CMD ID="0x5314" TYPE="IND" NAME="msg_sys" PLUGIN="0x110(1)" DESCRIPTION="MSG上报（SYS）"></CMD>
+	<CMD ID="0x5315" TYPE="IND" NAME="msg_layer(dev)" PLUGIN="0x110(1)" DESCRIPTION="MSG上报（LAYER）"></CMD>
+    <CMD ID="0x5316" TYPE="IND" NAME="msg_usr" PLUGIN="0x110(1),0x110(5)" DESCRIPTION="MSG上报（USR）"></CMD>
+	<CMD ID="0x7191" NAME="get_file_list" DESCRIPTION="" PLUGIN="0x102(2),0x259" TYPE="REQ">
+      <REQ STRUCTURE="GetFileListReq" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_cmd_sal_sys_sdm" TYPE="Auto" />
+  </CMD>
+	<CMD ID="0x7192" NAME="download_file" DESCRIPTION="" PLUGIN="0x102(2),0x259" TYPE="REQ">
+      <REQ STRUCTURE="FileContentReq" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="diag_cmd_sal_sys_sdm" TYPE="Auto" />
+  </CMD>
+  <CMD ID="0x7198" NAME="delete_file" DESCRIPTION="" PLUGIN="0x102(2),0x259" TYPE="REQ">
+      <REQ STRUCTURE="ext_diag_del_cmd" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="ext_diag_del_ind" TYPE="Auto" />
+  </CMD>
+  <CMD ID="0x7193" NAME="transmit_request" DESCRIPTION="" PLUGIN="0x102(2),0x259,0x261" TYPE="REQ">
+      <REQ STRUCTURE="transmit_data_request_item" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="tool_null_stru" TYPE="Auto" />
+    </CMD>
+  <CMD ID="0x7195" NAME="transmit_start" DESCRIPTION="" PLUGIN="0x102(2),0x259,0x261" TYPE="REQ">
+      <REQ STRUCTURE="transmit_start_pkt" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="tool_null_stru" TYPE="Auto" />
+    </CMD>
+  <CMD ID="0x7196" NAME="transmit_state" DESCRIPTION="" PLUGIN="0x102(2),0x259,0x261" TYPE="REQ">
+      <REQ STRUCTURE="transmit_state_notify_pkt" TYPE="Auto" PARAM_VALUE="" />
+      <IND STRUCTURE="tool_null_stru" TYPE="Auto" />
+  </CMD>
+  <CMD ID="0xA011" TYPE="IND" NAME="AT回显" PLUGIN="0x100,0x252,0x303" DESCRIPTION="">
+      <IND STRUCTURE="str_type" TYPE="Auto" PARAM_VALUE="" />
+  </CMD>
+  <CMD ID="0xA012" TYPE="IND" NAME="提示" PLUGIN="0x100,0x252,0x303" DESCRIPTION="">
+      <IND STRUCTURE="str_type" TYPE="Auto" PARAM_VALUE="" />
+  </CMD>
+  </GROUP>
+</DebugKits>

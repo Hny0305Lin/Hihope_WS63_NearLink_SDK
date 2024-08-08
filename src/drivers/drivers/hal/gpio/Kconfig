@@ -1,0 +1,125 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config GPIO_USING_V100
+    bool
+    prompt "Using GPIO V100."
+    default y
+    depends on DRIVER_SUPPORT_GPIO
+
+config GPIO_USING_V150
+    bool
+    prompt "Using GPIO V150."
+    default y
+    depends on DRIVER_SUPPORT_GPIO
+
+config AON_SPECIAL_PIO
+    bool
+    prompt "GPIO Support aon special pio"
+    default y
+    depends on GPIO_USING_V100
+
+config GPIO_WITH_ULP
+    bool
+    prompt "GPIO Support with ulp"
+    default y
+    depends on GPIO_USING_V100
+
+config GPIO_PWIDTH_A
+    int
+    prompt "GPIO pin number of group A."
+    range 1 32
+    default 8
+    depends on GPIO_USING_V100
+
+config GPIO_PWIDTH_B
+    int
+    prompt "GPIO pin number of group B."
+    range 1 32
+    default 8
+    depends on GPIO_USING_V100
+
+config GPIO_PWIDTH_C
+    int
+    prompt "GPIO pin number of group C."
+    range 1 32
+    default 8
+    depends on GPIO_USING_V100
+
+config GPIO_PWIDTH_D
+    int
+    prompt "GPIO pin number of group D."
+    range 1 32
+    default 8
+    depends on GPIO_USING_V100
+
+config GPIO_WIDTH
+    int
+    prompt "GPIO ID code numbers."
+    range 1 32
+    default 30
+    depends on GPIO_USING_V100
+
+config GPIO_BANK_NUM
+    int
+    prompt "GPIO max group numbers."
+    range 1 8
+    default 1
+    depends on GPIO_USING_V150
+
+config GPIO0_WIDTH
+    int
+    prompt "GPIO pin number of group 0."
+    range 1 32
+    default 32
+    depends on GPIO_USING_V150
+
+config GPIO1_WIDTH
+    int
+    prompt "GPIO pin number of group 1."
+    range 1 32
+    default 32
+    depends on GPIO_BANK_NUM > 1 && GPIO_USING_V150
+
+config GPIO2_WIDTH
+    int
+    prompt "GPIO pin number of group 2."
+    range 1 32
+    default 32
+    depends on GPIO_BANK_NUM > 2 && GPIO_USING_V150
+
+config GPIO3_WIDTH
+    int
+    prompt "GPIO pin number of group 3."
+    range 1 32
+    default 32
+    depends on GPIO_BANK_NUM > 3 && GPIO_USING_V150
+
+config GPIO4_WIDTH
+    int
+    prompt "GPIO pin number of group 4."
+    range 1 32
+    default 32
+    depends on GPIO_BANK_NUM > 4 && GPIO_USING_V150
+
+config GPIO5_WIDTH
+    int
+    prompt "GPIO pin number of group 5."
+    range 1 32
+    default 32
+    depends on GPIO_BANK_NUM > 5 && GPIO_USING_V150
+
+config GPIO6_WIDTH
+    int
+    prompt "GPIO pin number of group 6."
+    range 1 32
+    default 32
+    depends on GPIO_BANK_NUM > 6 && GPIO_USING_V150
+
+config GPIO7_WIDTH
+    int
+    prompt "GPIO pin number of group 7."
+    range 1 32
+    default 32
+    depends on GPIO_BANK_NUM > 7 && GPIO_USING_V150

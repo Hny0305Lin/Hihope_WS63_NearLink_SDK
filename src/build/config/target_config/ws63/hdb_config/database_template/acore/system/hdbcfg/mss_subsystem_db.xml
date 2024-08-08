@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--CompanyName-->
+<MSS>
+  <!--The definition of MSS basic ID, including Category ID, Module ID and name. Category / Module ID between subsystems must be unique-->
+  <SUBSYSTEM>
+    <CATEGORY>
+      <CAT NAME="System" ID="0x00000400" DESCRIPTION="System" />
+      <CAT NAME="Print" ID="0x00008000" DESCRIPTION="Print" />
+      <CAT NAME="Event" ID="0x00004000" DESCRIPTION="Event" />
+      <CAT NAME="Air" ID="0x00002000" DESCRIPTION="Air" />
+      <CAT NAME="Layer" ID="0x00001000" DESCRIPTION="Layer" />
+      <CAT NAME="User Plane" ID="0x00000200" DESCRIPTION="UserPlane" />
+      <CAT NAME="Message" ID="0x00000100" DESCRIPTION="Message" />
+      <CAT NAME="Custom messages" ID="0x00000010" DESCRIPTION="Custom messages" />
+    </CATEGORY>
+    <TITLE>
+      <ITEM ID="0x00" NAME="NO." STAT="1" VALUE="0" DESCRIPTION="..." />
+      <ITEM ID="0x01" NAME="Category" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x02" STAT="0" NAME="Level" DESCRIPTION="..." />
+      <ITEM ID="0x03" STAT="1" NAME="Date" DESCRIPTION="..." />
+      <ITEM ID="0x04" NAME="Time" STAT="1" DESCRIPTION="..." />
+      <ITEM ID="0x05" NAME="TimeStamp" STAT="1" DESCRIPTION="..." />
+      <ITEM ID="0x06" NAME="Chip" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x07" NAME="Cpu" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x08" NAME="Side" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x09" NAME="Layer" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x0A" NAME="Prim" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x0B" NAME="Source" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x0C" NAME="Destination" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x0D" NAME="FileName" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x0E" NAME="LineNo" STAT="0" DESCRIPTION="..." />
+      <ITEM ID="0x0F" NAME="Data" STAT="0" DESCRIPTION="..." />
+    </TITLE>
+    <LEVEL>
+      <PRINT ICON="\logging_item_type_icon.png">
+        <LEVEL NAME="Error" ID="0x40000000" ICON_OFFSET="0x1" DESCRIPTION="Error" />
+        <LEVEL NAME="Warning" ID="0x20000000" ICON_OFFSET="0x0" DESCRIPTION="Warning" />
+        <LEVEL NAME="Info" ID="0x10000000" ICON_OFFSET="0x2" DESCRIPTION="Info" />
+        <LEVEL NAME="Normal" ID="0x08000000" ICON_OFFSET="0x4" DESCRIPTION="Normal" />
+      </PRINT>
+    </LEVEL>
+    <MODULES RANGE="0x000,0xFFFF">
+      <MOD ID="0x00" NAME="WIFI" DESCRIPTION="WIFI" />
+      <MOD ID="0x01" NAME="BT" DESCRIPTION="BT" />
+      <MOD ID="0x02" NAME="GNSS" DESCRIPTION="GNSS" />
+      <MOD ID="0x03" NAME="DSP" DESCRIPTION="DSP" />
+      <MOD ID="0x04" NAME="PLATFORM" DESCRIPTION="PLATFORM" />
+      <MOD ID="0x05" NAME="MEDIA" DESCRIPTION="MEDIA" />
+      <MOD ID="0x06" NAME="NFC" DESCRIPTION="NFC" />
+      <MOD ID="0x07" NAME="APP" DESCRIPTION="APP" />
+      <MOD ID="0x08" NAME="GPU" DESCRIPTION="GPU" />
+      <MOD ID="0x09" NAME="GUI" DESCRIPTION="GUI" />
+      <MOD ID="0x0A" NAME="GLP" DESCRIPTION="GLP" />
+      <MOD ID="0x0B" NAME="BTH" DESCRIPTION="BTH" />
+      <MOD ID="0x0C" NAME="OHOS" DESCRIPTION="OHOS" />
+      <MOD ID="0x10" NAME="BT_STATUS" DESCRIPTION="BT_STATUS" />
+      <MOD ID="0x11" NAME="BT_OTA" DESCRIPTION="BT_OTA" />
+      <MOD ID="0x64" NAME="DIAG" DESCRIPTION="DIAG" />
+    </MODULES>
+  </SUBSYSTEM>
+</MSS>

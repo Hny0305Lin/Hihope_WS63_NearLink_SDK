@@ -1,0 +1,2 @@
+burn,name,start_bit,bit_width,value,lock
+0,CHIP_ID,0,8,0x00000000,PG0

@@ -1,0 +1,83 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config UART_BAUD_RATE_DIV_8
+    bool
+    prompt "UART Baud rate div 8"
+    default y
+    depends on DRIVER_SUPPORT_UART
+
+config UART_SUPPORT_TX
+    bool
+    prompt "UART Support TX"
+    default y
+    depends on DRIVER_SUPPORT_UART
+
+config UART_SUPPORT_TX_INT
+    bool
+    prompt "UART Support TX interriupt mode"
+    default y
+    depends on DRIVER_SUPPORT_UART
+
+config UART_SUPPORT_RX
+    bool
+    prompt "UART Support RX"
+    default y
+    depends on DRIVER_SUPPORT_UART
+
+config UART_SUPPORT_DMA
+    bool
+    prompt "UART Support dma"
+    default y
+    depends on DRIVER_SUPPORT_UART
+    select DRIVER_SUPPORT_DMA
+
+config UART_SUPPORT_FLOW_CTRL
+    bool
+    prompt "UART Support flow control"
+    default n
+    depends on DRIVER_SUPPORT_UART
+
+config UART_SUPPORT_HW_FLOW_CTRL
+    bool
+    prompt "UART Support hardware flow control"
+    default n
+    depends on UART_SUPPORT_FLOW_CTRL
+
+config UART_SUPPORT_SW_FLOW_CTRL
+    bool
+    prompt "UART Support software flow control"
+    default n
+    depends on UART_SUPPORT_FLOW_CTRL
+
+config UART_SUPPORT_LPM
+    bool
+    prompt "UART Support low power mode, supend and reusme"
+    default y
+    depends on DRIVER_SUPPORT_UART
+
+config UART_FIFO_DEPTH
+    int
+    prompt "UART_FIFO_DEPTH"
+    range 64 128
+    default 64
+    depends on DRIVER_SUPPORT_UART
+
+config UART_SUPPORT_LPC
+    bool
+    prompt "UART Support low power control, control power and clock"
+    default n
+    depends on DRIVER_SUPPORT_UART
+
+config UART_NOT_SUPPORT_RX_CONDITON_SIZE_OPTIMIZE
+    bool
+    prompt "UART don't support rx condition size optimization"
+    default n
+    depends on UART_SUPPORT_RX
+
+config UART_SUPPORT_QUERY_REGS
+    bool
+    prompt "UART support query regs values"
+    default n
+    depends on DRIVER_SUPPORT_UART

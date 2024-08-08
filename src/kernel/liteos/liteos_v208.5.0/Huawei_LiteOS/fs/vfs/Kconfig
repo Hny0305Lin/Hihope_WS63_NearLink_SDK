@@ -1,0 +1,14 @@
+config LOSCFG_FS_VFS
+    bool "Enable VFS"
+    default y
+    select LOSCFG_FS_COMPAT_NUTTX
+    help
+      Answer Y to enable LiteOS support virtual filesystem.
+
+config LOSCFG_FS_VFS_BLOCK_DEVICE
+    bool "Enable Block DEVICE"
+    default n
+    depends on LOSCFG_FS_VFS
+    select LOSCFG_DRIVER_DISK
+    help
+      Answer Y to enable LiteOS support read/open/seek/write block device.

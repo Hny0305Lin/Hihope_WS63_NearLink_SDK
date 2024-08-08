@@ -1,0 +1,305 @@
+config LOSCFG_DRIVERS_USB
+    bool "Enable USB"
+    default n
+    select LOSCFG_DRIVERS_BASE
+    select LOSCFG_HWI_WITH_ARG
+    help
+      Answer Y to enable LiteOS support usb.
+
+config LOSCFG_DRIVERS_USB_DWC_DRIVER
+    bool "Enable USB DWC Controller"
+    select LOSCFG_DRIVERS_USB_GADGET
+    default y
+    depends on LOSCFG_DRIVERS_USB
+    help
+      Answer Y to enable LiteOS to support device controller driver.
+
+menu "USB DWC Controller Config"
+    depends on LOSCFG_DRIVERS_USB_DWC_DRIVER
+
+choice
+    depends on LOSCFG_DRIVERS_USB_DWC_DRIVER
+    prompt "DWC Controller"
+    default LOSCFG_DRIVERS_USB2_DEVICE_CONTROLLER
+    help
+      This selects the usb(ehci/xhci) family usb device.
+      Say Y to enable usb2.0 or usb3.0 controller driver.
+
+config LOSCFG_DRIVERS_USB2_DEVICE_CONTROLLER
+    bool "Enable USB2.0 Device Controller"
+
+config LOSCFG_DRIVERS_USB2_DWC_ULPI_INTERFANCE
+    bool "Enable USB PHY ULPI Interface"
+    default n
+    depends on LOSCFG_DRIVERS_USB2_DEVICE_CONTROLLER
+    help
+      If the USB PHY chip is external mounting, enable ULPI.
+      If the USB PHY is integrated in the chip, disable ULPI.
+
+config LOSCFG_DRIVERS_USB2_DWC_OTG_DFIFO_DYNAMIC
+    bool "Enable Dynamic FIFO Sizing"
+    default n
+    depends on LOSCFG_DRIVERS_USB2_DEVICE_CONTROLLER
+    help
+      Requires SOC to specify whether dynamic FIFO sizing is enabled.
+
+config LOSCFG_DRIVERS_USB2_DWC_TX_FIFO_MPS
+    int "IN Endpoints Max Packet Size"
+    default 512
+    depends on LOSCFG_DRIVERS_USB2_DWC_OTG_DFIFO_DYNAMIC
+    help
+      Max packet size for the IN endpoint.
+
+config LOSCFG_DRIVERS_USB3_DEVICE_CONTROLLER
+    bool "Enable USB3.0 Device Controller"
+
+choice
+    depends on LOSCFG_DRIVERS_USB3_DEVICE_CONTROLLER
+    prompt "USB Mode"
+    default LOSCFG_DRIVERS_USB3_DEVICE_USB_MODE_USB_3_0
+
+config LOSCFG_DRIVERS_USB3_DEVICE_USB_MODE_USB_1_1
+    bool "USB 1.1"
+
+config LOSCFG_DRIVERS_USB3_DEVICE_USB_MODE_USB_2_0
+    bool "USB 2.0"
+
+config LOSCFG_DRIVERS_USB3_DEVICE_USB_MODE_USB_3_0
+    bool "USB 3.0"
+
+endchoice
+
+config LOSCFG_USB_PHY_SUSPEND_NOT_SUPPORTED
+    bool "Disable USB PHY Suspend"
+    depends on LOSCFG_DRIVERS_USB3_DEVICE_CONTROLLER
+    help
+      Say Y here if you are debugging on the FPGA platform.
+
+endchoice
+
+menuconfig LOSCFG_DRIVERS_USB_DEVICE_SLAVE_CONFIG
+    bool "Slave Core Extra Borard Configuration"
+    default n
+    depends on LOSCFG_DRIVERS_USB2_DEVICE_CONTROLLER || LOSCFG_DRIVERS_USB3_DEVICE_CONTROLLER
+
+if LOSCFG_DRIVERS_USB_DEVICE_SLAVE_CONFIG
+
+config LOSCFG_USB_OUT_EP_NUM
+    int "USB Out Endpoints Number"
+    default 2
+    help
+      This represents usb out endpoints number.
+
+config LOSCFG_USB_IN_EP_NUM
+    int "USB In Endpoints Number"
+    default 4
+    help
+      This represents usb in endpoints number.
+
+if LOSCFG_DRIVERS_USB3_DEVICE_CONTROLLER
+
+config LOSCFG_USB_GEVENT_BUF_NUM
+    int "USB Event Buffer Number"
+    default 0
+    help
+      This represents the device gevent buffer number.
+
+config LOSCFG_USB_DEPCFG_INTR_NUM
+    int "USB DEPCFG Interrupt Number"
+    default 0
+    help
+      This represents DEPCFG parameter1 interrupt number.
+
+endif
+
+config LOSCFG_USB_DMA_OFFSET
+    string "USB DMA Address Offset"
+    default "0x0"
+    help
+      This represents DMA address offset, the value is decided by hardware design.
+endif
+
+endmenu
+
+config LOSCFG_DRIVERS_USB_GADGET
+    bool "Enable USB Gadget Support"
+    default y
+    depends on LOSCFG_DRIVERS_USB && LOSCFG_DRIVERS_USB_DWC_DRIVER
+    help
+      Answer Y to enable LiteOS to support usb peripheral devices.
+      Enable this configuration option if you want to run LiteOS inside a USB peripheral device.
+
+menu "USB Gadget Drivers"
+depends on LOSCFG_DRIVERS_USB_GADGET
+
+config LOSCFG_DRIVERS_USB_MASS_STORAGE_GADGET
+    bool "Enable USB Mass Storage Gadget"
+    depends on LOSCFG_FS_VFS && LOSCFG_COMPAT_LINUX
+    select LOSCFG_DRIVER_DISK
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET
+    bool "Enable USB Video Class Gadget"
+    depends on LOSCFG_DRIVERS_USB_GADGET
+    help
+      If all formats are not selected, YUYV format is enabled by default.
+
+config LOSCFG_DRIVERS_USB_UVC_IOCTL
+    bool "Enable USB Video Class Ioctl Mode"
+    default n
+    depends on (LOSCFG_DRIVERS_USB_UVC_GADGET || LOSCFG_DRIVERS_USB_CAMERA_GADGET) && LOSCFG_FS_VFS
+
+choice
+    prompt "UVC Version"
+    depends on LOSCFG_DRIVERS_USB_UVC_GADGET || LOSCFG_DRIVERS_USB_CAMERA_GADGET
+    default LOSCFG_DRIVERS_USB_UVC_GADGET_VER_1_1
+    help
+      This selects the uvc v1.0 or v1.1.
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_VER_1_1
+    bool "UVC 1.1"
+config LOSCFG_DRIVERS_USB_UVC_GADGET_VER_1_0
+    bool "UVC 1.0"
+
+endchoice
+
+menu "UVC Format"
+    depends on LOSCFG_DRIVERS_USB_UVC_GADGET || LOSCFG_DRIVERS_USB_CAMERA_GADGET
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_YUYV
+    bool "YUYV Format"
+    default y
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_NV12
+    bool "NV12 Format"
+    default n
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_NV21
+    bool "NV21 Format"
+    default n
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_MJPEG
+    bool "MJPEG Format"
+    default y
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_H264
+    bool "H264 Format"
+    default y
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_H265
+    bool "H265 Format"
+    default n
+
+endmenu
+
+choice
+    depends on LOSCFG_DRIVERS_USB_UVC_GADGET || LOSCFG_DRIVERS_USB_CAMERA_GADGET
+    prompt "Transter Mode"
+    default LOSCFG_DRIVERS_USB_UVC_GADGET_BULK
+    help
+      This selects the uvc transter mode.
+      Say Y to enable isochronous or bulk mode.
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_ISOC
+    bool "Isochronous Mode"
+
+config LOSCFG_DRIVERS_USB_UVC_GADGET_BULK
+    bool "Bulk Mode"
+
+endchoice
+
+config LOSCFG_DRIVERS_USB_UAC_GADGET
+    bool "Enable USB Audio Class Gadget"
+    depends on LOSCFG_DRIVERS_USB_GADGET
+
+choice
+    depends on LOSCFG_DRIVERS_USB_UAC_GADGET
+    prompt "UAC Version"
+    default LOSCFG_DRIVERS_USB_UAC_GADGET_VER_1_0
+    help
+      This selects the uac version.
+      Say Y to enable v1.0 or v2.0.
+
+config LOSCFG_DRIVERS_USB_UAC_GADGET_VER_1_0
+    bool "UAC1.0"
+
+config LOSCFG_DRIVERS_USB_UAC_GADGET_VER_1_0_SPEAKER
+    bool "Enable USB Audio1.0 Speaker"
+    default n
+    depends on LOSCFG_DRIVERS_USB_UAC_GADGET_VER_1_0
+    help
+      Speaker disabled by default.
+      Say Y to enable usb audio1.0 speaker.
+
+config LOSCFG_DRIVERS_USB_UAC_GADGET_VER_2_0
+    bool "UAC2.0"
+
+endchoice
+
+config LOSCFG_DRIVERS_USB_CAMERA_GADGET
+    bool "Enable USB Camera Class Gadget"
+    depends on LOSCFG_DRIVERS_USB_GADGET && !LOSCFG_DRIVERS_USB_UAC_GADGET_VER_1_0_SPEAKER && !LOSCFG_DRIVERS_USB_UAC_GADGET_VER_2_0
+    help
+      Only UVC and UAC1.0 microphones are supported.If all UVC formats are not selected, YUYV format is enabled by default.
+
+config LOSCFG_DRIVERS_USB_DFU_GADGET
+    bool "Enable USB Dfu Gadget"
+    depends on LOSCFG_DRIVERS_USB_GADGET
+
+config LOSCFG_DRIVERS_USB_SERIAL_GADGET
+    bool "Enable USB Serial Gadget"
+    depends on LOSCFG_DRIVERS_USB_GADGET && LOSCFG_SHELL && LOSCFG_KERNEL_CONSOLE && LOSCFG_COMPAT_LINUX
+
+choice
+    prompt "Serial Mode"
+    depends on LOSCFG_DRIVERS_USB_SERIAL_GADGET || LOSCFG_DRIVERS_USB_ETH_SER_GADGET
+    default LOSCFG_DRIVERS_USB_SERIAL_GADGET_DEFAULT
+    help
+      This selects the serial mode.
+
+config LOSCFG_DRIVERS_USB_SERIAL_GADGET_DEFAULT
+    bool "Default Serial"
+
+config LOSCFG_DRIVERS_USB_SERIAL_GADGET_DUAL
+    bool "Dual Serial"
+
+endchoice
+
+config LOSCFG_DRIVERS_USB_ETHERNET_GADGET
+    bool "Enable USB Ethernet Class Gadget"
+    depends on LOSCFG_DRIVERS_USB_GADGET && LOSCFG_NET_LWIP_SACK && LOSCFG_COMPAT_LINUX
+
+config LOSCFG_DRIVERS_USB_ETH_SER_GADGET
+    bool "Enable USB Ethernet & Serial Gadget"
+    depends on LOSCFG_DRIVERS_USB_GADGET && LOSCFG_SHELL && LOSCFG_NET_LWIP_SACK && LOSCFG_KERNEL_CONSOLE
+
+config LOSCFG_DRIVERS_USB_HID_GADGET
+    bool "Enable USB HID Class Gadget"
+    depends on LOSCFG_DRIVERS_USB_GADGET
+
+choice
+    prompt "HID Interface"
+    depends on LOSCFG_DRIVERS_USB_HID_GADGET
+    default LOSCFG_DRIVERS_USB_HID_VFS_INTERFACE
+    help
+      This selects the type of HID interface.
+
+config LOSCFG_DRIVERS_USB_HID_VFS_INTERFACE
+    bool "Enable HID VFS Interface"
+    depends on LOSCFG_FS_VFS
+    help
+      Use the VFS interface, but only one HID report can be set.
+
+config LOSCFG_DRIVERS_USB_HID_FUNC_INTERFACE
+    bool "Enable HID External Interface"
+    help
+      Use the function interface, up to two HID reports can be set.
+
+endchoice
+
+endmenu
+
+if LOSCFG_DRIVERS_USB_GADGET
+config LOSCFG_DRIVERS_USB_COMPOSITE_GADGET
+    bool
+    default y
+endif

@@ -1,0 +1,77 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config TIMER_USING_V100
+    bool
+    prompt "Using timer V100."
+    default y
+    depends on DRIVER_SUPPORT_TIMER
+
+config TIMER_USING_V150
+    bool
+    prompt "Using timer V150."
+    default y
+    depends on DRIVER_SUPPORT_TIMER
+
+config TIMER_MAX_NUM
+    int
+    prompt "TIMER max low layer nums."
+    default 8
+    depends on DRIVER_SUPPORT_TIMER
+
+config TIMER_0_WIDTH_64
+    int
+    prompt "Using 64 bits width of timer0."
+    range 0 1
+    default 0
+    depends on TIMER_USING_V150
+
+config TIMER_1_WIDTH_64
+    int
+    prompt "Using 64 bits width of timer1."
+    range 0 1
+    default 0
+    depends on TIMER_USING_V150 && TIMER_MAX_NUM > 1
+
+config TIMER_2_WIDTH_64
+    int
+    prompt "Using 64 bits width of timer2."
+    range 0 1
+    default 0
+    depends on TIMER_USING_V150 && TIMER_MAX_NUM > 2
+
+config TIMER_3_WIDTH_64
+    int
+    prompt "Using 64 bits width of timer3."
+    range 0 1
+    default 0
+    depends on TIMER_USING_V150 && TIMER_MAX_NUM > 3
+
+config TIMER_4_WIDTH_64
+    int
+    prompt "Using 64 bits width of timer4."
+    range 0 1
+    default 1
+    depends on TIMER_USING_V150 && TIMER_MAX_NUM > 4
+
+config TIMER_5_WIDTH_64
+    int
+    prompt "Using 64 bits width of timer5."
+    range 0 1
+    default 1
+    depends on TIMER_USING_V150 && TIMER_MAX_NUM > 5
+
+config TIMER_6_WIDTH_64
+    int
+    prompt "Using 64 bits width of timer6."
+    range 0 1
+    default 1
+    depends on TIMER_USING_V150 && TIMER_MAX_NUM > 6
+
+config TIMER_7_WIDTH_64
+    int
+    prompt "Using 64 bits width of timer7."
+    range 0 1
+    default 1
+    depends on TIMER_USING_V150 && TIMER_MAX_NUM > 7

@@ -1,0 +1,629 @@
+#include "base_datatype_def.txt"
+typedef struct {
+    td_char name[32];
+    td_u32 id;
+    td_u16 status;
+    td_u16 priority;
+    td_pvoid task_sem;
+    td_pvoid task_mutex;
+    td_u32 event_stru[3];
+    td_u32 event_mask;
+    td_u32 stack_size;
+    td_u32 top_of_stack;
+    td_u32 bottom_of_stack;
+    td_u32 sp;
+    td_u32 curr_used;
+    td_u32 peak_used;
+    td_u32 overflow_flag;
+} ext_task_info;
+typedef struct {
+    td_u16 task_prio;
+    td_u32 stack_size;
+    td_u32 task_policy;
+    td_u32 task_nice;
+    td_u32 task_cpuid;
+    td_char *task_name;
+    td_void *resved;
+} ext_task_attr;
+ext_errno uapi_task_create(td_u32 *taskid, const ext_task_attr *attr,
+                        td_void *(*task_route)(td_void *), td_void *arg);
+ext_errno uapi_task_delete(td_u32 taskid);
+ext_errno uapi_task_suspend(td_u32 taskid);
+ext_errno uapi_task_resume(td_u32 taskid);
+ext_errno uapi_task_get_priority(td_u32 taskid, td_u32 *priority);
+ext_errno uapi_task_set_priority(td_u32 taskid, td_u32 priority);
+td_u32 uapi_task_get_current_id(td_void);
+td_void uapi_task_lock(td_void);
+td_void uapi_task_unlock(td_void);
+td_bool uapi_task_is_lock(td_void);
+ext_errno uapi_sleep(td_u32 ms);
+typedef struct {
+    td_u32 total;
+    td_u32 used;
+    td_u32 free;
+    td_u32 free_node_num;
+    td_u32 used_node_num;
+    td_u32 max_free_node_size;
+    td_u32 malloc_fail_count;
+    td_u32 peek_size;
+} ext_mdm_mem_info;
+typedef struct {
+    td_u32 pool_addr;
+    td_u32 pool_size;
+    td_u32 fail_count;
+    td_u32 cur_use_size;
+    td_u32 peek_size;
+} ext_mem_pool_crash_info;
+td_pvoid uapi_malloc(td_u32 size);
+td_void uapi_free(const td_pvoid addr);
+TD_CONST ext_mem_pool_crash_info *uapi_mem_get_sys_info_crash(td_void);
+ext_errno uapi_pool_mem_init(td_void *pool, td_u32 size);
+td_void *uapi_pool_mem_alloc(td_void *pool, td_ulong size);
+td_void uapi_pool_mem_free(td_void *pool, TD_CONST td_void *addr);
+ext_errno uapi_pool_mem_deinit(td_void *pool);
+typedef enum {
+    EXCEPTION_PHASE_INITIALIZATION,
+    EXCEPTION_PHASE_TASK,
+    EXCEPTION_PHASE_INTERRUPT,
+    EXCEPTION_PHASE_MAX_TYPE
+} ext_exception_phase_type;
+typedef struct {
+    td_u32 mepc;
+    td_u32 ra;
+    td_u32 sp;
+} ext_exception_cpu_basic_info;
+typedef struct {
+    td_u32 mcause;
+    td_u32 mstatus;
+    td_u32 ccause;
+    td_u32 mtval;
+    td_u32 gp;
+    td_u32 tp;
+    td_u32 t0;
+    td_u32 t1;
+    td_u32 t2;
+    td_u32 s0;
+    td_u32 s1;
+    td_u32 a0;
+    td_u32 a1;
+    td_u32 a2;
+    td_u32 a3;
+    td_u32 a4;
+    td_u32 a5;
+    td_u32 a6;
+    td_u32 a7;
+    td_u32 s2;
+    td_u32 s3;
+    td_u32 s4;
+    td_u32 s5;
+    td_u32 s6;
+    td_u32 s7;
+    td_u32 s8;
+    td_u32 s9;
+    td_u32 s10;
+    td_u32 s11;
+    td_u32 t3;
+    td_u32 t4;
+    td_u32 t5;
+    td_u32 t6;
+} ext_exception_cpu_extend_info;
+typedef struct {
+    td_u32 event_type;
+    td_u32 task;
+    td_u64 time;
+    td_uintptr_t identity;
+    td_uintptr_t params[2];
+} ext_exception_track_info;
+typedef struct {
+    ext_exception_cpu_basic_info basic_info;
+    ext_exception_cpu_extend_info extend_info;
+} ext_exception_cpu_register;
+typedef struct {
+    td_u16 is_irq;
+    td_u16 type;
+    td_u32 faultaddr;
+    td_u32 thrdpid;
+    td_u32 stack_top;
+    td_u32 stack_bottom;
+} ext_exception_schedule_info;
+typedef struct {
+    ext_exception_cpu_register exc_cpu_context;
+    ext_exception_schedule_info schedule_info;
+} ext_exception_context;
+typedef enum {
+    CORES_APPLICATION_CORE = 0,
+    CORES_PROTOCOL_CORE,
+    CORES_SECURITY_CORE,
+    CORES_DSP_CORE,
+    CORES_CGRA_CORE,
+    CORES_IOMCU_CORE,
+    CORES_MAX_NUMBER_PHYSICAL,
+    CORES_UNKNOWN,
+} cores;
+typedef enum {
+    EXT_SYSERR_NO_USED = 0,
+    EXT_SYSERR_WATCH_DOG = 1,
+    EXT_SYSERR_OLD_PANIC,
+    EXT_SYSERR_LOS_PANIC,
+    EXT_SYSERR_CPU_EXEC,
+    EXT_SYSERR_OS_ERR,
+    EXT_SYSERR_MAX_MAIN_TYPE
+} ext_syserr_main_type;
+typedef enum {
+    SYSERR_QUERY_SPECIFY_BLOCK_ID0,
+    SYSERR_QUERY_SPECIFY_BLOCK_ID1,
+    SYSERR_QUERY_SPECIFY_BLOCK_ID2,
+    SYSERR_QUERY_SPECIFY_BLOCK_ID3,
+    SYSERR_QUERY_SPECIFY_BLOCK_ID4,
+    SYSERR_QUERY_SPECIFY_BLOCK_ID5,
+    SYSERR_QUERY_SPECIFY_BLOCK_ID6,
+    SYSERR_QUERY_SPECIFY_BLOCK_ID7,
+    SYSERR_QUERY_SPECIFY_BLOCK_MAX_TYPE,
+    SYSERR_LASTEST_STORED_BLOCK,
+    SYSERR_NEW_STORE_BLOCK,
+    SYSERR_BLOCK_MAX_TYPE,
+} syserr_info_type;
+typedef struct {
+    td_u8 core[1];
+} dbk_str_type;
+typedef struct {
+    td_u32 head_magic;
+    td_bool save_ind;
+    td_u8 core;
+    td_u16 structure_ver;
+    td_u32 size;
+} ext_syserr_head_info;
+typedef struct {
+    td_u16 main_type;
+    td_u16 pad;
+    td_u32 sub_type;
+    ext_exception_cpu_basic_info cpu_context;
+} ext_syserr_basic_context_info;
+typedef struct {
+    td_u8 is_isr;
+    td_u8 pad[3];
+    td_u32 id;
+    td_u32 top;
+    td_u32 bottom;
+    td_u32 revised_top;
+    td_u32 revised_bottom;
+    td_u32 revised_sp;
+} ext_syserr_base_stack_info;
+typedef struct {
+    ext_syserr_basic_context_info basic_context[2];
+    ext_syserr_base_stack_info basic_stack[2];
+    td_u32 trace[40];
+} ext_syserr_lite_info;
+typedef struct {
+    td_u32 crash_sec;
+    td_u32 soft_version;
+    td_u8 loop;
+    td_u8 last_trap_level;
+    td_u16 process_map;
+    td_u32 data[5];
+} ext_syserr_crash_scene;
+typedef struct {
+    ext_exception_cpu_extend_info cpu_register;
+} ext_syserr_cpu_extend_register;
+typedef struct {
+    ext_mem_pool_crash_info mem;
+} ext_syserr_mem_info;
+typedef struct {
+    td_u32 peek;
+    td_u32 top_content;
+    td_u32 stack[0x10];
+    td_char name[32];
+} ext_syserr_extend_stack_info;
+typedef struct {
+    td_u32 end_magic;
+} ext_syserr_tail;
+typedef struct {
+    ext_syserr_head_info head;
+    ext_syserr_crash_scene scene;
+    ext_syserr_lite_info lite_info;
+    ext_syserr_cpu_extend_register cpu;
+    ext_syserr_mem_info mem;
+    ext_syserr_extend_stack_info stack;
+    ext_syserr_tail tail;
+} ext_syserr_info;
+typedef td_void (*uapi_syserr_hook)(td_u32 main_type, td_u32 sub_type);
+td_void uapi_syserr_set_unreboot(td_void);
+td_void uapi_syserr_register_hook(uapi_syserr_hook hook);
+td_void uapi_syserr_panic(td_u32 reason, td_u32 data0, td_u32 data1, td_u32 data2, td_u32 data3);
+td_u32 uapi_syserr_query_crash_info(cores src_core, syserr_info_type type, ext_syserr_info *dest_addr);
+typedef unsigned char td_uchar;
+typedef unsigned char td_u8;
+typedef unsigned short td_u16;
+typedef unsigned int td_u32;
+typedef unsigned long long td_u64;
+typedef unsigned long td_ulong;
+typedef char td_char;
+typedef signed char td_s8;
+typedef short td_s16;
+typedef int td_s32;
+typedef long long td_s64;
+typedef long td_slong;
+typedef float td_float;
+typedef double td_double;
+typedef void td_void;
+typedef td_u8 td_bool;
+typedef td_u32 td_handle;
+typedef td_u8 td_byte;
+typedef td_byte* td_pbyte;
+typedef void* td_pvoid;
+typedef volatile td_u32 td_u32_reg;
+typedef unsigned long td_size_t;
+typedef signed long td_ssize_t;
+typedef unsigned long td_length_t;
+typedef unsigned long long td_mem_size_t;
+typedef long long td_mem_handle_t;
+typedef unsigned int td_fr32;
+typedef unsigned int uintptr_t;
+typedef uintptr_t td_uintptr_t;
+typedef unsigned int td_phys_addr_t;
+typedef unsigned int td_virt_addr_t;
+typedef unsigned int td_phys_addr_bit32;
+typedef struct {
+    td_u32 case_id;
+    td_u32 data[3];
+}diag_dfx_cmd_req_st;
+typedef struct {
+    td_u32 case_id;
+    td_u32 data[3];
+}diag_dfx_cmd_ind_st;
+typedef struct {
+    td_u32 put_msg_2_cache_fail_times;
+    td_u32 send_ipc_times;
+    td_u32 send_used_size;
+    td_u32 log_receive_times;
+    td_u32 log_reported_times;
+    td_u32 send_local_q_fail;
+    td_u32 record_idx;
+    td_u32 channel_receive_data_cnt[4];
+    td_u32 mem_pkt_alloc_size[2];
+    td_u32 mem_pkt_free_size[2];
+} zdiag_dfx_stat;
+typedef struct {
+    td_u32 dir;
+    td_u32 random_data;
+} diag_beat_heart_cmd_ind;
+typedef enum {
+    EXT_UART_IDX_0,
+    EXT_UART_IDX_1,
+    EXT_UART_IDX_2,
+    EXT_UART_IDX_3,
+    EXT_UART_IDX_LP,
+    EXT_UART_IDX_MAX,
+    EXT_UART_IDX_INVALID_ID = 0xFF,
+} ext_uart_idx;
+typedef enum {
+    EXT_SPI_ID_0,
+    EXT_SPI_ID_MAX,
+} ext_spi_idx;
+typedef enum {
+    EXT_DMA_PERIPHERAL_MEMORY = 0,
+    EXT_DMA_PERIPHERAL_UART0_TX = 1,
+    EXT_DMA_PERIPHERAL_UART0_RX = 2,
+    EXT_DMA_PERIPHERAL_SSP_TX = 3,
+    EXT_DMA_PERIPHERAL_SSP_RX = 4,
+    EXT_DMA_PERIPHERAL_MAX_NUM,
+} ext_dma_peripheral;
+typedef enum {
+    EXT_DMA_CHANNEL_NONE = 0xFF,
+    EXT_DMA_CHANNEL_0 = 0,
+    EXT_DMA_CHANNEL_1,
+    EXT_DMA_CHANNEL_2,
+    EXT_DMA_CHANNEL_3,
+    EXT_DMA_CHANNEL_MAX_NUM,
+} ext_dma_channel;
+typedef enum {
+    EXT_DMA_CH_PRIORITY_HIGHEST = 0,
+    EXT_DMA_CH_PRIORITY_HIGH_1 = 1,
+    EXT_DMA_CH_PRIORITY_HIGH_2 = 2,
+    EXT_DMA_CH_PRIORITY_LOWEST = 3,
+    EXT_DMA_CH_PRIORITY_MAX
+} ext_dma_ch_priority;
+typedef enum {
+    EXT_LP_PWM_PORT_PWM0,
+    EXT_LP_PWM_PORT_PWM1,
+    EXT_LP_PWM_PORT_PWM2,
+    EXT_PWM_PORT_PWM0,
+    EXT_PWM_PORT_PWM1,
+    EXT_PWM_PORT_PWM2,
+    EXT_PWM_PORT_PWM3,
+    EXT_PWM_PORT_MAX
+} ext_pwm_idx;
+typedef enum {
+    EXT_PWM_GROUP_ID_0 = 0,
+    EXT_PWM_GROUP_ID_1,
+    EXT_PWM_GROUP_ID_2,
+    EXT_PWM_GROUP_ID_3,
+    EXT_PWM_GROUP_ID_4,
+    EXT_PWM_GROUP_ID_MAX,
+} ext_pwm_group_idx;
+typedef enum {
+    EXT_PWM_PORT_ID_0 = 0,
+    EXT_PWM_PORT_ID_1,
+    EXT_PWM_PORT_ID_2,
+    EXT_PWM_PORT_ID_3,
+    EXT_PWM_PORT_ID_4,
+    EXT_PWM_PORT_ID_MAX,
+} ext_pwm_port_idx;
+typedef enum {
+    EXT_HWTIMER_ID_0,
+    EXT_HWTIMER_ID_1,
+    EXT_HWTIMER_ID_2,
+    EXT_HWTIMER_ID_3,
+    EXT_HWTIMER_ID_4,
+    EXT_HWTIMER_ID_5,
+    EXT_HWTIMER_ID_6,
+    EXT_HWTIMER_ID_7,
+    EXT_HWTIMER_ID_MAX,
+} ext_hwtimer_id;
+typedef enum {
+    EXT_CLK_IPC = 0,
+    EXT_CLK_UART0,
+    EXT_CLK_UART1,
+    EXT_CLK_UART2,
+    EXT_CLK_UART3,
+    EXT_CLK_LP_UART,
+    EXT_CLK_I2C0,
+    EXT_CLK_I2C1,
+    EXT_CLK_I2C2,
+    EXT_CLK_I2C3,
+    EXT_CLK_I2C4,
+    EXT_CLK_SPI0,
+    EXT_CLK_PWM0,
+    EXT_CLK_PWM1,
+    EXT_CLK_AO_PWM,
+    EXT_CLK_TIMER0,
+    EXT_CLK_TIMER1,
+    EXT_CLK_TIMER2,
+    EXT_CLK_TIMER3,
+    EXT_CLK_TIMER4,
+    EXT_CLK_TIMER5,
+    EXT_CLK_TIMER6,
+    EXT_CLK_TIMER7,
+    EXT_CLK_WDT,
+    EXT_CLK_GPIO,
+    EXT_CLK_DMA,
+    EXT_CLK_CPU,
+    EXT_CLK_TSENSOR,
+    EXT_CLK_LSADC,
+    EXT_CLK_ID_MAX,
+    EXT_CLK_ID_INVALID_ID = 0xFFFFFFFF,
+} ext_clk_id;
+typedef struct {
+    td_u32 reg_base_addr;
+    td_u32 irq_number;
+    td_u32 channel_max_num;
+    td_u32 peripheral_max_num;
+    td_u32 lowest_priority;
+} ext_dma_device;
+td_void dma_resource_init(td_void);
+td_void uart_resource_init(td_void);
+td_void ipc_resource_init(td_void);
+td_void hrtimer_resource_init(td_void);
+td_void hwtimer_resource_init(td_void);
+td_void rtc_resource_init(td_void);
+td_void rtc_calendar_resource_init(td_void);
+td_void i2c_resource_init(td_void);
+td_void clk_resource_init(td_void);
+td_void io_resource_init(td_void);
+td_void pwm_resource_init(td_void);
+td_void spi_resource_init(td_void);
+td_void watchdog_resource_init(td_void);
+td_void tsensor_resource_init(td_void);
+td_void share_os_res_resource_init(td_void);
+td_void dntc_resource_init(td_void);
+typedef enum {
+    EXT_DMA_POWER_OF_BURST_0 = 0,
+    EXT_DMA_POWER_OF_BURST_1 = 1,
+    EXT_DMA_POWER_OF_BURST_2 = 2,
+    EXT_DMA_POWER_OF_BURST_3 = 3,
+    EXT_DMA_POWER_OF_BURST_4 = 4,
+    EXT_DMA_POWER_OF_BURST_5 = 5,
+    EXT_DMA_POWER_OF_BURST_6 = 6,
+    EXT_DMA_POWER_OF_BURST_7 = 7,
+    EXT_DMA_POWER_OF_BURST_8 = 8,
+    EXT_DMA_POWER_OF_BURST_9 = 9,
+    EXT_DMA_POWER_OF_BURST_10 = 10,
+} ext_dma_power_of_burst;
+typedef struct {
+    ext_dma_power_of_burst power_of_burst;
+    td_bool use_burst;
+    td_u8 pad[3];
+} ext_dma_peripheral_feature;
+typedef td_void (*ext_dma_transfer_peripheral_prepare_callback)(ext_dma_peripheral src, ext_dma_peripheral dst);
+typedef td_void (*ext_dma_transfer_peripheral_finish_callback)(ext_dma_peripheral src, ext_dma_peripheral dst);
+typedef struct {
+    ext_dma_peripheral src_periph;
+    ext_dma_peripheral dst_periph;
+    ext_dma_peripheral_feature feature;
+    ext_dma_transfer_peripheral_prepare_callback transfer_prepare;
+    ext_dma_transfer_peripheral_finish_callback transfer_finish;
+} ext_dma_peripheral_config;
+typedef enum {
+    EXT_DMA_DATA_WIDTH_BYTE = 0x0,
+    EXT_DMA_DATA_WIDTH_HALFWORD = 0x1,
+    EXT_DMA_DATA_WIDTH_WORD = 0x2,
+    EXT_DMA_DATA_WIDTH_MAX = 0x3,
+} ext_dma_data_width;
+typedef enum {
+    EXT_DMA_CH_TRANSFER_TYPE_MEM_TO_MEM = 0,
+    EXT_DMA_CH_TRANSFER_TYPE_MEM_TO_PERIPHERAL = 1,
+    EXT_DMA_CH_TRANSFER_TYPE_PERIPHERAL_TO_MEM = 2,
+    EXT_DMA_CH_TRANSFER_TYPE_PERIPHERAL_TO_PERIPHERAL = 3,
+    EXT_DMA_CH_TRANSFER_TYPE_MAX
+} ext_dma_ch_transfer_type;
+typedef enum {
+    EXT_DMA_CH_CYCLE_TYPE_SINGLE = 0,
+    EXT_DMA_CH_CYCLE_TYPE_BATCHED_PART = 1,
+    EXT_DMA_CH_CYCLE_TYPE_BATCHED_END = 2,
+    EXT_DMA_CH_CYCLE_TYPE_MAX
+} ext_dma_ch_cycle_type;
+typedef enum {
+    EXT_DMA_INTERRUPT_DONE,
+    EXT_DMA_INTERRUPT_ERR,
+    EXT_DMA_INTERRUPT_MAX
+} ext_dma_interrupt;
+typedef td_void (*ext_dma_transfer_callback)(ext_dma_interrupt intr);
+typedef struct {
+        td_u32 src_addr;
+        td_u32 dst_addr;
+        td_u16 transfer_num;
+        ext_dma_data_width data_width;
+        ext_dma_ch_cycle_type cycle_type;
+} ext_dma_ch_user_config;
+ext_errno uapi_dma_init(td_void);
+td_void uapi_dma_deinit(td_void);
+ext_errno uapi_dma_open_ch(ext_dma_channel *ch, ext_dma_ch_priority pri,
+                           const ext_dma_peripheral_config *config);
+ext_errno uapi_dma_close_ch(ext_dma_channel ch);
+ext_errno uapi_dma_transfer(ext_dma_channel ch, const ext_dma_ch_user_config *user_cfg,
+                            ext_dma_transfer_callback callback, td_bool block);
+typedef enum {
+    EXT_UART_DATA_BIT_5 = 5,
+    EXT_UART_DATA_BIT_6,
+    EXT_UART_DATA_BIT_7,
+    EXT_UART_DATA_BIT_8,
+} ext_uart_data_bit;
+typedef enum {
+    EXT_UART_PARITY_NONE,
+    EXT_UART_PARITY_ODD,
+    EXT_UART_PARITY_EVEN,
+} ext_uart_parity;
+typedef enum {
+    EXT_UART_STOP_BIT_1 = 1,
+    EXT_UART_STOP_BIT_2,
+} ext_uart_stop_bit;
+typedef enum {
+    EXT_UART_FLOW_CTRL_NONE = 0x0,
+    EXT_UART_FLOW_CTS = 0x1,
+    EXT_UART_FLOW_RTS = 0x2,
+    EXT_UART_FLOW_CTRL_RTS_CTS = EXT_UART_FLOW_CTS | EXT_UART_FLOW_RTS,
+    EXT_UART_FLOW_CTRL_SOFT = 0x4,
+} ext_uart_flow_ctrl;
+typedef enum {
+    EXT_UART_ERR_FRAM = 0x1,
+    EXT_UART_ERR_PARITY = 0x2,
+    EXT_UART_ERR_BREAK = 0x4,
+    EXT_UART_ERR_OVER_RUN = 0x8,
+} ext_uart_err_type;
+typedef struct {
+    td_u32 baud_rate;
+    td_u8 data_bits;
+    td_u8 stop_bits;
+    td_u8 parity;
+    td_u8 pad;
+} ext_uart_attr;
+typedef struct {
+    td_bool tx_use_dma;
+    td_u8 tx_dma_ch_priority;
+    td_u16 rx_buf_size;
+    td_u16 tx_buf_size;
+} ext_uart_extra_attr;
+typedef struct {
+    ext_dma_ch_cycle_type cycle_type;
+    ext_dma_transfer_callback done_callback;
+} ext_uart_write_dma_config;
+typedef enum {
+    EXT_UART_NOTIFY_RX_MASK_IDLE = 0x1,
+    EXT_UART_NOTIFY_RX_SUFFICIENT_DATA = 0x2,
+    EXT_UART_NOTIFY_RX_ERR = 0x4,
+    EXT_UART_NOTIFY_RX_DATA = 0x8,
+    EXT_UART_NOTIFY_TX_FINISH = 0x10,
+    EXT_UART_NOTIFY_ALL_MASK = 0x1F,
+} ext_uart_rx_hook_type;
+typedef td_void(*ext_uart_rx_hook)(ext_uart_rx_hook_type type, td_u16 data);
+ext_errno uapi_uart_init(ext_uart_idx id, TD_CONST ext_uart_attr *attr, TD_CONST ext_uart_extra_attr *advance_attr);
+ext_errno uapi_uart_set_attr(ext_uart_idx id, ext_uart_attr *attr);
+ext_errno uapi_uart_get_attr(ext_uart_idx id, ext_uart_attr *attr);
+td_s32 uapi_uart_read(ext_uart_idx id, td_u8 *data, td_u32 len);
+td_s32 uapi_uart_write(ext_uart_idx id, TD_CONST td_u8 *data, td_u32 len);
+ext_errno uapi_uart_deinit(ext_uart_idx id);
+ext_errno uapi_uart_register_rx_callback(ext_uart_idx id,
+                                         td_u32 hook_mask,
+                                         td_u16 sufficient_cnt,
+                                         ext_uart_rx_hook hook);
+td_bool uapi_uart_has_pending_transmissions(ext_uart_idx id);
+ext_errno uapi_uart_flush_rx_data(ext_uart_idx id);
+td_s32 uapi_uart_write_by_dma(ext_uart_idx id, TD_CONST td_u8 *data, td_u16 len, ext_uart_write_dma_config *dma_cfg);
+ext_errno uapi_uart_set_flow_ctrl(ext_uart_idx id, ext_uart_flow_ctrl type);
+ext_errno uapi_uart_set_software_flow_ctrl_level(ext_uart_idx id, td_u16 lower_water_margin, td_u16 upper_water_margin);
+ext_errno uapi_uart_set_tx_timeout(ext_uart_idx id, td_u32 block_ms);
+ext_errno uapi_uart_set_rx_timeout(ext_uart_idx id, td_u32 block_ms);
+td_s32 uapi_uart_get_rx_data_count(ext_uart_idx id);
+typedef struct {
+    td_u32 offset;
+    td_u32 size;
+} ext_diag_dump_item;
+typedef struct {
+    td_u32 len;
+    td_char name[128];
+    td_u32 cnt;
+    ext_diag_dump_item item[0];
+} ext_diag_dump_by_name_cmd;
+typedef struct {
+    td_u32 ret;
+    td_u32 offset;
+    td_u32 size;
+    td_u8 data[0];
+} ext_diag_dump_by_name_ind;
+typedef enum {
+    TRANSMIT_STATE_NOTIFY_INVALID_ID = 10,
+    TRANSMIT_STATE_NOTIFY_FINISH,
+    TRANSMIT_STATE_NOTIFY_FINISH_2,
+    TRANSMIT_STATE_NOTIFY_DUPLICATE_ID,
+} transmit_state_notify_code;
+typedef enum {
+    TRANSMIT_TYPE_READ_FILE,
+    TRANSMIT_TYPE_DUMP,
+    TRANSMIT_TYPE_SAVE_FILE,
+} transmit_type;
+typedef struct {
+    td_u32 offset;
+    td_u32 size;
+} transmit_data_request_item;
+typedef struct {
+    td_u32 transmit_id;
+    td_u32 cnt;
+    transmit_data_request_item item[0];
+} transmit_data_request_pkt;
+typedef struct {
+    td_u32 transmit_id;
+    td_u32 ret;
+    td_u32 offset;
+    td_u32 size;
+    td_u32 crc;
+    td_u8 data[0];
+} transmit_data_reply_pkt;
+typedef struct {
+    td_u32 transmit_id;
+    td_u32 state_code;
+    td_u32 len;
+    td_u8 data[0];
+} transmit_state_notify_pkt;
+typedef struct {
+    td_u16 name_size;
+    td_u16 pad;
+    td_char file_name[0];
+} transmit_save_file_start_info;
+typedef struct {
+    td_u32 transmit_id;
+    td_u16 pad;
+    td_u16 transmit_type;
+    td_u32 total_size;
+    td_u32 info_size;
+    td_u8 info[0];
+} transmit_start_pkt;
+typedef struct {
+    td_u32 dir_len;
+    td_char name[128];
+} ext_diag_ls_cmd;
+typedef struct {
+    td_u16 idx;
+    td_u16 path_len;
+    td_u32 file_size;
+    td_char name[128];
+} ext_diag_ls_ind;

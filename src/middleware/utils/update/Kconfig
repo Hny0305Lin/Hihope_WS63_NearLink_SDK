@@ -1,0 +1,15 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2024-2024. All rights reserved.
+#===============================================================================
+config BT_UPG_ENABLE
+    bool
+    prompt "ENABLE BT UPG."
+    default n
+    depends on MIDDLEWARE_SUPPORT_UPDATE
+
+config SLE_UPG_ENABLE
+    bool
+    prompt "ENABLE SLE UPG."
+    default n
+    depends on MIDDLEWARE_SUPPORT_UPDATE

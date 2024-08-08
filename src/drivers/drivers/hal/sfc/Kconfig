@@ -1,0 +1,9 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config SFC_DEBUG
+    bool
+    prompt "SFC Support DEBUG"
+    default y
+    depends on DRIVER_SUPPORT_SFC

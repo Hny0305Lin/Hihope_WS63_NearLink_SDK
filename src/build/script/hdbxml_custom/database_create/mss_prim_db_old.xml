@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MSS>
+    <SUBSYSTEM NAME="cat1" DATA_STRUCT_FILE="..\diag\msg_struct_def.txt" DESCRIPTION="" MULTIMODE="cat1">
+        <MSG_LOG>
+        </MSG_LOG>
+		<AIR_LOG>
+        </AIR_LOG>
+        <LAYER_LOG>
+		</LAYER_LOG>
+        <USERPLANE_LOG NAME="MAC_PHY_UL_GRANT_HARQ_IND">
+        </USERPLANE_LOG>
+    </SUBSYSTEM>
+</MSS>

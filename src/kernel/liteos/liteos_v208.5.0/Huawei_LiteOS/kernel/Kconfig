@@ -1,0 +1,853 @@
+menu "Kernel"
+
+config LOSCFG_KERNEL_MIN
+    bool "Enable Mini Kernel"
+    default y
+    help
+      This option will enable mini kernel of LiteOS.
+
+menuconfig LOSCFG_KERNEL_SMP
+    bool "Enable Kernel SMP"
+    default n
+    depends on LOSCFG_ARCH_ARM_AARCH32 || LOSCFG_ARCH_ARM_AARCH64 || LOSCFG_ARCH_LINGLONG
+    help
+      This option will enable smp support of LiteOS.
+
+if LOSCFG_KERNEL_SMP
+
+config LOSCFG_KERNEL_SMP_CORE_NUM
+    int "Muti-processing Core Numbers"
+    default 2
+    help
+      This represents the number of muti-processing cores.
+
+config LOSCFG_KERNEL_SMP_TASK_SYNC
+    bool "Enable Synchronized Task Operations"
+    default n
+    help
+      This option will enable task synchronized operate task across cores.
+
+config LOSCFG_KERNEL_SMP_CALL
+    bool "Enable Function call cross Multi-core"
+    default n
+    select LOSCFG_SMP_CALL_STATIC_ALLOCATION if !LOSCFG_KERNEL_MEM_ALLOC
+    help
+      This option will enable function call on multi-core.
+
+choice
+    prompt "SMP GC"
+    default LOSCFG_KERNEL_SMP_GC_SWTMR
+    help
+      This option select SMP task recycle use swtmr or idle.
+
+config LOSCFG_KERNEL_SMP_GC_SWTMR
+    bool "SMP GC By SWTMR"
+    select LOSCFG_BASE_CORE_SWTMR
+    help
+      "This option enable SMP GC by software timer"
+
+config LOSCFG_KERNEL_SMP_GC_IDLE
+    bool "SMP GC By IDLE"
+    help
+      "This option enable SMP GC by idle task"
+
+endchoice
+
+config LOSCFG_SMP_CALL_STATIC_ALLOCATION
+    bool "Enable SMP Call Static Allocation"
+    default n
+    depends on LOSCFG_KERNEL_SMP_CALL
+    help
+      This option enables SMP call static allocation.
+
+config LOSCFG_SMP_CALL_OBJ_NUM
+    int "Maxium SMP Call Function Objects"
+    default 16
+    range 1 65535
+    depends on LOSCFG_SMP_CALL_STATIC_ALLOCATION
+    help
+      This option set the maxium static SMP call function object numbers.
+
+endif # LOSCFG_KERNEL_SMP
+
+menu "Basic Config"
+
+menuconfig LOSCFG_SCHED
+    bool "Enable Scheduler"
+    default y
+    help
+        This option will enable the scheduler.
+
+if LOSCFG_SCHED
+choice
+    prompt "Scheduler"
+    default LOSCFG_SCHED_SQ
+    help
+      The scheduler used to dispatch tasks.
+
+config LOSCFG_SCHED_SQ
+    bool "Single Ready Queue"
+    help
+      The scheduler uses a single ready queue.
+
+config LOSCFG_SCHED_MQ
+    bool "Multi Ready Queues"
+    depends on LOSCFG_KERNEL_SMP
+    help
+      The scheduler uses multiple ready queues.
+endchoice
+
+choice
+    prompt "Load Balance"
+    default LOSCFG_SCHED_LOAD_BALANCE_SIMPLE
+    depends on LOSCFG_SCHED_MQ
+    help
+      When multiple ready queues are used, load balancer is used to balance between different cores.
+
+config LOSCFG_SCHED_LOAD_BALANCE_SIMPLE
+    bool "Simple"
+    help
+      The scheduler load balance uses counts of ready tasks as cpu load.
+
+config LOSCFG_SCHED_LOAD_BALANCE_CPUP
+    bool "CPUP Based Algorithm"
+    select LOSCFG_KERNEL_CPUP
+    help
+      The scheduler load balance uses the CPU usage calculated by cpup as cpu load.
+
+endchoice
+
+if !LOSCFG_KERNEL_SMP
+config LOSCFG_SCHED_LATENCY
+    bool "Schedule Latency"
+    default y
+    depends on LOSCFG_ARCH_ARM_CORTEX_M
+    help
+      The scheduler uses pendsv.
+endif
+
+endif
+
+menu "Task"
+config LOSCFG_TASK_JOINABLE
+    bool "Enable Join/Detach mechanism"
+    default n
+
+config LOSCFG_BASE_CORE_TIMESLICE
+    bool "Enable Timeslice"
+    default y
+
+config LOSCFG_BASE_CORE_TIMESLICE_TIMEOUT
+    int "Timeslice Value(ticks)"
+    default 2
+    depends on LOSCFG_BASE_CORE_TIMESLICE
+    help
+      This represents task slice's value(ticks).
+
+config LOSCFG_OBSOLETE_API
+    bool "Enable Obsolete Api"
+    default n
+    help
+      Task processing function parameters use the old way.
+
+config LOSCFG_BASE_CORE_TSK_MONITOR
+    bool "Enable Task Monitor Function"
+    default y
+    help
+      This represents to be support to monitor task stack and switch info.
+
+config LOSCFG_TASK_STACK_STATIC_ALLOCATION
+    bool "Enable Task Stack Create Static Allocation"
+    default n
+    help
+        This represents to support task stack create static allocation
+
+config LOSCFG_TASK_STACK_DYNAMIC_ALLOCATION
+    bool "Enable Task Create Dynamic Allocation"
+    default y
+    depends on LOSCFG_KERNEL_MEM_ALLOC
+    help
+        This represents to support task stack create dynamic allocation
+
+config LOSCFG_BASE_CORE_TSK_LIMIT
+    int "Max Task Number"
+    default 64
+    help
+      This represents the max number of task.
+
+config LOSCFG_BASE_CORE_TSK_MIN_STACK_SIZE
+    int "Task Min Stack Size"
+    default 2048
+    help
+      This represents the task min stack size.
+
+config LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE
+    int "Task Defalut Stack Size"
+    default 24576
+    help
+      This represents the task default stack size.
+
+config LOSCFG_BASE_CORE_TSK_SWTMR_STACK_SIZE
+    int "Swtmr Task Stack Size"
+    default 24576
+    help
+      This represents the swtmr task stack size.
+
+config LOSCFG_TSK_SWTMR_SECURE_STACK_SIZE
+    int "Swtmr Task Secure Stack Size"
+    default 2048
+    depends on LOSCFG_SWTMR_ACCESS_SECURE
+    help
+      This represents the swtmr task secure stack size.
+
+config LOSCFG_BASE_CORE_TSK_IDLE_STACK_SIZE
+    int "Idle Task Stack Size"
+    default 2048
+    help
+      This represents the idle task stack size.
+
+config LOSCFG_TZ_SECURE_TSK_DEFAULT_STACK_SIZE
+    int "TZ secure Task default Stack Size"
+    default 2048
+    depends on LOSCFG_TRUSTZONE
+    help
+      This represents the TZ secure task default stack size .
+
+config LOSCFG_BASE_CORE_TSK_DEFAULT_PRIO
+    int "Task Default Priority"
+    default 10
+    help
+      This represents the task default priority and the max priority is 32.
+
+config LOSCFG_BASE_CORE_TICK_PER_SECOND
+    int "Tick Value Per Second"
+    default 100
+    help
+      This represents the tick value per second.
+
+endmenu
+
+choice
+    prompt "Sortlink Option"
+    default LOSCFG_BASE_CORE_USE_MULTI_LIST
+    help
+      The scheduler used to dispatch tasks.
+
+config LOSCFG_BASE_CORE_USE_MULTI_LIST
+    bool "Use Multi List"
+    help
+      The scheduler uses a single ready queue.
+
+config LOSCFG_BASE_CORE_USE_SINGLE_LIST
+    bool "Use Single List"
+    help
+      Use Single List for Task & Swtmr.
+endchoice
+
+config LOSCFG_STARTUP_STACK_SIZE
+    hex "Startup stack size"
+    default 0x2000
+    depends on LOSCFG_ARCH_RISCV32
+
+endmenu
+
+source "kernel/base/mem/Kconfig"
+
+menu "Interrupt Management"
+
+config LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    bool "Interrupt Takeover"
+    default y
+    help
+      Platform interrupt takeover.
+
+if LOSCFG_ARCH_INTERRUPT_TAKEOVER
+
+config LOSCFG_ARCH_INTERRUPT_PREEMPTION
+    bool "Enable Interrupt Preemption"
+    depends on ((LOSCFG_ARCH_ARM_AARCH64 && LOSCFG_ARM_GIC_V3) || LOSCFG_ARCH_RISCV32)
+    default n
+
+config LOSCFG_HWI_PRE_POST_PROCESS
+    bool "Enable Interrupt pre/post-processing"
+    default y if LOSCFG_KERNEL_LOWPOWER
+
+config LOSCFG_HWI_WITH_ARG
+    bool "Enable Interrupt Create With Args"
+    depends on LOSCFG_KERNEL_MEM_ALLOC
+    default y
+
+config LOSCFG_SHARED_IRQ
+    bool "Enable interrupt share"
+    depends on LOSCFG_HWI_WITH_ARG && !LOSCFG_ARM_GIC_LPI_ENABLE
+    default y
+
+config LOSCFG_IRQ_USE_STANDALONE_STACK
+    bool "Use standalone interrupt stack"
+    default y
+    depends on LOSCFG_ARCH_ARM_AARCH64 || LOSCFG_ARCH_ARM_CORTEX_A || LOSCFG_ARCH_ARM_CORTEX_R || LOSCFG_ARCH_LINGLONG
+    help
+      This option will support using standalone interrupt stack.
+
+menuconfig LOSCFG_HWI_BOTTOM_HALF
+    bool "Enable Interrupt Bottom Half"
+    default n
+    depends on LOSCFG_BASE_IPC_EVENT
+    help
+      This represents to support interrupt bottom half.
+
+if LOSCFG_HWI_BOTTOM_HALF
+
+    config LOSCFG_HWI_BOTTOM_HALF_WORK_LIMIT
+    int "Max Bottom Half Work Number"
+    default 16
+    help
+      This represents the maximum number of bottom half work.
+
+endif # LOSCFG_HWI_BOTTOM_HALF
+
+config LOSCFG_IRQ_STACK_SIZE
+    hex "Interrupt stack size"
+    default 0x2000
+    depends on LOSCFG_ARCH_RISCV32
+
+config LOSCFG_NMI_STACK_SIZE
+    hex "NMI stack size"
+    default 0x800
+    depends on LOSCFG_ARCH_RISCV32
+    help
+      non-maskable interrupt stack size
+
+config LOSCFG_PLATFORM_HWI_LIMIT
+    int "Max Hardware Interrupts"
+    default 96 if !LOSCFG_ARM_GIC_LPI_ENABLE
+    default 65536 if LOSCFG_ARM_GIC_LPI_ENABLE
+    range 8193 65536 if LOSCFG_ARM_GIC_LPI_ENABLE
+    help
+      This represents the maximum number of hardware interrupts, including Tick interrupt.
+
+config LOSCFG_HWI_PRIO_LIMIT
+    int "Interrupt priority range"
+    default 32
+    help
+      This parameter indicates the total number of interrupt priorities.
+endif # LOSCFG_ARCH_INTERRUPT_TAKEOVER
+
+endmenu
+
+menu "Exception Management"
+config LOSCFG_EXC_SIMPLE_INFO
+    bool "Enable Exception Simple Info"
+    default n
+    help
+      This option is used to reduce exc output info.
+
+config LOSCFG_EXC_STACK_SIZE
+    hex "Exception stack size"
+    default 0x800
+    depends on LOSCFG_ARCH_RISCV32
+
+config LOSCFG_SHELL_EXCINFO_DUMP
+    bool "Enable Shell excInfo"
+    default n
+    help
+      Answer Y to enable LiteOS support shell excInfo.
+endmenu
+
+menuconfig LOSCFG_LASLR
+    bool "Enable ASLR"
+    default n
+    depends on !LOSCFG_KERNEL_RUNSTOP && \
+        !LOSCFG_KERNEL_SCATTER && !LOSCFG_FS_VFS && !LOSCFG_KERNEL_PERF
+    help
+    Lite address space layout randomization.
+
+if LOSCFG_LASLR
+choice
+    prompt "ASLR mode"
+    default  LOSCFG_LASLR_GOT
+    help
+      ASLR mode choice.
+
+config LOSCFG_LASLR_GOT
+    bool "Global offset table"
+    help
+      Add .got section in elf for global symbol access and reloclate.
+
+config LOSCFG_LASLR_GSPR
+    bool "Global symbol patching randomization"
+    help
+      Patching all global symbol access instruction.
+endchoice
+
+endif # LOSCFG_LASLR
+
+menuconfig LOSCFG_BASE_CORE_SWTMR
+    bool "Enable Software Timer"
+    default y
+
+if LOSCFG_BASE_CORE_SWTMR
+
+config LOSCFG_BASE_CORE_SWTMR_LIMIT
+    int "Max Swtmr Number"
+    default 1024
+    help
+      This represents the maximum number of Software Timers.
+
+config LOSCFG_BASE_CORE_SWTMR_IN_ISR
+    bool "Software Timer callback in interrupt"
+    default n
+
+config LOSCFG_SWTMR_SYNC_DELETE
+    bool "Enable Software Timer Synchronous Delete Option"
+    default n
+    depends on LOSCFG_BASE_CORE_SYS_RES_CHECK
+
+config LOSCFG_SWTMR_ACCESS_SECURE
+    bool "Enable Software Timer Access to Secure World"
+    default n
+    depends on LOSCFG_TRUSTZONE
+
+endif # LOSCFG_BASE_CORE_SWTMR
+
+menuconfig LOSCFG_BASE_IPC_QUEUE
+    bool "Enable Queue"
+    default y
+
+if LOSCFG_BASE_IPC_QUEUE
+
+config LOSCFG_QUEUE_STATIC_ALLOCATION
+    bool "Enable Queue Static Allocation"
+    default n
+    help
+      This option will support users to create a queue with static memory.
+
+config LOSCFG_QUEUE_DYNAMIC_ALLOCATION
+    bool "Enable Queue Dynamic Allocation"
+    default y
+    depends on LOSCFG_KERNEL_MEM_ALLOC
+    help
+      This option will support dynamic memory alloction interface for users to create a queue.
+
+config LOSCFG_BASE_IPC_QUEUE_LIMIT
+    int "Max Queue Number"
+    default 1024
+    help
+      This represents the maximum number of queues.
+
+endif # LOSCFG_BASE_IPC_QUEUE
+
+menuconfig LOSCFG_BASE_IPC_EVENT
+    bool "Enable Event"
+    default y
+
+menuconfig LOSCFG_BASE_IPC_MUX
+    bool "Enable Mutex"
+    default y
+
+if LOSCFG_BASE_IPC_MUX
+
+choice
+    prompt "Mutex wait mode"
+    default LOSCFG_MUTEX_WAITMODE_PRIO
+    help
+      Mutex wait mode choice.
+
+config LOSCFG_MUTEX_WAITMODE_PRIO
+    bool "Mutex wait with priority mode"
+    help
+      If multiple tasks are blocking and wait for a mutex, they are queued in priority mode.
+
+config LOSCFG_MUTEX_WAITMODE_FIFO
+    bool "Mutex wait with fifo mode"
+    help
+      If multiple tasks are blocking and wait for a mutex, they are queued in FIFO mode.
+endchoice
+
+config LOSCFG_BASE_IPC_MUX_LIMIT
+    int "Max Mutex Number"
+    default 1024
+    help
+      This represents the maximum number of mutexes.
+
+endif # LOSCFG_BASE_IPC_MUX
+
+menuconfig LOSCFG_BASE_IPC_SEM
+    bool "Enable Sem"
+    default y
+
+if LOSCFG_BASE_IPC_SEM
+
+config LOSCFG_BASE_IPC_SEM_LIMIT
+    int "Max Semaphore Number"
+    default 1024
+    help
+      This represents the maximum number of semaphores.
+
+endif # LOSCFG_BASE_IPC_SEM
+
+menuconfig LOSCFG_BASE_IPC_RWSEM
+    bool "Enable Rwsem"
+    default n
+
+if LOSCFG_BASE_IPC_RWSEM
+
+config LOSCFG_BASE_IPC_RWSEM_LIMIT
+    int "Max Semaphore Number"
+    default 1024
+    help
+      This represents the maximum number of read and write semaphores.
+      The value ranges are [0, 65535].
+
+endif # LOSCFG_BASE_IPC_RWSEM
+
+config LOSCFG_KERNEL_NX
+    bool "Enable Data Sec NX Feature"
+    default n
+    help
+      If you need enable data section No-eXecute.
+
+config LOSCFG_KERNEL_PRINTF
+    bool "Enable Kernel Printf Frame"
+    default y
+
+if LOSCFG_KERNEL_PRINTF
+
+config LOSCFG_KERNEL_PRINTF_SIZE_EXTEND
+    bool "Enable Kernel Printf Size Extend"
+    default y
+    depends on LOSCFG_KERNEL_MEM_ALLOC
+    help
+      If you need enable printf size extend.
+
+endif # LOSCFG_KERNEL_PRINTF
+
+config LOSCFG_KERNEL_RINGBUF
+    bool "Enable Ringbuf"
+    default n
+    help
+      If you wish to build LiteOS with support for ringbuf.
+
+menuconfig LOSCFG_KERNEL_CONSOLE
+    bool "Enable Console"
+    default y
+    depends on LOSCFG_FS_VFS
+    select LOSCFG_TASK_STACK_DYNAMIC_ALLOCATION
+    select LOSCFG_KERNEL_RINGBUF
+    select LOSCFG_LIB_STDIO
+    help
+      Answer Y to enable LiteOS support for console.
+
+if LOSCFG_KERNEL_CONSOLE
+
+config LOSCFG_CONSOLE_RINGBUFF_SIZE
+    int "size of console ringbuff"
+    default 4096
+    help
+      This option will change console ringbuff size.
+
+config LOSCFG_CONSOLE_UNIFIED_SERIAL_OUTPUT
+    bool "Enable console unified serial output"
+    default n
+    depends on ! LOSCFG_KERNEL_PERF
+    help
+      Answer Y to enable LiteOS console unified serial output.
+
+endif # LOSCFG_KERNEL_CONSOLE
+
+config LOSCFG_KERNEL_EXTKERNEL
+    bool "Enable Extend Kernel"
+    default y
+    help
+      This option will enable extend Kernel of LiteOS. Extend kernel include
+      cppsupport, cpup, dynload, runstop and scatter. You can select one or some
+      of them.
+
+config LOSCFG_KERNEL_CPPSUPPORT
+    bool "C++ Support"
+    default y
+    depends on LOSCFG_KERNEL_EXTKERNEL
+    select LOSCFG_KERNEL_MEM_ALLOC
+    help
+      If you wish to build LiteOS with support for C++.
+
+config LOSCFG_KERNEL_CPUP
+    bool "Enable Cpup"
+    default y
+    select LOSCFG_BASE_CORE_SWTMR
+    select LOSCFG_KERNEL_MEM_ALLOC
+    depends on LOSCFG_KERNEL_EXTKERNEL
+    help
+      If you wish to build LiteOS with support for cpup.
+
+config LOSCFG_CPUP_START_STOP
+    bool "Enable Dynamic Cpup Start and Stop"
+    default n
+    depends on LOSCFG_KERNEL_CPUP && !LOSCFG_SCHED_LOAD_BALANCE_CPUP
+    help
+      Supporting cpup dynamic start and stop.
+
+config LOSCFG_CPUP_INCLUDE_IRQ
+    bool "Enable Cpup Include Irq"
+    default y
+    depends on LOSCFG_KERNEL_CPUP && LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    help
+      If you wish to include irq usage for cpup.
+
+menu "Cpup Parameters Configuration"
+    depends on LOSCFG_KERNEL_CPUP
+
+config LOSCFG_CPUP_CB_NUM_CONFIGURABLE
+    bool "Enable Cpup Control Block Num Configuration"
+    default n
+    depends on LOSCFG_CPUP_INCLUDE_IRQ
+    help
+      Supporting irq control block num configuration.
+
+config LOSCFG_CPUP_IRQ_CB_NUM
+    int "Set Cpup Irq Control Block Number"
+    default LOSCFG_PLATFORM_HWI_LIMIT
+    range 1 LOSCFG_PLATFORM_HWI_LIMIT
+    depends on LOSCFG_CPUP_CB_NUM_CONFIGURABLE
+    help
+      This represents the number of cpup irq control block.
+
+config LOSCFG_CPUP_SAMPLE_PERIOD
+    int "Cpup Sampling Period(Ticks)"
+    default LOSCFG_BASE_CORE_TICK_PER_SECOND
+    range 10 1000
+    depends on LOSCFG_KERNEL_CPUP && !LOSCFG_SCHED_LOAD_BALANCE_CPUP
+    help
+      This represents the value of software timer period, and unit is system tick.
+      The value is at least 10 ticks, otherwise, the cpup soft timer runs too frequently.
+
+config LOSCFG_CPUP_HISTORY_RECORD_NUM
+    int "Cpup History Record Number"
+    range 1 10
+    default 10
+    depends on LOSCFG_KERNEL_CPUP && !LOSCFG_SCHED_LOAD_BALANCE_CPUP
+    help
+      This represents cpup sampling record time, consisting of multi sampling period.
+      Historical record time = LOSCFG_CPUP_SAMPLE_PERIOD * LOSCFG_CPUP_HISTORY_RECORD_NUM.
+      The value range is [1, 10].
+endmenu
+
+config LOSCFG_KERNEL_DYNLOAD
+    bool "Enable Dynamic Load Feature"
+    default n
+    depends on LOSCFG_KERNEL_EXTKERNEL
+    select LOSCFG_BASE_IPC_MUX
+    select LOSCFG_KERNEL_MEM_ALLOC
+    help
+      If you wish to build LiteOS with support for dynamic load.
+      If enbaled Nx then you can only load 4K aligned so files, otherwise a page fault may occur.
+
+config LOSCFG_KERNEL_DYN_HEAPSIZE
+    int "Dynamic load heap size in M"
+    default 2
+    depends on LOSCFG_KERNEL_NX && LOSCFG_KERNEL_DYNLOAD
+    help
+      This represents the heap size of dynamic load in M.
+
+menu "Dynamic Load Options"
+    depends on LOSCFG_KERNEL_DYNLOAD
+
+config LOSCFG_KERNEL_DYNLOAD_DYN
+    bool "Enable Dynamic Load Shared object file"
+    default y
+
+menu "Dynamic Load Shared object file Options"
+    depends on LOSCFG_KERNEL_DYNLOAD_DYN
+
+config LOSCFG_DYNLOAD_DYN_FROM_FS
+    bool "Enable Dynamic Load Shared object file from FS"
+    default y
+    depends on LOSCFG_FS_VFS
+
+config LOSCFG_DYNLOAD_DYN_FROM_MEM
+    bool "Enable Dynamic Load Shared object file from memory"
+    default y
+
+endmenu
+
+config LOSCFG_KERNEL_DYNLOAD_REL
+    bool "Enable Dynamic Load Relocatable file"
+    default y
+
+menu "Dynamic Load Relocatable file Options"
+    depends on LOSCFG_KERNEL_DYNLOAD_REL
+
+config LOSCFG_DYNLOAD_REL_FROM_FS
+    bool "Enable Dynamic Load Relocatable file from FS"
+    default y
+    depends on LOSCFG_FS_VFS
+
+config LOSCFG_DYNLOAD_REL_FROM_MEM
+    bool "Enable Dynamic Load Relocatable file from memory"
+    default y
+
+endmenu
+
+endmenu
+
+config LOSCFG_KERNEL_PERF
+    bool "Enable Perf Feature"
+    default n
+    depends on LOSCFG_KERNEL_EXTKERNEL
+    select LOSCFG_KERNEL_RINGBUF
+    select LOSCFG_KERNEL_SMP_CALL if LOSCFG_KERNEL_SMP
+    help
+      If you wish to build LiteOS with support for perf.
+
+choice
+    prompt "Time-consuming Calc Methods"
+    depends on LOSCFG_KERNEL_PERF
+
+config LOSCFG_PERF_CALC_TIME_BY_TICK
+    bool "By Tick"
+
+config LOSCFG_PERF_CALC_TIME_BY_CYCLE
+    bool "By Cpu Cycle"
+
+endchoice
+
+config LOSCFG_PERF_HW_PMU
+    bool "Enable Hardware Pmu Events for Sampling"
+    default n
+    depends on LOSCFG_KERNEL_PERF && LOSCFG_ARCH_PMU
+
+config LOSCFG_PERF_TIMED_PMU
+    bool "Enable Hrtimer Period Events for Sampling"
+    default n
+    depends on LOSCFG_KERNEL_PERF && LOSCFG_COMPAT_LINUX_HRTIMER
+
+config LOSCFG_PERF_SW_PMU
+    bool "Enable Software Events for Sampling"
+    default y
+    depends on LOSCFG_KERNEL_PERF
+
+config LOSCFG_KERNEL_PERF_PER_TASK
+    bool "Enable Perf Per-Task mode"
+    default n
+    depends on LOSCFG_KERNEL_PERF
+    help
+      Enable perf per-task mode. When enabled, perf collects events seperately from each task.
+
+config LOSCFG_KERNEL_PERF_SEPERATED_IRQ
+    bool "Enable Perf Seperated IRQ mode"
+    default n
+    depends on LOSCFG_KERNEL_PERF && LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    help
+      Enable perf seperated irq. When enabled, events in irqs will counts seperately.
+
+config LOSCFG_KERNEL_DYNSHM
+    bool "Enable Dynamic Shared Memory"
+    default n
+    depends on LOSCFG_KERNEL_EXTKERNEL && LOSCFG_DRIVERS_IOMMU
+    help
+      If you wish to build LiteOS with support for dynamic shared memory.
+
+config LOSCFG_KERNEL_DYNSHM_SECURE_ENBALE
+    bool "Enable Dynamic Shared Secure Memory"
+    default n
+    depends on LOSCFG_KERNEL_DYNSHM
+    help
+      If you wish to support for dynamic shared secure memory. Non-secure is supported default.
+
+config LOSCFG_KERNEL_DYNSHM_VM_BLOCK_NUM
+    int "Virtual Memory Block Num"
+    default 1000
+    depends on LOSCFG_KERNEL_DYNSHM
+
+config LOSCFG_KERNEL_RPQUEUE
+    bool "Enable Remote Processor Queue Feature"
+    default n
+    depends on LOSCFG_KERNEL_EXTKERNEL
+    help
+      If you wish to build LiteOS with support for remote processor queue.
+
+config LOSCFG_KERNEL_TRACE
+    bool "Enable Trace Feature"
+    default n
+    depends on LOSCFG_KERNEL_EXTKERNEL
+
+config LOSCFG_TRACE_MSG_EXTEND
+    bool "Enable Record more extended content"
+    default n
+    depends on LOSCFG_KERNEL_TRACE
+
+config LOSCFG_TRACE_FRAME_CORE_MSG
+    bool "Record cpuid, hardware interrupt status, task lock status"
+    default n
+    depends on LOSCFG_TRACE_MSG_EXTEND
+
+config LOSCFG_TRACE_FRAME_EVENT_COUNT
+    bool "Record event count, which indicate the sequence of happend events"
+    default n
+    depends on LOSCFG_TRACE_MSG_EXTEND
+
+config LOSCFG_TRACE_FRAME_MAX_PARAMS
+    int "Record max params"
+    default 3
+    depends on LOSCFG_KERNEL_TRACE
+    help
+      Make sure the max value is bigger than the number defined by each #MODULE#_#TYPE#_PARMAS in los_trace.h, e.g. TASK_SWITCH_PARAMS
+
+choice
+    prompt "Trace work mode"
+    default LOSCFG_RECORDER_MODE_OFFLINE
+    depends on LOSCFG_KERNEL_TRACE
+
+config LOSCFG_RECORDER_MODE_ONLINE
+    bool "Online mode"
+    select LOSCFG_TRACE_CLIENT_INTERACT
+
+config LOSCFG_RECORDER_MODE_OFFLINE
+    bool "Offline mode"
+
+endchoice
+
+config LOSCFG_TRACE_BUFFER_SIZE
+    int "Trace record buffer size"
+    default 2048
+    depends on LOSCFG_RECORDER_MODE_OFFLINE
+
+config LOSCFG_TRACE_CLIENT_INTERACT
+    bool "Enable Trace Client Visualization and Control"
+    default n
+    depends on LOSCFG_KERNEL_TRACE
+
+choice
+    prompt "Trace Pipeline for Data Transmission"
+    depends on LOSCFG_TRACE_CLIENT_INTERACT
+
+config LOSCFG_TRACE_PIPELINE_SERIAL
+    bool "Via Serial"
+
+endchoice
+
+choice
+    prompt "Trace Control"
+    default LOSCFG_TRACE_NO_CONTROL
+    depends on LOSCFG_TRACE_CLIENT_INTERACT
+    help
+      If you wish to control Trace's start/stop etc.,dynamically by Trace Client.
+
+config LOSCFG_TRACE_CONTROL_VIA_SHELL
+    bool "Via Shell"
+    select LOSCFG_SHELL
+    depends on LOSCFG_DEBUG_VERSION
+
+config LOSCFG_TRACE_CONTROL_AGENT
+    bool "Via Trace Agent Task"
+
+config LOSCFG_TRACE_NO_CONTROL
+    bool "No Control"
+
+endchoice
+
+config LOSCFG_BASE_CORE_SYS_RES_CHECK
+   bool "Enable System Resource Check"
+   default y
+
+endmenu

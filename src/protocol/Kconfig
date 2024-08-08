@@ -1,0 +1,35 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+menu "bt_host"
+    comment "Config bluetooth."
+    osource "protocol/bt/host/Kconfig"
+endmenu
+
+menu "bt_controller"
+    comment "Config bluetooth."
+    osource "protocol/bt/controller/Kconfig"
+endmenu
+
+menu "nfc"
+    comment "Config nfc."
+endmenu
+
+menu "wifi"
+    comment "Config wifi."
+endmenu
+
+config RADAR_SERVICE
+    bool
+    prompt "Enable Radar."
+    default n
+    help
+        This option means support Radar.
+
+if RADAR_SERVICE
+menu "radar"
+    comment "Config radar."
+    osource "protocol/radar/plat/Kconfig"
+endmenu
+endif

@@ -1,0 +1,7 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+if DRIVER_SUPPORT_LITEOS_208_5_0
+
+endif

@@ -1,0 +1,66 @@
+config LOSCFG_SHELL
+    bool "Enable Shell"
+    default n
+    depends on LOSCFG_DEBUG_VERSION
+    help
+      Answer Y to enable LiteOS support shell cmd.
+
+choice
+    prompt "Select Shell Input"
+    default LOSCFG_SHELL_CONSOLE
+    depends on LOSCFG_SHELL
+    help
+      Select shell input, when the input source is chosen, the shell will read the
+      terminal input from the source.
+
+config LOSCFG_SHELL_CONSOLE
+    bool "Console"
+    depends on LOSCFG_KERNEL_CONSOLE
+    help
+      The shell will use the console to interact with the drivers.
+
+config LOSCFG_SHELL_UART
+    bool "Uart"
+    depends on LOSCFG_DRIVERS_UART || LOSCFG_DRIVERS_UART_VENDOR
+    help
+      The shell will directly interact with the uart drivers, and only one input
+      source is supported.
+
+endchoice
+
+if !LOSCFG_SAFETY_KERNEL
+
+config LOSCFG_SHELL_EXTENDED_CMDS
+    bool "Enable Shell Ext CMDs"
+    default n
+    depends on LOSCFG_DEBUG_VERSION && LOSCFG_SHELL
+    select LOSCFG_COMPAT_POSIX
+    help
+      Answer Y to enable LiteOS support shell extended cmds.
+
+config LOSCFG_SHELL_LK
+    bool "Enable Shell LK"
+    default y
+    depends on LOSCFG_DEBUG_VERSION && LOSCFG_SHELL && LOSCFG_FS_VFS
+    help
+      Answer Y to enable LiteOS support shell lk.
+
+config LOSCFG_SHELL_DMESG
+    bool "Enable Shell DMESG"
+    default n
+    depends on LOSCFG_DEBUG_VERSION && LOSCFG_SHELL
+    select LOSCFG_KERNEL_PRINTF
+    help
+      Answer Y to enable LiteOS support shell dmesg.
+
+endif # !LOSCFG_SAFETY_KERNEL
+
+config LOSCFG_SHELL_USER_TEXT
+    bool
+    default y
+    depends on LOSCFG_SAFETY_KERNEL && LOSCFG_BOX && LOSCFG_SHELL
+
+config LOSCFG_SHELL_WITH_CB
+    bool
+    default y
+    depends on LOSCFG_SAFETY_KERNEL && LOSCFG_BOX && LOSCFG_SHELL

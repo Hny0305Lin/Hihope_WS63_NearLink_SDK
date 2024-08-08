@@ -1,0 +1,45 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config DMA_USING_V100
+    bool
+    prompt "Using DMA V100."
+    default y
+    depends on DRIVER_SUPPORT_DMA
+
+config DMA_USING_V120
+    bool
+    prompt "Using DMA V120."
+    default y
+    depends on DRIVER_SUPPORT_DMA
+
+config DMA_USING_V150
+    bool
+    prompt "Using DMA V150."
+    default n
+    depends on DRIVER_SUPPORT_DMA
+
+config DMA_SUPPORT_SMDMA
+    bool
+    prompt "DMA Support SMDMA"
+    default y
+    depends on DRIVER_SUPPORT_DMA && DMA_USING_V100
+
+config SUPPORT_DATA_CACHE
+    bool
+    prompt "DMA SUPPORT DATA CACHE"
+    default n
+    depends on DRIVER_SUPPORT_DMA
+	
+config DMA_LLI_NODE_FIX_MEM
+    bool
+    prompt "dma lli node using static memory"
+    default n
+    depends on DRIVER_SUPPORT_DMA
+	
+config DMA_LLI_NODE_MAX
+    int
+    prompt "dma lli node max count"
+    default 4
+    depends on DMA_LLI_NODE_FIX_MEM

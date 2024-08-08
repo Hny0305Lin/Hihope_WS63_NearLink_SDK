@@ -1,0 +1,40 @@
+/**
+@page connectivity_drv_supp_matrix Driver support matrix
+The following matrix shows which drivers are supported by specific connectivity SoCs.
+@{
+
+# Kernel:
+Kernel                                          |      WS63     |
+------------------------------------------------|---------------|
+OSAL                                            |@tagGreenTick  |
+LiteOS                                          |@tagGreenTick  |
+FreeRTOS                                        |@tagGreenTick  |
+
+# Drivers:
+Driver                                          |      WS63     |
+------------------------------------------------|---------------|
+@ref drivers_driver_timer                       |@tagGreenTick  |
+@ref drivers_driver_uart                        |@tagGreenTick  |
+@ref drivers_driver_adc                         |@tagGreenTick  |
+@ref drivers_driver_dma                         |@tagGreenTick  |
+@ref drivers_driver_gpio                        |@tagGreenTick  |
+@ref drivers_driver_i2c                         |@tagGreenTick  |
+@ref drivers_driver_i2s                         |@tagGreenTick  |
+@ref drivers_driver_pcm                         |@tagGreenTick  |
+@ref drivers_driver_pinctrl                     |@tagGreenTick  |
+@ref drivers_driver_pmp                         |@tagGreenTick  |
+@ref drivers_driver_pwm                         |@tagGreenTick  |
+@ref drivers_driver_sfc                         |@tagGreenTick  |
+@ref drivers_driver_spi                         |@tagGreenTick  |
+@ref drivers_driver_systick                     |@tagGreenTick  |
+@ref drivers_driver_tcxo                        |@tagGreenTick  |
+@ref drivers_driver_timer                       |@tagGreenTick  |
+@ref drivers_drivers_rtc                        |@tagGreenTick  |
+@ref drivers_driver_tsensor                     |@tagGreenTick  |
+@ref drivers_driver_uart                        |@tagGreenTick  |
+@ref drivers_driver_watchdog                    |@tagGreenTick  |
+@ref drivers_driver_security_unified            |@tagGreenTick  |
+@ref drivers_driver_pm                          |@tagGreenTick  |
+
+@}
+*/

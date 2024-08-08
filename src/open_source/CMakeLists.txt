@@ -1,0 +1,42 @@
+#===============================================================================
+# @brief    cmake file
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+add_subdirectory_if_exist(mbedtls)
+add_subdirectory_if_exist(7-zip-lzma-sdk)
+add_subdirectory_if_exist(coremark)
+add_subdirectory_if_exist(libboundscheck)
+add_subdirectory_if_exist(cjson)
+add_subdirectory_if_exist(mqtt)
+add_subdirectory_if_exist(littlefs)
+add_subdirectory_if_exist(huks)
+add_subdirectory_if_exist(deviceauth)
+add_subdirectory_if_exist(libcoap)
+if (EXISTS ${ROOT_DIR}/protocol/wifi/CMakeLists.txt)
+add_subdirectory_if_exist(wpa_supplicant)
+endif()
+
+if (EXISTS ${ROOT_DIR}/protocol/wifi/CMakeLists.txt)
+    add_subdirectory_if_exist(lwip)
+endif()
+
+add_subdirectory_with_alias_if_exist(openharmony/third_party/freetype ${PROJECT_BINARY_DIR}/freetype)
+if (DEFINES MATCHES "ENABLE_UIKIT")
+    set(ROOTDIR ${ROOT_DIR})
+    add_subdirectory_with_alias_if_exist(openharmony/third_party/cJSON ${PROJECT_BINARY_DIR}/cJSON)
+    add_subdirectory_with_alias_if_exist(openharmony/third_party/qrcodegen ${PROJECT_BINARY_DIR}/qrcodegen)
+    add_subdirectory_with_alias_if_exist(openharmony/third_party/icu ${PROJECT_BINARY_DIR}/icu)
+    add_subdirectory_with_alias_if_exist(openharmony/third_party/harfbuzz ${PROJECT_BINARY_DIR}/harfbuzz)
+endif()
+
+add_subdirectory_with_alias_if_exist(openharmony/base/startup/bootstrap_lite ${PROJECT_BINARY_DIR}/bootstrap)
+add_subdirectory_with_alias_if_exist(openharmony/base/startup/syspara_lite ${PROJECT_BINARY_DIR}/syspara)
+add_subdirectory_with_alias_if_exist(openharmony/foundation/distributedschedule/samgr_lite ${PROJECT_BINARY_DIR}/samgr)
+add_subdirectory_with_alias_if_exist(openharmony/foundation/aafwk/aafwk_lite ${PROJECT_BINARY_DIR}/aafwk)
+add_subdirectory_with_alias_if_exist(openharmony/foundation/appexecfwk/appexecfwk_lite ${PROJECT_BINARY_DIR}/appexecfwk)
+add_subdirectory_with_alias_if_exist(openharmony/foundation/ace/ace_engine_lite ${PROJECT_BINARY_DIR}/ace_engine)
+add_subdirectory_with_alias_if_exist(openharmony/base/security/permission ${PROJECT_BINARY_DIR}/permission)
+add_subdirectory_with_alias_if_exist(openharmony/base/security/appverify ${PROJECT_BINARY_DIR}/appverify)
+add_subdirectory_with_alias_if_exist(openharmony/third_party/jerryscript ${PROJECT_BINARY_DIR}/jerryscript)
+add_subdirectory_with_alias_if_exist(openharmony/base/global/i18n_lite ${PROJECT_BINARY_DIR}/i18n)
+add_subdirectory_with_alias_if_exist(openharmony/base/global/resmgr_lite ${PROJECT_BINARY_DIR}/resmgr)

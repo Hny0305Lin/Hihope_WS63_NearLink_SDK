@@ -1,0 +1,21 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config WATCHDOG_ALREADY_START
+    bool
+    prompt "Watchdog has been started in another binary."
+    default n
+    depends on DRIVER_SUPPORT_WDT
+
+config WATCHDOG_SUPPORT_ULP_WDT
+    bool
+    prompt "Watch dog support ulp watchdog"
+    default n
+    depends on DRIVER_SUPPORT_WDT
+	
+config WATCHDOG_SUPPORT_LPM
+    bool
+    prompt "Watch dog support low power mode"
+    default n
+    depends on DRIVER_SUPPORT_WDT

@@ -1,0 +1,250 @@
+#include "base_datatype_def.txt"
+
+typedef struct {
+
+} tool_null_stru;
+
+typedef struct {
+    td_u8 array[0];
+}tool_u8_array;
+
+typedef struct {
+    td_u32 array[0];
+}tool_u32_array;
+
+typedef struct {
+    td_u32 data;
+}tool_u32;
+
+typedef struct {
+    char str[1];
+} tool_str;
+
+typedef struct {
+    td_u16 key;
+} nv_key_info_t;
+
+typedef struct {
+    td_u16 key;
+    td_u16 length;
+    td_u8 value[300];
+} nv_key_write_info_t;
+
+typedef struct {
+    td_u16 key;
+    td_u16 length;
+    td_u8 value[300];
+    td_bool permanent;
+    td_bool encrypted;
+    td_bool non_upgrade;
+} nv_key_write_with_attr_info_t;
+
+typedef struct {
+    td_u32 package_len;
+} upg_prepare_info_t;
+
+typedef struct {
+    td_u32 id;
+    td_char name[32];
+    td_u32 usage;
+} dfx_cpup_item;
+
+typedef struct {
+    td_u32 param;
+} dfx_diag_cpup_cmd;
+
+typedef struct {
+    td_u32 total;
+    td_u32 used;
+    td_u32 free;
+    td_u32 free_node_num;
+    td_u32 used_node_num;
+    td_u32 max_free_node_size;
+    td_u32 peek_size;
+} ext_mdm_mem_info;
+
+typedef struct {
+    td_u8 timer_usage;
+    td_u8 task_usage;
+    td_u8 sem_usage;
+    td_u8 queue_usage;
+    td_u8 mux_usage;
+} osal_os_resource_use_stat;
+
+typedef struct {
+    td_char name[32];
+    td_u32 valid;
+    td_u32 id;
+    td_u16 status;
+    td_u16 priority;
+    td_pvoid task_sem;
+    td_pvoid task_mutex;
+    td_u32 event_stru[3];
+    td_u32 event_mask;
+    td_u32 stack_size;
+    td_u32 top_of_stack;
+    td_u32 bottom_of_stack;
+    td_u32 sp;
+    td_u32 curr_used;
+    td_u32 peak_used;
+    td_u32 overflow_flag;
+} ext_task_info;
+
+typedef struct {
+    td_u32 id;
+} ext_dbg_stat_q;
+
+typedef struct {
+    td_bool enable;
+    td_u8 channel;
+    td_u8 band;
+    td_u32 cycle;
+    td_u16 duration;
+} psd_enable_stru;
+
+typedef struct {
+    td_s8 psd_result[1024];
+} psd_report_stru;
+
+typedef struct {
+    td_u32 addr;
+    td_u32 len;
+} read_mem;
+
+typedef struct {
+    td_u32 start_addr;
+    td_u32 end_addr;
+} cycle_read_mem;
+
+typedef struct {
+    td_u32 len;
+    td_u32 data[80];
+} read_mem_ind;
+
+typedef struct {
+    td_u32 start_addr;
+    td_u32 cnt;
+} mem_read_cmd_t;
+
+typedef struct {
+    td_u32 start_addr;
+    td_u32 size;
+}mem_read_ind_head_t;
+
+typedef struct {
+    mem_read_ind_head_t head;
+    td_u32 data[80];
+}mem_read32_ind_t;
+
+typedef struct {
+    mem_read_ind_head_t head;
+    td_u16 data[80];
+}mem_read16_ind_t;
+
+typedef struct {
+    mem_read_ind_head_t head;
+    td_u8 data[80];
+}mem_read8_ind_t;
+
+typedef struct {
+    td_u32 start_addr;
+    td_u32 val;
+} mem_write_cmd_t;
+
+typedef struct {
+    td_u32 ret;
+} mem_write_ind_t;
+
+typedef struct {
+    td_u32 baud_rate;
+    td_u8 data_bits;
+    td_u8 stop_bits;
+    td_u8 parity;
+    td_u8 pad;
+} uart_attr_t;
+
+typedef struct {
+    td_u32 case_id;
+    td_u32 data[3];
+}diag_dfx_cmd_req_st;
+typedef struct {
+    td_u32 case_id;
+    td_u32 data[3];
+}diag_dfx_cmd_ind_st;
+typedef struct {
+    td_u32 put_msg_2_cache_fail_times;
+    td_u16 dfx_msg_q_num;
+    td_u16 dfx_msg_q_peak_num;
+    td_u16 transmit_msg_q_num;
+    td_u16 transmit_msg_q_peak_num;
+    td_u32 dfx_msg_process_max_time;
+    td_u32 transmit_msg_process_max_time;
+    td_u32 send_local_q_fail;
+    td_u32 send_local_q_success;
+    td_u32 transmit_msg_rev_cnt;
+    td_u32 msg_rev_cnt;
+    td_u32 diag_pkt_msg_rev_cnt;
+    td_u32 beat_heart_msg_rev_cnt;
+    td_u32 channel_receive_data_cnt[4];
+    td_u32 channel_receive_frame_cnt[4];
+    td_u32 mem_pkt_alloc_size[2];
+    td_u32 mem_pkt_free_size[2];
+    td_u32 alloc_mem_size;
+    td_u32 alloc_mem_peak_size;
+    td_u32 conn_excep_cnt;
+    td_u32 conn_bu_cnt;
+} zdiag_dfx_stat;
+
+typedef struct {
+    td_u32 transmit_id;
+    td_u32 ret;
+    td_u32 offset;
+    td_u32 size;
+    td_u32 crc;
+    td_u32 data[1];
+} transmit_data_reply_pkt;
+
+typedef struct {
+    td_u32 flag;
+    td_u32 transmit_id;
+} diag_sample_data_cmd_t;
+
+typedef struct {
+    td_u32 ret;
+    td_u32 flag;
+    td_u32 transmit_id;
+} diag_sample_data_ind_t;
+
+typedef struct {
+    td_u32 file_num;
+} last_dump_start_ind_t;
+
+typedef struct {
+    char name[64];
+    td_u32 total_size;
+    td_u32 offset;
+    td_u32 size;
+    td_u32 crc;
+    td_u8 data[0];
+} last_dump_data_ind_t;
+
+typedef struct {
+    char name[64];
+    td_u32 total_size;
+} last_dump_data_ind_finish_t;
+
+typedef struct {
+    td_u32 stack_limit;
+    td_u32 fault_type;
+    td_u32 fault_reason;
+    td_u32 address;
+    td_u32 reg_value[32];
+    td_u32 psp_value;
+    td_u32 lr_value;
+    td_u32 pc_value;
+    td_u32 psps_value;
+    td_u32 primask_value;
+    td_u32 fault_mask_value;
+    td_u32 bserpri_value;
+    td_u32 control_value;
+} diag_last_word_ind_t;

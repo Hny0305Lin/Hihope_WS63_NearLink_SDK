@@ -1,0 +1,400 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config ENABLE_ALL_PERIPHERAL_SAMPLE
+    bool
+    prompt "Enable all the sample of peripheral, it's just for build."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    select SAMPLE_SUPPORT_ADC
+    select SAMPLE_SUPPORT_AMIC if ADC_SUPPORT_AMIC
+    select SAMPLE_SUPPORT_BLINKY
+    select SAMPLE_SUPPORT_BUTTON
+    select SAMPLE_SUPPORT_CALENDAR
+    select SAMPLE_SUPPORT_CLOCKS
+    select SAMPLE_SUPPORT_DMA
+    select SAMPLE_SUPPORT_EFLASH
+    select SAMPLE_SUPPORT_I2C
+    select SAMPLE_SUPPORT_I2S
+    select SAMPLE_SUPPORT_I2S_DMA
+    select SAMPLE_SUPPORT_I2S_DMA_LLI
+    select SAMPLE_SUPPORT_KEYSCAN
+    select SAMPLE_SUPPORT_PDM
+    select SAMPLE_SUPPORT_PDM_AMIC if ADC_SUPPORT_AMIC
+    select SAMPLE_SUPPORT_PINCTRL
+    select SAMPLE_SUPPORT_PWM
+    select SAMPLE_SUPPORT_QDEC
+    select SAMPLE_SUPPORT_RTC
+    select SAMPLE_SUPPORT_SPI
+    select SAMPLE_SUPPORT_SYSTICK
+    select SAMPLE_SUPPORT_TASKS
+    select SAMPLE_SUPPORT_TCXO
+    select SAMPLE_SUPPORT_TIMER
+    select SAMPLE_SUPPORT_UART
+    select SAMPLE_SUPPORT_WDT
+    help
+        This option means enable all the sample of peripheral, it is just for build.
+
+config SAMPLE_SUPPORT_ADC
+    bool
+    prompt "Support ADC Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support ADC Sample.
+
+if SAMPLE_SUPPORT_ADC
+menu "ADC Sample Configuration"
+    osource "application/samples/peripheral/adc/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_AMIC
+    bool
+    prompt "Support AMIC Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support AMIC Sample.
+
+if SAMPLE_SUPPORT_AMIC
+menu "AFE Sample Configuration"
+    osource "application/samples/peripheral/amic/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_BLINKY
+    bool
+    prompt "Support BLINKY Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support BLINKY Sample.
+
+config SAMPLE_SUPPORT_BUTTON
+    bool
+    prompt "Support BUTTON Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support BUTTON Sample.
+if SAMPLE_SUPPORT_BUTTON
+menu "BUTTON Sample Configuration"
+    osource "application/samples/peripheral/button/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_CALENDAR
+    bool
+    prompt "Support CALENDAR Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support CALENDAR Sample.
+
+if SAMPLE_SUPPORT_CALENDAR
+menu "CALENDAR Sample Configuration"
+    osource "application/samples/peripheral/calendar/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_CAN
+    bool
+    prompt "Support CAN Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    select DRIVER_SUPPORT_CAN_FD
+    help
+        This option means support CAN Sample.
+
+if SAMPLE_SUPPORT_CAN
+menu "CAN Sample Configuration"
+    osource "application/samples/peripheral/can/Kconfig"
+endmenu
+endif
+config SAMPLE_SUPPORT_CLOCKS
+    bool
+    prompt "Support CLOCKS Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support CLOCKS Sample.
+
+if SAMPLE_SUPPORT_CLOCKS
+menu "CLOCKS Sample Configuration"
+    osource "application/samples/peripheral/clocks/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_DMA
+    bool
+    prompt "Support DMA Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support DMA Sample.
+
+if SAMPLE_SUPPORT_DMA
+menu "DMA Sample Configuration"
+    osource "application/samples/peripheral/dma/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_EFLASH
+    bool
+    prompt "Support EFLASH Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support EFLASH Sample.
+
+if SAMPLE_SUPPORT_EFLASH
+menu "EFLASH Sample Configuration"
+    osource "application/samples/peripheral/eflash/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_I2C
+    bool
+    prompt "Support I2C Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support I2C Sample.
+
+if SAMPLE_SUPPORT_I2C
+menu "I2C Sample Configuration"
+    osource "application/samples/peripheral/i2c/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_I2S
+    bool
+    prompt "Support I2S Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support I2S Sample.
+
+if SAMPLE_SUPPORT_I2S
+menu "I2S Sample Configuration"
+    osource "application/samples/peripheral/i2s/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_I2S_DMA
+    bool
+    prompt "Support I2S DMA Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    select I2S_SUPPORT_DMA
+    help
+        This option means support I2S DMA Sample.
+
+if SAMPLE_SUPPORT_I2S_DMA
+menu "I2S DMA Sample Configuration"
+    osource "application/samples/peripheral/i2s_dma/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_I2S_DMA_LLI
+    bool
+    prompt "Support I2S DMA lli Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    select I2S_SUPPORT_DMA
+    help
+        This option means support I2S DMA LLI Sample.
+
+if SAMPLE_SUPPORT_I2S_DMA_LLI
+menu "I2S DMA lli Sample Configuration"
+    osource "application/samples/peripheral/i2s_dma_lli/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_KEYSCAN
+    bool
+    prompt "Support KEYSCAN Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support KEYSCAN Sample.
+
+config SAMPLE_SUPPORT_PDM
+    bool
+    prompt "Support PDM Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support PDM Sample.
+
+if SAMPLE_SUPPORT_PDM
+menu "PDM Sample Configuration"
+    osource "application/samples/peripheral/pdm/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_PDM_AMIC
+    bool
+    prompt "Support PDM AMIC Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE && ADC_SUPPORT_AMIC
+    help
+        This option means support PDM AMIC Sample.
+
+if SAMPLE_SUPPORT_PDM_AMIC
+menu "PDM AMIC Sample Configuration"
+    osource "application/samples/peripheral/pdm_amic/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_PINCTRL
+    bool
+    prompt "Support PINCTRL Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support PINCTRL Sample.
+
+if SAMPLE_SUPPORT_PINCTRL
+menu "PINCTRL Sample Configuration"
+    osource "application/samples/peripheral/pinctrl/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_PWM
+    bool
+    prompt "Support PWM Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support PWM Sample.
+
+if SAMPLE_SUPPORT_PWM
+menu "PWM Sample Configuration"
+    osource "application/samples/peripheral/pwm/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_QDEC
+    bool
+    prompt "Support QDEC Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support QDEC Sample.
+
+if SAMPLE_SUPPORT_QDEC
+menu "QDEC Sample Configuration"
+    osource "application/samples/peripheral/qdec/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_RTC
+    bool
+    prompt "Support RTC Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support RTC Sample.
+
+if SAMPLE_SUPPORT_RTC
+menu "RTC Sample Configuration"
+    osource "application/samples/peripheral/rtc/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_SFC
+    bool
+    prompt "Support SFC Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support SFC Sample.
+
+if SAMPLE_SUPPORT_SFC
+menu "SFC Sample Configuration"
+    osource "application/samples/peripheral/sfc/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_SPI
+    bool
+    prompt "Support SPI Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support SPI Sample.
+
+if SAMPLE_SUPPORT_SPI
+menu "SPI Sample Configuration"
+    osource "application/samples/peripheral/spi/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_SYSTICK
+    bool
+    prompt "Support SYSTICK Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support SYSTICK Sample.
+
+config SAMPLE_SUPPORT_TASKS
+    bool
+    prompt "Support TASKS Test Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support TASKS Test Sample.
+
+config SAMPLE_SUPPORT_TCXO
+    bool
+    prompt "Support TCXO Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support TCXO Sample.
+
+config SAMPLE_SUPPORT_TIMER
+    bool
+    prompt "Support TIMER Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support TIMER Sample.
+
+if SAMPLE_SUPPORT_TIMER
+menu "TIMER Sample Configuration"
+    osource "application/samples/peripheral/timer/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_UART
+    bool
+    prompt "Support UART Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support UART Sample.
+
+if SAMPLE_SUPPORT_UART
+menu "UART Sample Configuration"
+    osource "application/samples/peripheral/uart/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_WDT
+    bool
+    prompt "Support WATCHDOG Sample."
+    default n
+    depends on ENABLE_PERIPHERAL_SAMPLE
+    help
+        This option means support WATCHDOG Sample.
+
+if SAMPLE_SUPPORT_WDT
+menu "WATCHDOG Sample Configuration"
+    osource "application/samples/peripheral/watchdog/Kconfig"
+endmenu
+endif

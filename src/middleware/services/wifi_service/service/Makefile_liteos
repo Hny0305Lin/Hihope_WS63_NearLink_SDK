@@ -1,0 +1,41 @@
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+mkfile_dir := $(dir $(mkfile_path))
+
+MD_PRE_OPTS:=
+MD_INC_LIST:=
+MD_SRC_LIST:=
+
+MD_PRE_OPTS +=-DLWIP_CONFIG_FILE=\"lwip/lwipopts.h\"
+MD_PRE_OPTS +=-D_PRE_WLAN_FEATURE_CSI
+MD_PRE_OPTS +=-DCONFIG_P2P_SUPPORT
+MD_PRE_OPTS +=-DCONFIG_WPS_SUPPORT
+MD_PRE_OPTS +=-DCONFIG_SET_MAC_SUPPORT
+MD_PRE_OPTS +=-DCONFIG_RST_SUPPORT
+MD_PRE_OPTS +=-DCONFIG_PLAT_DFR_SUPPORT
+MD_PRE_OPTS +=-D_PRE_WLAN_FEATURE_WOW_OFFLOAD
+MD_PRE_OPTS +=-D_PRE_WLAN_FEATURE_INTRF_MODE
+MD_PRE_OPTS +=-DCONFIG_OWE
+
+MD_INC_LIST +=include/native/osa
+MD_INC_LIST +=open_source/lwip/src/include
+MD_INC_LIST +=foundation/communication/wifi_service/service/include/native/wifi
+MD_INC_LIST +=foundation/communication/wifi_service/service
+MD_INC_LIST +=host/wifi/platform/main
+MD_INC_LIST +=host/wifi/platform/inc
+MD_INC_LIST +=utils/osal/include
+MD_INC_LIST +=host/wifi/platform/driver/mac_addr
+MD_INC_LIST +=utils/net/wireless/source/common/wifi_fe/fe_hal/rf/mpw
+MD_INC_LIST +=hi3873_rom/utils/net/wireless/source/inc/romable/hal/ws73/spec
+MD_INC_LIST +=include/native
+MD_INC_LIST +=utils/net/wireless/source/host/inc/liteOS
+MD_INC_LIST +=include/sle/middleware/services/wifi
+MD_INC_LIST +=include/sle
+# plat_tsensor
+MD_INC_LIST +=host/wifi/platform/driver/tsensor
+
+MD_SRC_LIST +=soc_wifi_service_api.c
+
+
+MD_INC_LIST_ABS=$(abspath $(addprefix $(mkfile_dir)/../../../../,$(MD_INC_LIST)))
+LMD_CFLGAS = $(MD_PRE_OPTS) $(addprefix -I,$(MD_INC_LIST_ABS))
+LMD_SRC_LIST = $(abspath $(addprefix $(mkfile_dir)/,$(MD_SRC_LIST)))

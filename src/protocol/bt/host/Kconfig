@@ -1,0 +1,32 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config AT_BLE
+    bool
+    prompt "Support AT BLE function."
+    default y
+
+if AT_BLE
+menu "AT_BLE"
+    comment "Config bluetooth host AT BLE."
+    osource "protocol/bt/host/bt/dft/Kconfig"
+endmenu
+endif
+
+config AT_GLE
+    bool
+    prompt "Support AT GLE function."
+    default y
+
+if AT_GLE
+menu "AT_GLE"
+    comment "Config bluetooth host AT GLE."
+    osource "protocol/bt/host/gle/dft/Kconfig"
+endmenu
+endif
+
+menu "FEATURE_GLE"
+    comment "Config bluetooth host GLE feature."
+    osource "protocol/bt/host/gle/Kconfig"
+endmenu

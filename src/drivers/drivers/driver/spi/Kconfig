@@ -1,0 +1,108 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+
+config SPI_SUPPORT_MASTER
+    bool
+    prompt "SPI Support MASTER"
+    default y
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_SUPPORT_SLAVE
+    bool
+    prompt "SPI Support SLAVE"
+    default y
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_SUPPORT_DMA
+    bool
+    prompt "SPI Support DMA transfer"
+    default n
+    depends on DRIVER_SUPPORT_SPI
+    select DRIVER_SUPPORT_DMA
+
+config SPI_SUPPORT_POLL_AND_DMA_AUTO_SWITCH
+    bool
+    prompt "SPI Support poll and dma mode switch"
+    default n
+    depends on SPI_SUPPORT_DMA
+
+config SPI_AUTO_SWITCH_DMA_THRESHOLD
+    int
+    prompt "SPI indicates the threshold of the automatic switchover mode"
+    range 0 65535
+    default 32
+    depends on SPI_SUPPORT_POLL_AND_DMA_AUTO_SWITCH
+
+config SPI_SUPPORT_INTERRUPT
+    bool
+    prompt "SPI Support interrupt transfer"
+    default n
+    depends on DRIVER_SUPPORT_SPI && !SPI_SUPPORT_POLL_AND_DMA_AUTO_SWITCH
+
+config SPI_SUPPORT_CONCURRENCY
+    bool
+    prompt "SPI support concurrency and the mode can be switched only after the transmission is complete"
+    default n
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_SUPPORT_LOOPBACK
+    bool
+    prompt "SPI Support LOOPBACK"
+    default n
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_SUPPORT_CRC
+    bool
+    prompt "SPI Support CRC"
+    default n
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_MAX_TIMEOUT
+    hex
+    prompt "Max time of SPI waiting"
+    default 0xFFFFFFFF
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_TXFTLR
+    hex
+    prompt "Transmit FIFO threshold level"
+    default 1
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_RXFTLR
+    hex
+    prompt "Receive FIFO threshold level"
+    default 1
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_SUPPORT_LPC
+    bool
+    prompt "SPI Support low power control, control power and clock"
+    default n
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_SUPPORT_LPM
+    bool
+    prompt "SPI Support low power mode, supend and reusme"
+    default n
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_SUPPORT_SINGLE_SPI
+    bool
+    prompt "SPI Support single mode"
+    default n
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_NOT_SUPPORT_TEXAS_FORMAT
+    bool
+    prompt "SPI Support Texas Instruments SSP Frame Format or not."
+    default y
+    depends on DRIVER_SUPPORT_SPI
+
+config SPI_SUPPORT_QUERY_REGS
+    bool
+    prompt "SPI support query regs values"
+    default n
+    depends on DRIVER_SUPPORT_SPI

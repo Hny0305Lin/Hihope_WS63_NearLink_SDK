@@ -1,0 +1,37 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2023. All rights reserved.
+#===============================================================================
+config SIO_USING_V150
+    bool
+    prompt "SIO Using V150"
+    default n
+
+config DATA_LEN_MAX
+    int
+    prompt "DATA_LEN_MAX"
+    default 128
+    depends on SIO_USING_V150
+
+config I2S_RX_THRESHOLD
+    hex
+    prompt "Threshold of the I2S RX channel"
+    default 0x0
+    depends on SIO_USING_V150
+
+config I2S_TX_THRESHOLD
+    hex
+    prompt "Threshold of the I2S TX channel"
+    default 0x0
+    depends on SIO_USING_V150
+
+config I2S_BCLK_DIV_NUM
+    hex
+    prompt "NUM of the I2S BCLK DIV"
+    default 0x4
+    depends on SIO_USING_V150
+
+config SIO_USING_V151
+    bool
+    prompt "SIO Using V151"
+    default n

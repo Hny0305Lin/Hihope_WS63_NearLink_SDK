@@ -1,0 +1,15 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config SFC_SAMPLE_USER_ADDR
+    hex
+    prompt "choose SFC sample Start Address(Real address of the flash memory)."
+    depends on SAMPLE_SUPPORT_SFC
+    default 0x7C000
+
+config SFC_SAMPLE_USER_SIZE
+    hex
+    prompt "choose SFC sample End Address(Real address of the flash memory)."
+    depends on SAMPLE_SUPPORT_SFC
+    default 0x1000

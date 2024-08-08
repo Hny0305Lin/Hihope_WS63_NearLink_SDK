@@ -1,0 +1,81 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2023. All rights reserved.
+#===============================================================================
+config BOOT_SUPPORT_SEC
+    bool
+    prompt "BOOT SEC"
+    default n
+    help
+        This option means boot support sec.
+
+if BOOT_SUPPORT_SEC
+menu "Boot Sec Configuration"
+    comment "Boot hash"
+    osource "bootloader/commonboot/Kconfig"
+endmenu
+endif
+
+config BOOT_SUPPORT_SECURE_VERIFY
+    bool
+    prompt "BOOT VERIFY"
+    default n
+    help
+        This option means boot support secure verify.
+
+if BOOT_SUPPORT_SECURE_VERIFY
+menu "Boot Secure Verify Configuration"
+    comment "Boot secure verify"
+    osource "bootloader/commonboot/Kconfig"
+endmenu
+endif
+
+config BOOT_SUPPORT_PARTITION
+    bool
+    prompt "BOOT PARTITION"
+    default n
+    help
+        This option means boot support partition.
+
+config LOADERBOOT_SUPPORT_EFUSE_BURN
+    bool
+    prompt "LOADERBOOT EFUSE BURN"
+    default n
+    help
+        This option means loaderboot support efuse burn.
+
+config LOADERBOOT_SUPPORT_FLASH_CHIP_ERASE
+    bool
+    prompt "LOADERBOOT FLASH CHIP ERASE"
+    default n
+    help
+        This option means loaderboot support flash chip erase.
+
+if LOADERBOOT_SUPPORT_EFUSE_BURN
+menu "Loaderboot Hash Configuration"
+    comment "Boot hash"
+    osource "bootloader/commonboot/Kconfig"
+endmenu
+endif
+
+config LOADERBOOT_SUPPORT_UPLOAD_DATA
+    bool
+    prompt "LOADERBOOT UPLOAD DATA"
+    default n
+    help
+        This option means loaderboot support data upload.
+
+config LOADERBOOT_SUPPORT_READ_VERSION
+    bool
+    prompt "LOADERBOOT READ VERSION"
+    default n
+    help
+        This option means loaderboot support version read.
+
+
+config LOADERBOOT_SUPPORT_SET_BUADRATE
+    bool
+    prompt "LOADERBOOT SET BUADRATE"
+    default n
+    help
+        This option means loaderboot support set baudrate.

@@ -1,0 +1,21 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config ENTROPY_SOURCES_FROM_FRO
+    bool
+    prompt "Select the Entropy Sources"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config TRNG_RING_ENABLE
+    bool
+    prompt "Enable the Trng Ring"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED
+
+config SM_EFUSE_CHECK
+    bool
+    prompt "Enable the SM Efuse Check"
+    default n
+    depends on DRIVER_SUPPORT_SECURITY_UNIFIED

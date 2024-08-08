@@ -1,0 +1,46 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+choice
+    prompt "ADC Version"
+    default ADC_USING_V152
+    config ADC_USING_V151
+        bool "ADC use version 151"
+    config ADC_USING_V152
+        bool "ADC use version 152"
+    config ADC_USING_V153
+        bool "ADC use version 153"
+    config ADC_USING_V154
+        bool "ADC use version 154"
+endchoice
+
+config ADC_SUPPORT_AFE
+    bool
+    prompt "ADC use Analog front-end mode"
+    default y
+    depends on (ADC_USING_V152 || ADC_USING_V153)
+
+config ADC_SUPPORT_DIFFERENTIAL
+    bool
+    prompt "ADC support differential sample"
+    default y
+    depends on ADC_USING_V153
+
+config ADC_SUPPORT_AMIC
+    bool
+    prompt "Whether ADC support AMIC."
+    default y
+    depends on ADC_USING_V153
+
+config ADC_SUPPORT_HAFE
+    bool
+    prompt "Whether ADC support HAFE."
+    default y
+    depends on ADC_USING_V152
+
+config AFE_SAMPLE_TIMES
+    int
+    prompt "The numbers ADC sample to average."
+    default 4
+    depends on DRIVER_SUPPORT_ADC

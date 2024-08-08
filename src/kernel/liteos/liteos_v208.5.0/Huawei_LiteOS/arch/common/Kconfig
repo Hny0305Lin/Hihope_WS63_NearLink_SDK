@@ -1,0 +1,17 @@
+config LOSCFG_ARCH_MMU_ENABLE
+    bool "Enable mmu"
+    depends on LOSCFG_APC_ENABLE && (LOSCFG_ARCH_ARM_CORTEX_A || LOSCFG_ARCH_ARM_AARCH64)
+    help 
+      This option will enable Memory Management Unit(MMU).
+
+config LOSCFG_ARCH_MMU_VA_MANAGE
+    bool "Support Virtual Address Management"
+    default n
+    depends on LOSCFG_ARCH_MMU_ENABLE
+    help 
+        Specifies whether to support unified management of virtual addresses. 
+        Virtual addresses and physical addresses can be different.
+config LOSCFG_ARCH_MMU_PAGE_TBL_NUM
+    int "Number of MMU page tables"
+    default 512
+    depends on LOSCFG_ARCH_MMU_ENABLE

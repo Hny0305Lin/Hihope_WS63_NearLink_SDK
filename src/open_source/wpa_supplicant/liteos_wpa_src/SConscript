@@ -1,0 +1,21 @@
+import os
+
+Import('env')
+Import('id_dict')
+
+env = env.Clone()
+
+all_srcs = ['crypto_mbedtls.c', 'ctrl_iface_rtos.c', 'l2_packet_rtos.c', 'main_rtos.c', 'os_rtos.c', 'wpa_cli_rtos.c', 'eloop_rtos.c',]
+
+objs = []
+for src in all_srcs:
+    base_name = os.path.basename(src)
+    if base_name in id_dict:
+        c_env = env.Clone()
+        c_env.Append(CPPDEFINES = [('__NEW_FILE_ID__', id_dict[base_name])])
+        objs.append(c_env.Object(src))
+    else:
+        objs.append(env.Object(src))
+objs.sort()
+
+Return('objs')

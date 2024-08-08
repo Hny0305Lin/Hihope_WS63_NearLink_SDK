@@ -1,0 +1,680 @@
+#
+# For a description of the syntax of this configuration file,
+# see extra/config/Kconfig-language.txt
+#
+mainmenu "Huawei LiteOS Configuration"
+
+menu "Compiler"
+
+config LOSCFG_COMPILER_GNU_BINUTILS
+    bool
+    help
+      GNU binary utilities.
+
+config LOSCFG_COMPILER_LLVM_BINUTILS
+    bool
+    help
+      LLVM binary utilities, llvm-as llvm-ar llvm-objcopy llvm-objdump llvm-readelf llvm-size llvm-nm ld.lld.
+
+config LOSCFG_COMPILER_GCC
+    bool
+    select LOSCFG_COMPILER_GNU_BINUTILS
+    help
+      This option means this is GNU Compiler Collection (GCC) compiler,
+      or work based on GCC.
+
+config LOSCFG_COMPILER_CLANG
+    bool
+    help
+      This option means this is Clang/Low Level Virtual Machine (LLVM) compiler,
+      or work based on Clang/LLVM.
+
+config LOSCFG_COMPILER_TOOLCHAIN_UNKNOWN
+    bool
+    help
+      This option means using unknown type tool chain, compiler use newlib source to generate basic library.
+
+config LOSCFG_COMPILER_TOOLCHAIN_MUSL
+    bool
+    help
+      This option means using musl type tool chain, compiler use musl source to generate basic library.
+
+choice
+    prompt "Compiler Name"
+    default LOSCFG_COMPILER_HIMIX_32
+    help
+      Enable arm-himix410 or aarch64-himix210 or compiler.
+
+config LOSCFG_COMPILER_HIMIX_32
+    bool "arm-himix410-linux"
+    depends on LOSCFG_ARCH_ARM_AARCH32
+    select LOSCFG_COMPILER_GCC
+
+config LOSCFG_COMPILER_HIMIX210_64
+    bool "aarch64-himix210-linux"
+    depends on LOSCFG_ARCH_ARM_AARCH64
+    select LOSCFG_COMPILER_GCC
+
+config LOSCFG_COMPILER_HCC_64
+    bool "aarch64-hcc-linux"
+    depends on LOSCFG_ARCH_ARM_AARCH64
+    select LOSCFG_COMPILER_GCC
+
+config LOSCFG_COMPILER_GCC_64
+    bool "aarch64-linux-gnu"
+    depends on LOSCFG_ARCH_ARM_AARCH64
+    select LOSCFG_COMPILER_GCC
+
+config LOSCFG_COMPILER_RISCV_GCC_MUSL
+    bool "riscv32-linux-musl-gcc"
+    depends on LOSCFG_ARCH_RISCV32
+    select LOSCFG_COMPILER_GCC
+    select LOSCFG_COMPILER_TOOLCHAIN_MUSL
+
+config LOSCFG_COMPILER_RISCV_GCC_UNKNOWN
+    bool "riscv32-unknown-elf-gcc"
+    depends on LOSCFG_ARCH_RISCV32
+    select LOSCFG_COMPILER_GCC
+    select LOSCFG_COMPILER_TOOLCHAIN_UNKNOWN
+
+config LOSCFG_COMPILER_RISCV_CLANG_UNKNOWN
+    bool "riscv32-unknown-elf-clang"
+    depends on LOSCFG_ARCH_LINX_M
+    select LOSCFG_COMPILER_CLANG
+    select LOSCFG_COMPILER_TOOLCHAIN_UNKNOWN
+    select LOSCFG_COMPILER_GNU_BINUTILS
+
+config LOSCFG_COMPILER_RISCV_CLANG_MUSL
+    bool "riscv32-linux-musl-clang"
+    depends on LOSCFG_ARCH_RISCV32
+    select LOSCFG_COMPILER_CLANG
+    select LOSCFG_COMPILER_TOOLCHAIN_MUSL
+    select LOSCFG_COMPILER_GNU_BINUTILS
+
+config LOSCFG_COMPILER_XTENSA_32
+    bool "xtensa-(RF~RI)-201x.x-linux"
+    depends on LOSCFG_ARCH_XTENSA
+    select LOSCFG_COMPILER_GNU_BINUTILS
+
+config LOSCFG_COMPILER_ARM_NONE_EABI
+    bool "arm-none-eabi-"
+    depends on LOSCFG_ARCH_ARM_AARCH32
+    select LOSCFG_COMPILER_GCC
+
+config LOSCFG_COMPILER_LINGLONG
+    bool "linglong-clang"
+    depends on LOSCFG_ARCH_LINGLONG
+    select LOSCFG_COMPILER_CLANG
+    select LOSCFG_COMPILER_GNU_BINUTILS
+
+config LOSCFG_COMPILER_ARM_NONE_EABI_CLANG
+    bool "arm-none-eabi-clang"
+    depends on LOSCFG_ARCH_ARM_AARCH32
+    select LOSCFG_COMPILER_CLANG
+    select LOSCFG_COMPILER_LLVM_BINUTILS
+
+endchoice
+
+menu "Compiler Options"
+config LOSCFG_RISCV_COMPILER_OPTIONS_USER_DEFINED
+    string "User-defined Compiler Options"
+    default ""
+    depends on LOSCFG_COMPILER_RISCV_GCC_UNKNOWN || LOSCFG_COMPILER_RISCV_GCC_MUSL
+    help
+      You can input your own compiler options.
+
+config LOSCFG_RISCV_COMPILER_OPTIONS_LDM_STM
+    bool "Enable -fldm-stm-optimize"
+    default y
+    depends on LOSCFG_COMPILER_RISCV_GCC_UNKNOWN || LOSCFG_COMPILER_RISCV_GCC_MUSL
+    help
+      Please confirm that your compiler or board supports it.
+
+config LOSCFG_RISCV_COMPILER_OPTIONS_EMIT_LLI
+    bool "Enable -femit-lli"
+    default y
+    depends on LOSCFG_COMPILER_RISCV_GCC_UNKNOWN || LOSCFG_COMPILER_RISCV_GCC_MUSL
+    help
+      Please confirm that your compiler or board supports it.
+
+config LOSCFG_RISCV_COMPILER_OPTIONS_MSMALL_DATA_LIMIT0
+    bool "Enable -msmall-data-limit=0"
+    default n
+    depends on LOSCFG_COMPILER_RISCV_GCC_UNKNOWN || LOSCFG_COMPILER_RISCV_GCC_MUSL
+    help
+      Please confirm that your compiler or board supports it.
+
+config LOSCFG_RISCV_COMPILER_OPTIONS_LBU_SB
+    bool "Enable -Wa,-enable-c-lbu-sb"
+    default y
+    depends on LOSCFG_COMPILER_RISCV_GCC_MUSL || LOSCFG_COMPILER_RISCV_GCC_UNKNOWN || LOSCFG_COMPILER_RISCV_CLANG_MUSL
+    help
+      Please confirm that your compiler or board supports it.
+
+config LOSCFG_RISCV_COMPILER_OPTIONS_NO_INLINE
+    bool "Enable -fno-inline-small-functions"
+    default n
+    depends on LOSCFG_COMPILER_RISCV_GCC_MUSL || LOSCFG_COMPILER_RISCV_GCC_UNKNOWN
+    help
+      This is usually used to patch for ROM codes easily.
+
+config LOSCFG_RISCV_COMPILER_OPTIONS_LCMP_GEN
+    bool "Enable Linx Generator Intrinsics"
+    default n
+    depends on LOSCFG_COMPILER_RISCV_CLANG_UNKNOWN
+    help
+      This can only used on Linx Core M Profile Platform.
+      If enabled, use intrinsics instead of assembly language
+
+choice
+    prompt "Function Stack Save Mode"
+    default LOSCFG_RISCV_COMPILER_OPTIONS_SAVE_RESTORE
+    depends on (LOSCFG_COMPILER_RISCV_GCC_UNKNOWN || LOSCFG_COMPILER_RISCV_GCC_MUSL) && !LOSCFG_BACKTRACE
+    help
+    This Option will choose compile option for riscv.
+    Please confirm that your compiler or board supports it.
+
+config LOSCFG_RISCV_COMPILER_OPTIONS_SAVE_RESTORE
+    bool "Enable -msave-restore"
+config LOSCFG_RISCV_COMPILER_OPTIONS_PUSH_POP
+    bool "Enable -mpush-pop"
+endchoice
+
+endmenu
+
+choice
+    prompt "Optimize Option"
+    default LOSCFG_COMPILER_OPTIMIZE_SPEED
+    help
+      This Option will enable compiler Optimize options.
+
+config LOSCFG_COMPILER_OPTIMIZE_NONE
+    bool "Optimize None"
+config LOSCFG_COMPILER_OPTIMIZE_SPEED
+    bool "Optimize Speed"
+config LOSCFG_COMPILER_OPTIMIZE_SIZE
+    bool "Optimize Size"
+endchoice
+
+config LOSCFG_COMPILER_THIRDPARTY_SUPPORT
+    bool "Thirdparty Compilers Support"
+    default n
+    depends on LOSCFG_COMPILER_GCC
+
+    help
+      Answer Y to enable thirdparty compiler building.
+
+endmenu
+
+menu "Targets"
+
+config LOSCFG_SAFETY_KERNEL
+    bool
+    default n
+
+    help
+      Answer Y to enable safety kernel building.
+      This option determines the compilation path.
+      When this option is set to y, the kernel_s and arch_s directories are compiled.
+      Otherwise, the kernel and arch directories are compiled.
+
+######################### config options of bsp #####################
+source "targets/Kconfig"
+
+######################### config options of cpu #####################
+source "$(KCONFIG_ARCH_PATH)/Kconfig"
+
+endmenu
+
+######################### config options of kernel #####################
+source "$(KCONFIG_KERNEL_PATH)/Kconfig"
+######################### config options of lib ########################
+source "lib/Kconfig"
+######################### config options of compatibility ##############
+osource "compat/Kconfig"
+######################### config options of components ##############
+osource "components/Kconfig"
+
+######################## config options of filesystem ##################
+osource "fs/Kconfig"
+
+######################## config options of net ############################
+osource "net/Kconfig"
+
+######################## config options of security ############################
+osource "security/Kconfig"
+
+######################## config options of debug ########################
+menu "Debug"
+config LOSCFG_COMPILE_DEBUG
+    bool "Enable GCC -g Option"
+    default n
+
+    help
+      Answer Y to add -g option in gcc command. But the LiteOS size will be much larger.
+
+config LOSCFG_PLATFORM_ADAPT
+    bool "Enable Os_adapt"
+    default y
+
+    help
+      Answer Y to add os_adapt.c to LiteOS.
+
+#config LOSCFG_COREDUMP
+#    bool "Enable Coredump"
+#    default n
+#
+#    help
+#      Answer Y to enable Coredump for LiteOS.
+#
+#config COREDUMP_COMPRESS_MEM_SIZE
+#    int "set the compress-packet size(K)"
+#    default 64
+#    depends on LOSCFG_COREDUMP
+#    help
+#      Its uint is K and the default size is 64K(Raise the size of compressing the packet of dumpinfo to reduce the time of using,if you have enough memory space.)
+
+config LOSCFG_BACKTRACE
+    bool "Enable Backtrace"
+    default y
+    help
+        Answer Y to enable backtrace for LiteOS.
+
+#config LOSCFG_GDB
+#    bool "Enable GDB"
+#    default n
+#
+#choice
+#    prompt "GDB Debug"
+#    depends on LOSCFG_GDB
+#    default  LOSCFG_GDB_DEBUG
+#    help
+#        LOSCFG_GDB_DEBUG
+#        LOSCFG_GDB_ABNORMAL
+#
+#config LOSCFG_GDB_DEBUG
+#    bool "GDB adds breakpoint to debug code"
+#
+#config LOSCFG_GDB_ABNORMAL
+#    bool "When it's abnormal , invoking gdb to check backtrace"
+#
+#endchoice
+
+config LOSCFG_DO_ALIGN
+    bool "Enable do align for hi3518e"
+    default y
+    depends on LOSCFG_PLATFORM_HI3518EV200
+    help
+      Answer Y to enable do align for hi3518e.
+
+osource "vendor/bvt/Kconfig"
+osource "3rdParty/Kconfig"
+
+config LOSCFG_ENABLE_MAGICKEY
+    bool "Enable MAGIC KEY"
+    default n
+    help
+      Answer Y to enable LiteOS Magic key.
+        ctrl + r : Magic key check switch;
+        ctrl + z : Show all magic op key;
+        ctrl + t : Show task information;
+        ctrl + p : System panic;
+        ctrl + e : Check system memory pool.
+
+config LOSCFG_DEBUG_VERSION
+    bool "Enable a Debug Version"
+    default n
+    help
+      If you do not select this option that means you enable a release version for LiteOS.
+      It also means you do not want to use debug modules, like shell,telnet,tftp,
+      ,nfs,ramfs proc and memory check.
+      If you select this option that means you enable a debug version for LiteOS.
+      That means you want an opposite behaviour compared to release version.
+
+config LOSCFG_DEBUG_KERNEL
+    bool "Enable Debug LiteOS Kernel Resource"
+    default n
+    depends on LOSCFG_DEBUG_VERSION
+    help
+      If you select this option that means you enable debugging kernel resource.
+      It also means you want to get queue, mutex, semaphore, memory debug information.
+      That means you want an opposite behaviour compared to release version.
+
+config LOSCFG_DEBUG_TASK
+    bool "Enable Task Debugging"
+    default n
+    depends on LOSCFG_DEBUG_KERNEL
+    help
+      Answer Y to enable debug task.
+
+config LOSCFG_DEBUG_HWI
+    bool "Enable Hwi Debugging"
+    default n
+    depends on LOSCFG_DEBUG_KERNEL && LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    help
+      Answer Y to enable debug hwi.
+
+config LOSCFG_DEBUG_SWTMR
+    bool "Enable Swtmr Debugging"
+    default y
+    depends on LOSCFG_DEBUG_KERNEL && LOSCFG_BASE_CORE_SWTMR
+    help
+      Answer Y to enable debug swtmr.
+
+config LOSCFG_DEBUG_QUEUE
+    bool "Enable Queue Debugging"
+    default n
+    depends on LOSCFG_DEBUG_KERNEL && LOSCFG_BASE_IPC_QUEUE
+    help
+      Answer Y to enable debug queue.
+
+config LOSCFG_DEBUG_MUTEX
+    bool "Enable Mutex Debugging"
+    default n
+    depends on LOSCFG_DEBUG_KERNEL && LOSCFG_BASE_IPC_MUX
+    help
+      Answer Y to enable debug mutex.
+
+config LOSCFG_KERNEL_LOCKDEP
+    bool "Enable Lockdep Debugging"
+    default n
+    depends on LOSCFG_DEBUG_KERNEL && LOSCFG_KERNEL_MEM_ALLOC
+    help
+      This option is the deadlock detection master switch.
+
+config LOSCFG_KERNEL_SPINDEP
+    bool "Enable Spinlock Deadlock"
+    default n
+    depends on LOSCFG_KERNEL_LOCKDEP && LOSCFG_KERNEL_SMP
+    help
+      Answer Y to enable debug spinlock deadlock.
+
+config LOSCFG_KERNEL_MUXDEP
+    bool "Enable Mutex Deadlock"
+    default n
+    depends on LOSCFG_KERNEL_LOCKDEP && LOSCFG_BASE_IPC_MUX
+    help
+      Answer Y to enable debug mutex deadlock.
+
+config LOSCFG_KERNEL_SEMDEP
+    bool "Enable Binary Semaphore Deadlock"
+    default n
+    depends on LOSCFG_KERNEL_LOCKDEP && LOSCFG_BASE_IPC_SEM
+    help
+      Answer Y to enable debug samaphore deadlock.
+
+config LOSCFG_PTHREAD_MUXDEP
+    bool "Enable Pthread Mutex Deadlock"
+    default n
+    depends on LOSCFG_KERNEL_LOCKDEP && LOSCFG_COMPAT_POSIX
+    help
+      Answer Y to enable debug pthread mutex deadlock.
+
+config LOSCFG_DEBUG_SEMAPHORE
+    bool "Enable Semaphore Debugging"
+    default n
+    depends on LOSCFG_DEBUG_KERNEL && LOSCFG_BASE_IPC_SEM
+    help
+      Answer Y to enable debug semaphore.
+
+config LOSCFG_DEBUG_SCHED_STATISTICS
+    bool "Enable Scheduler Statistics Debugging"
+    depends on LOSCFG_DEBUG_KERNEL
+    default n
+    help
+      Answer Y to enable debug schedulder statistics.
+
+config LOSCFG_LOWPOWER_SLEEP_DEBUG
+    bool "Enable Lowpower Sleep Debugging"
+    default n
+    depends on LOSCFG_KERNEL_LOWPOWER && LOSCFG_DEBUG_KERNEL
+    select LOSCFG_KERNEL_RINGBUF
+    help
+      If you wish to build LiteOS with support for lowpower sleep debug.
+
+config LOSCFG_LOWPOWER_RECORD_COUNT
+    int "Lowpower Recent Record Count Per Cpu"
+    range 1 1000
+    default 10
+    depends on LOSCFG_LOWPOWER_SLEEP_DEBUG
+    help
+      This represents the lowpower recent sleep record count per cpu.
+
+osource "shell/Kconfig"
+config LOSCFG_NET_LWIP_SACK_TFTP
+    bool "Enable Tftp"
+    default y
+    depends on LOSCFG_SHELL && LOSCFG_NET_LWIP_SACK && LOSCFG_DEBUG_VERSION
+    help
+      Answer Y to enable LiteOS support tftp cmd and tftp tool.
+osource "net/telnet/Kconfig"
+config LOSCFG_EXC_INTERACTION
+    bool "Enable exc interaction"
+    default n
+    depends on LOSCFG_SHELL && LOSCFG_KERNEL_CONSOLE
+    help
+      Answer Y to enable exception interaction for LiteOS, when the system enter exception, user can also interact with system by shell
+      command like task, hwi.
+
+config LOSCFG_USB_DEBUG
+    bool "Enable USB Debug"
+    default n
+    depends on LOSCFG_SHELL && LOSCFG_DRIVERS_USB && LOSCFG_DEBUG_VERSION
+    help
+      Answer Y to enable LiteOS support usb debug.
+      use shell command to open the specified debug level print.
+
+config LOSCFG_MMC_DEBUG
+    bool "Enable MMC Debug"
+    default n
+    depends on LOSCFG_DRIVERS_MMC && LOSCFG_DEBUG_VERSION
+    help
+      Answer Y to enable LiteOS support mmc debug.
+
+config LOSCFG_DRIVERS_MMC_CMD_DUMP
+    bool "Enable mmc command dump"
+    default n
+    depends on LOSCFG_MMC_DEBUG
+    help
+      Answer Y to enable mmc command info dump.
+
+config LOSCFG_DRIVERS_MMC_OPCODE_DUMP
+    int "Opcode of command dump"
+    default 0
+    depends on LOSCFG_DRIVERS_MMC_CMD_DUMP
+    help
+      Choose command opcode which user want to print, when the mmc command transfer error occurs.
+
+config LOSCFG_DRIVERS_MMC_DMA_DES_DUMP
+    bool "Enable mmc dma descriptors dump"
+    default n
+    depends on LOSCFG_MMC_DEBUG
+    help
+      Answer Y to enable mmc dma descriptors info dump.
+
+config LOSCFG_MEM_DEBUG
+    bool "Enable MEM Debug"
+    default n
+    depends on LOSCFG_DEBUG_VERSION
+    help
+      Answer Y to enable LiteOS support mem debug.
+
+config LOSCFG_MEM_MUL_POOL
+    bool "Enable Memory multi-pool control"
+    default y
+    depends on LOSCFG_MEM_DEBUG && (LOSCFG_KERNEL_MEM_BESTFIT || LOSCFG_KERNEL_MEM_BESTFIT_LITTLE)
+    help
+      Answer Y to enable LiteOS support memory multi-pool control
+
+config LOSCFG_MEM_HEAD_BACKUP
+    bool "Enable Node Head Backup"
+    default n
+    depends on LOSCFG_MEM_DEBUG && LOSCFG_KERNEL_MEM_BESTFIT
+    help
+      Answer Y to enable node head backup
+
+config LOSCFG_MEM_LEAKCHECK
+    bool "Enable Function call stack of Mem operation recorded"
+    default n
+    depends on LOSCFG_MEM_DEBUG && LOSCFG_KERNEL_MEM_BESTFIT
+    depends on !LOSCFG_ARCH_ARM_CORTEX_M && !LOSCFG_COMPILER_XTENSA_32
+    select LOSCFG_BACKTRACE
+    help
+      Answer Y to enable record the LR of Function call stack of Mem operation, it can check the mem leak through the infomations of mem node.
+
+config LOSCFG_MEM_OMIT_LR_CNT
+    int "Number of ignored layers for backtrace."
+    range 0 LOSCFG_MEM_RECORD_LR_CNT
+    default 2
+    depends on LOSCFG_MEM_LEAKCHECK
+    help
+      The omit layers of function call from kernel memory interfaces such as LOS_MemAlloc/LOS_MemAllocAlign/LOS_MemRealloc/LOS_MemFree.
+
+config LOSCFG_MEM_RECORD_LR_CNT
+    int "Number of layers for backtrace."
+    range 0 20
+    default 3
+    depends on LOSCFG_MEM_LEAKCHECK
+    help
+      The recorded layers of function call.
+
+config LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK
+    bool "Enable integrity check or not"
+    default n
+    depends on LOSCFG_MEM_DEBUG && (LOSCFG_KERNEL_MEM_BESTFIT || LOSCFG_KERNEL_MEM_BESTFIT_LITTLE || LOSCFG_KERNEL_MEMBOX)
+
+config LOSCFG_BASE_MEM_NODE_SIZE_CHECK
+    bool "Enable size check or not"
+    default n
+    depends on LOSCFG_MEM_DEBUG && LOSCFG_KERNEL_MEM_BESTFIT
+
+config LOSCFG_SLAB_INFO_STATISTIC
+    bool "Enable SLAB Statistic"
+    default n
+    depends on  LOSCFG_DEBUG_VERSION && LOSCFG_KERNEL_MEM_SLAB && LOSCFG_MEM_DEBUG
+
+config LOSCFG_NULL_ADDRESS_PROTECT
+    bool "Enable NULL Address protect"
+    default n
+    depends on (LOSCFG_PLATFORM_HI3518EV200 || LOSCFG_PLATFORM_HI3516CV300) && LOSCFG_DEBUG_VERSION
+    help
+      Answer Y to set mem address 0~1M prohibit to access, read or write will trigger exception.
+
+config LOSCFG_SERIAL_OUTPUT_ENABLE
+    bool "Enable Serial Output"
+    default y
+    help
+      Answer Y to enable LiteOS serial output, otherwise disable LiteOS serial output.
+
+config LOSCFG_APPINIT_TESTSUIT
+    bool "Enable TestSuite or AppInit"
+    default y
+    help
+      You can select either AppInit or TestSuite, or neither of them can be selected.
+
+if LOSCFG_APPINIT_TESTSUIT
+choice
+    prompt "Choose TestSuite or AppInit"
+    default LOSCFG_PLATFORM_OSAPPINIT
+
+config LOSCFG_PLATFORM_OSAPPINIT
+    bool "Enable AppInit"
+
+config LOSCFG_TEST
+    bool "Enable TestSuite"
+
+if LOSCFG_TEST
+menu "Choose TestSuite Mode"
+choice
+    prompt "Choose TestSuite Mode"
+    default  LOSCFG_TEST_AUTO
+    help
+        Choose testsuit for LiteOS.
+
+config LOSCFG_TEST_AUTO
+    bool "Enable Auto TestSuit"
+
+config LOSCFG_TESTSUIT_SHELL
+    bool "Enable Shell TestSuit"
+
+config LOSCFG_TEST_MANUAL_TEST
+    bool "Enable Manual Testsuit"
+
+config LOSCFG_FUZZ
+    bool "Enable Fuzz Testsuit"
+
+endchoice
+osource "test/Kconfig"
+osource "test/Kconfig_case"
+endmenu
+endif
+
+endchoice
+endif #LOSCFG_APPINIT_TESTSUIT
+
+config LOSCFG_LLTREPORT
+    bool "Enable LLT Report"
+    default n
+    depends on LOSCFG_FS_VFS
+
+choice
+    prompt "Code LLT Report"
+    depends on LOSCFG_LLTREPORT
+    default  LOSCFG_LLTFS
+
+    help
+        LOSCFG_LLTFS
+        LOSCFG_LLTSER
+
+config LOSCFG_LLTSER
+    bool "Enable Serial Transfer"
+
+config LOSCFG_LLTFS
+    bool "Enable FS Transfer"
+
+endchoice
+
+osource "$(KCONFIG_KERNEL_PATH)/extended/lms/Kconfig"
+
+endmenu
+
+######################## config options os drivers ########################
+source "drivers/Kconfig"
+
+menu "Stack Smashing Protector (SSP) Compiler Feature"
+
+choice
+    prompt "Enable stack buffer overflow detection"
+    default  LOSCFG_CC_STACKPROTECTOR_STRONG
+
+    --help---
+    This option turns on the -fstack-protector GCC feature. This
+    feature puts, at the beginning of functions, a canary value on
+    the stack just before the return address, and validates
+    the value just before actually returning.  Stack based buffer
+    overflows (that need to overwrite this return address) now also
+    overwrite the canary, which gets detected and the attack is then
+    neutralized via a kernel panic.
+
+    This feature requires gcc version 4.2 or above, or a distribution
+    gcc with the feature backported. Older versions are automatically
+    detected and for those versions, this configuration option is
+    ignored. (and a warning is printed during bootup)
+
+config LOSCFG_CC_NO_STACKPROTECTOR
+    bool "-fno-stack-protector"
+
+
+config LOSCFG_CC_STACKPROTECTOR
+    bool "-fstack-protector"
+
+config LOSCFG_CC_STACKPROTECTOR_STRONG
+    bool "-fstack-protector-strong"
+
+config LOSCFG_CC_STACKPROTECTOR_ALL
+    bool "-fstack-protector-all"
+
+
+endchoice
+
+endmenu

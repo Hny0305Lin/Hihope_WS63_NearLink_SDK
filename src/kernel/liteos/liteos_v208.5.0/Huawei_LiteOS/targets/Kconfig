@@ -1,0 +1,106 @@
+choice
+    prompt "Family"
+
+config LOSCFG_FAMILY_BVT
+    bool "BVT"
+
+config LOSCFG_FAMILY_DPT
+    bool "DPT"
+
+config LOSCFG_FAMILY_AIOT
+    bool "AIOT"
+
+config LOSCFG_FAMILY_STB
+    bool "STB"
+
+config LOSCFG_FAMILY_QEMU
+    bool "QEMU"
+
+config LOSCFG_FAMILY_STM32
+    bool "STM32"
+
+config LOSCFG_FAMILY_SECRET
+    bool "SECRET"
+
+config LOSCFG_FAMILY_HQ
+    bool "HQ"
+
+config LOSCFG_FAMILY_ENERGY
+    bool "ENERGY"
+
+config LOSCFG_FAMILY_SHC
+    bool "SHC"
+
+config LOSCFG_FAMILY_ASCEND
+    bool "ASCEND"
+
+endchoice
+
+config LOSCFG_FAMILY
+    string
+    default "aiot" if LOSCFG_FAMILY_AIOT
+
+osource "targets/Kconfig.bvt"
+osource "targets/Kconfig.dpt"
+osource "targets/Kconfig.aiot"
+osource "targets/Kconfig.stb"
+osource "targets/Kconfig.qemu"
+osource "targets/Kconfig.stm32"
+osource "targets/Kconfig.secret"
+osource "targets/Kconfig.hq"
+osource "targets/Kconfig.energy"
+osource "targets/Kconfig.shc"
+osource "targets/Kconfig.ascend"
+
+config LOSCFG_PLATFORM_ASCEND
+    bool
+    select LOSCFG_ARM_GENERIC_TIMER
+    select LOSCFG_ARM_GIC_V3
+    select LOSCFG_USING_BOARD_LD
+    select LOSCFG_DRIVERS_UART_LITEOS
+    select LOSCFG_DRIVERS_UART_ARM_PL011
+    help
+        This is genenel setup for 64bit ARMv8 based ascend platforms which should directly
+        select this option and add specific processor cores.
+
+
+config LOSCFG_PLATFORM_HISI_BVT_ARM
+    bool
+    select LOSCFG_ARM_GIC_V2
+    select LOSCFG_ARM_GENERIC_TIMER
+    select LOSCFG_ARM_SP804_HRTIMER
+    select LOSCFG_DRIVERS_UART_ARM_PL011
+    select LOSCFG_DRIVERS_UART_LINUX
+    help
+        This is genenel setup for 32bit ARMv7/8 based platforms which should directly
+        select this option and add specific processor cores. For example:
+
+        config LOSCFG_PLATFORM_HI35xxVxxx
+            bool "HI35xxVxxx"
+            select LOSCFG_ARCH_CORTEX_A7
+            select LOSCFG_PLATFORM_HISI_BVT_ARM
+
+config LOSCFG_PLATFORM_HISI_RISCV
+    bool
+    select LOSCFG_ARCH_LINXCORE_131
+    select LOSCFG_ARM_SP804_TIMER
+    select LOSCFG_DRIVERS_UART_ARM_PL011
+    help
+        This is genenel setup for risc-v based hisilicon platforms which should directly
+        select this option and add specific processor cores.
+
+config LOSCFG_USING_BOARD_LD
+    bool
+
+config LOSCFG_USING_BOARD_RESET_VECTOR
+    bool
+    default n
+    help
+        Use board reset vector instead of arch default implementation.
+
+config LOSCFG_USING_GCC_NOPIC_LIB
+    bool
+    default n
+    depends on LOSCFG_PLATFORM_HI3892_SE
+    help
+        When the platform is RISCV, the gcc library is changed to gcc-nopic.

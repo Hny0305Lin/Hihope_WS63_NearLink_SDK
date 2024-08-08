@@ -1,0 +1,38 @@
+{
+    "OUT_DIR" : "output/ws63",
+    "BUILD_TEMP_PATH" : "output/ws63/build_hso_cfg",
+
+    "DATABASE_VERSION":"",
+    "DATABASE_VERSION_CORE":"acore",
+    "DATABASE_BASE" : "build/config/target_config/ws63/hdb_config/database_template",
+    "DATABASE_DEFAULT_CFG_PATH" : "",
+    "DATABASE_EXTERN_CFG_PATH" : "",
+    "DATABASE_MSS_PRIM_PATH" : "output/ws63/build_hso_cfg/hdb/hdbcfg/mss_prim_db.xml",
+    "DATABASE_DIAG_DIR_PATH" : "output/ws63/build_hso_cfg/hdb/struct",
+    "DATABASE_TXT_FILE" : "output/ws63/build_hso_cfg/database.etypes",
+
+    "LOG_FILE_NAME":"output/ws63/build_hso_cfg/hso_database/xml/log",
+
+    "HDB_XML_TEMP_ROOT_DIR":"output/ws63/build_hso_cfg/hso_database/xml",
+    "HDB_XML_TEMP_BASE_DIR":"output/ws63/build_hso_cfg/hso_database/xml/base",
+
+    "HDB_PRIM_XML_DST_FILE" : "output/ws63/build_hso_cfg/hdb/hdbcfg/mss_prim_db.xml",
+    "HDB_PRIM_XML_SRC_FILE" : "build/config/target_config/ws63/hdb_config/database_template/acore/system/hdbcfg/mss_prim_db.xml",
+    "HDB_CMD_XML_DST_FILE"  : "output/ws63/build_hso_cfg/hdb/hdbcfg/mss_cmd_db.xml",
+    "HDB_CMD_XML_SRC_FILE"  : "build/config/target_config/ws63/hdb_config/database_template/acore/system/hdbcfg/mss_cmd_db.xml",
+    "HDB_PRIM_XML_FILE_ID_BIT"  : "14",
+    "HDB_PRIM_XML_LINE_ID_BIT"  : "14",
+    "HDB_PRIM_XML_PRINT_LEVEL_BIT"  : "4",
+
+    "HDB_TXT_TEMP_DIR":"output/ws63/build_hso_cfg/hso_database/txt",
+    "HDB_TXT_BASE_DATATYPE":"build/config/target_config/ws63/hdb_config/base_datatype_def.txt",
+    "HDB_TXT_DST_DIR":"output/ws63/build_hso_cfg/hdb/struct",
+    "HDB_TXT_SRC_DIR":"build/config/target_config/ws63/hdb_config/database_template/acore/system/diag",
+
+    "HDB_XML_PRE_GENERATED_CORE":["closed_comp"],
+    "HDB_XML_PRE_GENERATED_DIR":["interim_binary/ws63/acore/build_hso_cfg"],
+
+    "BT_STATUS_DIR":"build/config/target_config/ws63/hdb_config/database_cfg",
+    "OTA_MSG_DIR":"build/config/target_config/ws63/hdb_config/database_cfg"
+
+}

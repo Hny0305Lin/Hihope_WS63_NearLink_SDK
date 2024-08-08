@@ -1,0 +1,71 @@
+config LOSCFG_INTERRUPT_VENDOR
+    bool
+    help
+      Use vendor interrupt driver.
+
+config LOSCFG_ARM_GIC_V2
+    bool
+    select LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    help
+      This GIC(General Interrupt Controller) version 2 driver is compatatble with
+      GIC version 1 and version 2.
+
+config LOSCFG_ARM_GIC_V3
+    bool
+    select LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    depends on LOSCFG_ARCH_ARM_V8A || LOSCFG_ARCH_ARM_V8R
+    help
+      General Interrupt Controller version 3.
+
+config LOSCFG_ARM_GIC_LPI_ENABLE
+    bool
+    depends on LOSCFG_ARM_GIC_V3
+    help
+      This option will support LPI.
+
+config LOSCFG_CORTEX_M_NVIC
+    bool
+    default y
+    depends on LOSCFG_ARCH_ARM_CORTEX_M && LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    help
+      NVIC(Nested Vectored Interrupt Controller) for Cortex-M.
+
+config LOSCFG_XEA3_INT_CONTROLLER
+    bool
+    select LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    help
+      General Interrupt Controller xtensa xea3.
+
+config LOSCFG_XEA2_INT_CONTROLLER
+    bool
+    select LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    help
+      General Interrupt Controller xtensa xea2.
+
+config LOSCFG_RISCV_HIMIDEERV200_PLIC
+    bool
+    select LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    depends on LOSCFG_ARCH_LINXCORE_131
+    help
+      Riscv Platform Level Interrupt Controller
+
+config LOSCFG_RISCV_LCMP_CLIC
+    bool
+    select LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    depends on LOSCFG_ARCH_LINX_M
+    help
+      Riscv Platform Level Interrupt Controller
+
+config LOSCFG_ARM_V5_VIC
+    bool
+    select LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    depends on LOSCFG_ARCH_ARM_V5
+    help
+      ARM-V5 Platform Level Interrupt Controller
+
+config LOSCFG_LINGLONG_IC
+    bool
+    select LOSCFG_ARCH_INTERRUPT_TAKEOVER
+    depends on LOSCFG_ARCH_LINGLONG
+    help
+      Linglong Interrupt Controller

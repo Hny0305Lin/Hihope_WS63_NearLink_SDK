@@ -1,0 +1,18 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+menu "Boards"
+    comment "Config the drivers of boards."
+    osource "drivers/boards/Kconfig"
+endmenu
+
+menu "Chips"
+    comment "Config the drivers of chips."
+    osource "drivers/chips/Kconfig"
+endmenu
+
+menu "Drivers"
+    comment "Config the drivers."
+    osource "drivers/drivers/Kconfig"
+endmenu

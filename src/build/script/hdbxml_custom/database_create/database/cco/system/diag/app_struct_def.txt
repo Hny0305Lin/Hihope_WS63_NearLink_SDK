@@ -1,0 +1,41 @@
+#include "base_datatype_def.txt"
+
+typedef enum {
+    SOC_DUMP_ACORE_CRASH_MEMORY = DUMP_TYPE_CRASH_MEMORY | (APPS << 8),
+    SOC_DUMP_PCORE_CRASH_MEMORY = DUMP_TYPE_CRASH_MEMORY | (PROTOCOL << 8),
+} soc_dump_id;
+
+typedef struct {
+    osal_u32 attribute;
+    osal_u32 dump_id; /* soc_dump_id */
+} soc_dump_info_req;
+
+typedef struct {
+    osal_u32 cmd_ver;
+    osal_u32 dump_id; /* soc_dump_id */
+    osal_u32 ret;
+    osal_u32 size;
+    osal_u32 pad;
+} soc_dump_info_ind;
+
+typedef struct {
+    osal_u32 offser;
+    osal_u32 size;
+} soc_dump_content_item;
+
+typedef struct {
+    osal_u32 cmd_ver;
+    osal_u32 dump_id; /* soc_dump_id */
+    osal_u8 item_cnt;
+    soc_dump_content_item items[0];
+} soc_dump_content_req;
+
+typedef struct {
+    osal_u32 cmd_ver;
+    osal_u32 dump_id; /* soc_dump_id */
+    osal_u32 ret;
+    osal_u32 offset;
+    osal_u32 size;
+    osal_u32 data[0];
+} soc_dump_content_ind;
+

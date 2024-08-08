@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<MSS>
+    
+    <SUBSYSTEM DATA_STRUCT_FILE="..\diag\msg_struct_def.txt" DESCRIPTION="" MULTIMODE="NBIOT" NAME="NBIOT">
+        <MSG_LOG>
+        </MSG_LOG>
+		<AIR_LOG>
+        </AIR_LOG>
+        <LAYER_LOG>
+		</LAYER_LOG>
+        <USERPLANE_LOG NAME="MAC_PHY_UL_GRANT_HARQ_IND">
+        </USERPLANE_LOG>
+    </SUBSYSTEM>
+</MSS>

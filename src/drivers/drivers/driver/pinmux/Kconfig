@@ -1,0 +1,9 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config PINCTRL_SUPPORT_LPM
+    bool
+    prompt "PINCTRL Support low power mode, supend and reusme"
+    default n
+    depends on DRIVER_SUPPORT_PINCTRL

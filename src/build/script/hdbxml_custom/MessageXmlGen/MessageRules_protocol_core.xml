@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RulesImport>
+<!--
+    All 'target' paths are relative to the parent of the 'source'. The 'source' is the field whose value is used
+    to control the visibility or length of the 'target'.
+
+    The source field will be implicitly matched using the UEMonitor type filter '**' to allow us to handle arrays
+    or unions.
+
+    A few examples:
+
+      <LengthRule Message="MSG"     Array="data"  Length="len"  IsVariable="true"/>
+      MSG.a.data would be controlled by MSG.a.len
+      MSG.b[4].data would be controlled by MSG.b[4].len
+
+      <LengthRule Message="MSG"     Array="sub.data"  Length="len"  IsVariable="true"/>
+      MSG.a.sub.data would be controlled by MSG.a.len
+      MSG.b[4].sub.data would be controlled by MSG.b[4].len
+
+    This might result in unwanted matches. We can disambiguate this by using the fully qualified name to indicate an
+    absolute path on the source.
+
+      <LengthRule Message="MSG"     Array="MSG.data"  Length="MSG.a.len"  IsVariable="true"/>
+      MSG.a.data would be controlled by MSG.a.len
+      MSG.a.b.data would NOT be controlled by MSG.a.len or MSG.a.b.len
+
+
+    We differentiate between the "length of simple type array" and "length of array of (structures or arrays)" constraints.
+    This is done by extending the syntax of the target path using [*] for the latter.
+
+      <LengthRule Message="LL1_IDLE_MEAS_CONFIG_REQ"  Array="intra_black_cells[*]"  Length="num_intra_black_cells"/>
+-->
+<!--
+    Note on the use of the IsVariable attribute.
+
+    Structures that are dynamically allocated to be different sizes and tend to have a uint8 [1] at the end of the definition
+    are 'truly' variable length structures. These must have IsVariable attribute present and set. The Length field indicates
+    how the size of the array, all elements of which are in use.
+
+    Arrays that are a constant size within a structure and not deemed to be variable length, and so do NOT have the IsVariable
+    attribute. The Length field indicates how many of the array elements are present and in use.
+-->
+
+<!--  Note: LengthRules must be before the UnionRules and then the ValidRules -->
+
+<!-- Message logging using dynamically sized messages, so IsVariable is set. -->
+
+<Rules>
+<LengthRule Message="LPP_DEBUG_ASN"             Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="NAS_DBG_IP_PACKET"         Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="NAS_DBG_NAS_MSG"           Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="ROHC_DBG_ROHC_MSG"         Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="RRC_DEBUG_ASN"             Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="NB_IOT_UE_SET_KV_NVRAM"    Array="data"  Length="len"  IsVariable="true"/>
+
+<!-- DSP Length Constraints. -->
+<LengthRule Message="DSP_LOG_IPC_DATA"  Array="DSP_LOG_IPC_DATA.data"  Length="DSP_LOG_IPC_DATA.header.length"  IsVariable="true"/>
+
+<!-- LL1 Length Constraints. -->
+<LengthRule Message="LL1_BG_SCAN_REQ"                  Array="earfcn_list"                Length="num_earfcn"/>
+<LengthRule Message="LL1_SCAN_REQ"                     Array="earfcn_list"                Length="num_earfcn"/>
+<LengthRule Message="LL1_BG_FREQ_SEARCH_CNF"           Array="cells_list[*]"               Length="num_of_cells"/>
+<LengthRule Message="LL1_FREQ_SEARCH_CNF"              Array="cells_list[*]"               Length="num_of_cells"/>
+
+<LengthRule Message="LL1_COMMON_NON_ANCHOR_INFO"       Array="common_non_anchor_cfg[*]"   Length="num_non_anchor_carrier"/>
+<LengthRule Message="LL1_CONNECTED_CONFIG_REQ"         Array="si_scheduling[*]"           Length="num_of_si"/>
+<LengthRule Message="LL1_IDLE_CONFIG_REQ"              Array="si_scheduling[*]"           Length="num_of_si"/>
+<LengthRule Message="LL1_SI_INFO_READ_REQ"             Array="si_scheduling[*]"           Length="num_of_si"/>
+
+<LengthRule Message="LL1_IDLE_CONFIG_REQ"              Array="prach_cfg_params[*]"        Length="num_prach_cfg_params"/>
+<LengthRule Message="LL1_IDLE_CONFIG_REQ"              Array="LL1_IDLE_CONFIG_REQ.pusch_cfg.num_rep_ack_nack"
+                                                       Length="LL1_IDLE_CONFIG_REQ.prach_cfg.num_prach_cfg_params"/>
+
+<LengthRule Message="LL1_IDLE_MEAS_CONFIG_REQ"         Array="intra_black_cells[*]"       Length="num_intra_black_cells"/>
+<LengthRule Message="LL1_IDLE_MEAS_CONFIG_REQ"         Array="inter_freq_earfcn_list[*]"  Length="num_inter_freq_channels"/>
+<LengthRule Message="LL1_IDLE_MEAS_CONFIG_REQ"         Array="inter_black_cells"          Length="num_inter_black_cells"/>
+
+<LengthRule Message="LL1_INTER_FREQ_MEAS_IND"          Array="cell[*]"                    Length="num_cells"/>
+<LengthRule Message="LL1_INTRA_FREQ_MEAS_IND"          Array="cell[*]"                    Length="num_cells"/>
+
+<LengthRule Message="LL1_LOG_ECL_INFO"                 Array="ecl_to_prach_map"           Length="num_maps"/>
+
+<LengthRule Message="LL1_OTDOA_LOCATION_CONFIG_REQ"    Array="nprs_info[*]"               Length="num_of_nprs_carriers"/>
+<LengthRule Message="LL1_OTDOA_NEIGHBOUR_INFO"         Array="nprs_info[*]"               Length="num_of_nprs_carriers"/>
+<LengthRule Message="LL1_OTDOA_NEIGHBOUR_INFO"         Array="ncell[*]"                   Length="num_neighbour_cells"/>
+
+<LengthRule Message="LL1_PAGING_NON_ANCHOR_INFO"       Array="paging_non_anchor_cfg[*]"   Length="num_non_anchor_carrier"/>
+<LengthRule Message="LL1_RACH_NON_ANCHOR_INFO"         Array="rach_non_anchor_cfg[*]"     Length="num_non_anchor_carrier"/>
+
+<LengthRule Message="LL1_RADIO_TEST_DUAL_NPDSCH_RX"    Array="npdsch_params[*]"           Length="num_npdsch"/>
+<LengthRule Message="LL1_RADIO_TEST_DUAL_NPDSCH_RX"    Array="npucch_params[*]"           Length="num_npucch"/>
+<LengthRule Message="LL1_RADIO_TEST_DUAL_NPDSCH_RX"    Array="prach_params[*]"            Length="num_of_prach"/>
+<LengthRule Message="LL1_RADIO_TEST_DUAL_NPUSCH_TX"    Array="prach_params[*]"            Length="num_prach_elem"/>
+<LengthRule Message="LL1_RADIO_TEST_NPUCCH_TX"         Array="prach_params[*]"            Length="num_of_prach"/>
+<LengthRule Message="LL1_RADIO_TEST_NPUSCH_TX"         Array="prach_params[*]"            Length="num_prach_elem"/>
+<LengthRule Message="LL1_RADIO_TEST_RF_PRODUCTION_TEST_RX_TX"
+                                                       Array="prach_params[*]"            Length="num_prach_elem"/>
+<LengthRule Message="LL1_RADIO_TEST_RF_TX_CALI_LIST"   Array="prach_params[*]"            Length="num_prach_elem"/>
+<LengthRule Message="LL1_RADIO_TEST_RF_RX_RSSI_CALI_LIST"
+                                                       Array="prach_params[*]"            Length="num_prach_elem"/>
+<LengthRule Message="LL1_RADIO_TEST_DUAL_NPDSCH_RX"    Array="dci_action[*]"              Length="num_dci_actions"/>
+<LengthRule Message="LL1_RADIO_TEST_DUAL_NPUSCH_TX"    Array="dci_action[*]"              Length="num_dci_actions"/>
+<LengthRule Message="LL1_RADIO_TEST_DUAL_NPUSCH_TX"    Array="npusch_params[*]"           Length="num_npusch"/>
+
+<LengthRule Message="LL1_RADIO_TEST_MULTICELL_NPRS_RX" Array="nprs_cfg_list[*]"           Length="num_nprs_cells"/>
+<LengthRule Message="LL1_RADIO_TEST_MULTICELL_NPRS_RX" Array="subframe_pattern"           Length="subframe_pattern_size"/>
+<LengthRule Message="LL1_RADIO_TEST_NPRS_RX"           Array="subframe_pattern"           Length="subframe_pattern_size"/>
+<LengthRule Message="LL1_RADIO_TEST_SET_DATA"          Array="data"                       Length="length"/>
+<LengthRule Message="LL1_RADIO_TEST_RESULT_IND"        Array="data"                       Length="len"/>
+<LengthRule Message="LL1_RADIO_TEST_RESULT_IND"        Array="data"                       Length="len"/>
+<LengthRule Message="LL1_RADIO_TEST_RF_RX_RSSI_CALI_LIST_IND"
+                                                       Array="data"                       Length="len"/>
+<LengthRule Message="LL1_RF_GAPS_LOG"                  Array="transition_type"            Length="num_transitions"/>
+<LengthRule Message="LL1_RF_GAPS_LOG"                  Array="transition_times"           Length="num_transitions"  IsVariable="true"/>
+
+
+<!-- UICC driver / SIM logging. Uses dynamically sized messages, so IsVariable is set. -->
+<LengthRule Message="UICC_DBG_ATR_IND"  Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="UICC_DBG_PPS_REQ"  Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="UICC_DBG_PPS_CNF"  Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="UICC_DBG_RX_IND"   Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="UICC_DBG_TX_REQ"   Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="USIM_DBG_SIM_RX"   Array="data"  Length="len"  IsVariable="true"/>
+<LengthRule Message="USIM_DBG_SIM_TX"   Array="data"  Length="len"  IsVariable="true"/>
+
+<!-- RRC Length Constraints. -->
+<LengthRule Message="RRC_ECID_NCELL_MEAS_IND"               Array="ecid_info[*]"         Length="ecid_num"/>
+<LengthRule Message="RRC_DBG_OTDOA_ASSISTANCE_DATA_PCELL"   Array="nprs_info[*]"         Length="num_of_nprs_carriers"/>
+<LengthRule Message="RRC_DBG_OTDOA_ASSISTANCE_DATA_NCELL"   Array="nprs_info[*]"         Length="num_of_nprs_carriers"/>
+<LengthRule Message="RRC_DBG_RESELECTION_CANDIDATES"        Array="candidates[*]"        Length="num_candidates"/>
+<LengthRule Message="RRC_DBG_RESELECTION_CANDIDATES"        Array="plmn[*]"              Length="num_plmns"/>
+<LengthRule Message="RRC_CELL_SELECT_REQ"                   Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_UPDATE_LISTS_REQ"                  Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_UPDATE_LISTS_REQ"                  Array="tai_list[*]"          Length="num_tais"/>
+<LengthRule Message="RRC_CELL_SELECT_REJ"                   Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_CELL_SELECT_IND"                   Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_CELL_SELECT_IND"                   Array="att_w_o_pdn_conn"     Length="num_plmns"/>
+<LengthRule Message="RRC_CELL_SELECT_CNF"                   Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_CELL_SELECT_CNF"                   Array="att_w_o_pdn_conn"     Length="num_plmns"/>
+<LengthRule Message="RRC_PLMN_SEARCH_CNF"                   Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_PLMN_SEARCH_IND"                   Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_PLMN_SEARCH_REJ"                   Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_SEARCH_ABORT_CNF"                  Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_NO_SERVICE_IND"                    Array="plmn_list[*]"         Length="num_plmns"/>
+<LengthRule Message="RRC_SET_PLMN_SEARCH_RANGE_REQ"         Array="earfcns"              Length="earfcn_len"/>
+
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="params[*]"                      Length="num_prach_res"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="edt_tbs_info[*]"                Length="num_rx_edt_tbs_info"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="edt_params[*]"                  Length="num_rx_edt_params"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="fmt2_params[*]"                 Length="num_rx_fmt2_params"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="fmt2edt_params[*]"              Length="num_rx_fmt2edt_params"/>
+
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="sib22.dl_config_list[*]"        Length="sib22.num_dl_configs"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="sib22.ul_config_list[*]"        Length="sib22.num_ul_configs"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="sib22.dl_mixed_mode_config_list[*]" Length="sib22.num_dl_mixed_mode_configs"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="sib22.ul_mixed_mode_config_list[*]" Length="sib22.num_ul_mixed_mode_configs"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="sib22.nprach_prob_anchor_list"  Length="sib22.num_nprach_prob_anchors"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="sib23.ul_cfg[*]"                Length="sib23.num_ul_cfgs"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="sib23.ul_cfg_mixed_mode[*]"     Length="sib23.num_ul_cfgs_mixed_mode"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="nprach_fmt2[*]"                 Length="num_nprach_params"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="nprach_edt_fmt2[*]"             Length="num_edt_nprach_params"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="nprach_param_list[*]"           Length="num_nprach_params"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="edt_nprach_param_list[*]"       Length="num_edt_nprach_params"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="params[*]"                      Length="num_prach_res"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="edt_tbs_info[*]"                Length="num_prach_res"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="edt_params[*]"                  Length="num_prach_res"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="fmt2_params[*]"                 Length="num_prach_res"/>
+<LengthRule Message="RRC_DBG_SIBS_DB"    Array="fmt2edt_params[*]"              Length="num_prach_res"/>
+
+
+<!-- MONITOR Length Constraints. -->
+<LengthRule Message="MONITOR_MEM_STATS_MESSAGE"  Array="task_data[*]"  Length="num_tasks"  IsVariable="true"/>
+
+<!-- Union Constraints -->
+<!-- An empty option means that there is no unionised data for that selection. -->
+
+<UnionRule Message="LL1_SIB1_READ_REQ"  Union="deployment_cfg"  Selector="mode">
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND"         Option="in_diffpci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND_SAMEPCI" Option="in_samepci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_GUARDBAND"      Option="guard"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_STANDALONE"     Option=""/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_UNKNOWN"        Option=""/>
+</UnionRule>
+
+<UnionRule Message="LL1_BG_SIB1_READ_REQ"  Union="deployment_cfg"  Selector="mode">
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND"         Option="in_diffpci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND_SAMEPCI" Option="in_samepci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_GUARDBAND"      Option="guard"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_STANDALONE"     Option=""/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_UNKNOWN"        Option=""/>
+</UnionRule>
+
+<UnionRule Message="LL1_SI_INFO_READ_REQ"  Union="deployment_cfg"  Selector="mode">
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND"         Option="in_diffpci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND_SAMEPCI" Option="in_samepci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_GUARDBAND"      Option="guard"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_STANDALONE"     Option=""/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_UNKNOWN"        Option=""/>
+</UnionRule>
+
+<UnionRule Message="LL1_CONNECTED_CONFIG_REQ"  Union="deployment_cfg"  Selector="mode">
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND"         Option="in_diffpci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND_SAMEPCI" Option="in_samepci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_GUARDBAND"      Option="guard"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_STANDALONE"     Option=""/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_UNKNOWN"        Option=""/>
+</UnionRule>
+
+<UnionRule Message="LL1_COMMON_NON_ANCHOR_INFO"  Union="cfg_params"  Selector="mode">
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND"         Option="in_diffpci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND_SAMEPCI" Option="in_samepci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_GUARDBAND"      Option=""/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_STANDALONE"     Option=""/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_UNKNOWN"        Option=""/>
+</UnionRule>
+
+<UnionRule Message="LL1_CONNECTED_CONFIG_REQ"  Union="cfg_params"  Selector="mode">
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND"         Option="in_diffpci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_INBAND_SAMEPCI" Option="in_samepci"/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_GUARDBAND"      Option=""/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_STANDALONE"     Option=""/>
+  <UnionSelection Selection="LL1_DEPLOYMENT_MODE_UNKNOWN"        Option=""/>
+</UnionRule>
+
+<!-- For the "action" field the union branch depends only on the message, and as the dest field will always be LAYER_LL1 for
+     these radiotest messages, the rules make UEMonitor display the d or u branch depending on the message.
+     LAYER_NAS is used as a non-matching value to hide the inactive union branch.
+     The rules need to be specified for each element separately,
+     but as normally only two DCIs are used this has only been done for first 2 of 8 elements. -->
+<UnionRule Message="LL1_RADIO_TEST_DUAL_NPDSCH_RX"  Union="LL1_RADIO_TEST_DUAL_NPDSCH_RX.dci_action[0].action"  Selector="LL1_RADIO_TEST_DUAL_NPDSCH_RX.header.dest">
+  <UnionSelection Selection="LAYER_LL1"      Option="d"/>
+  <UnionSelection Selection="LAYER_NAS"      Option="u"/>
+</UnionRule>
+<UnionRule Message="LL1_RADIO_TEST_DUAL_NPDSCH_RX"  Union="LL1_RADIO_TEST_DUAL_NPDSCH_RX.dci_action[1].action"  Selector="LL1_RADIO_TEST_DUAL_NPDSCH_RX.header.dest">
+  <UnionSelection Selection="LAYER_LL1"      Option="d"/>
+  <UnionSelection Selection="LAYER_NAS"      Option="u"/>
+</UnionRule>
+
+<UnionRule Message="LL1_RADIO_TEST_DUAL_NPUSCH_TX"  Union="LL1_RADIO_TEST_DUAL_NPUSCH_TX.dci_action[0].action"  Selector="LL1_RADIO_TEST_DUAL_NPUSCH_TX.header.dest">
+  <UnionSelection Selection="LAYER_NAS"      Option="d"/>
+  <UnionSelection Selection="LAYER_LL1"      Option="u"/>
+</UnionRule>
+<UnionRule Message="LL1_RADIO_TEST_DUAL_NPUSCH_TX"  Union="LL1_RADIO_TEST_DUAL_NPUSCH_TX.dci_action[1].action"  Selector="LL1_RADIO_TEST_DUAL_NPUSCH_TX.header.dest">
+  <UnionSelection Selection="LAYER_NAS"      Option="d"/>
+  <UnionSelection Selection="LAYER_LL1"      Option="u"/>
+</UnionRule>
+
+<UnionRule Message="USIM_EF_UPDATE_REQ"  Union="data"  Selector="data_id">
+  <UnionSelection Selection="EPS_LOCI_USIM_DATA"                 Option="eps_loci"/>
+  <UnionSelection Selection="FPLMN_USIM_DATA"                    Option="fplmn_list"/>
+  <UnionSelection Selection="EPS_NAS_SECURITY_CONTEXT_USIM_DATA" Option="eps_nas_security_context"/>
+  <UnionSelection Selection="RPM_COUNTS_USIM_DATA"               Option="rpm_counts"/>
+</UnionRule>
+
+<UnionRule Message="NAS_DBG_LOG_RPC_IND"  Union="data"  Selector="rpc_command">
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_ATTACH_STATUS_SET_RESULT_IND" Option="attach_status_set_result"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_CFUN_RESULT_IND" Option="cfun_result"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_CRING_IND" Option="cring_ind"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_CURRENT_TIME_IND" Option="current_time_ind"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_DOWNLINK_PACKET" Option="downlink_packet"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_EMM_ESM_ERROR_CODE_IND" Option="emm_error_code"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_GET_PLMN_RESULTS_IND" Option="get_plmn_results_ind"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_IP_INFO" Option="ip_info"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_NON_IP_DATA_SENT" Option="non_ip_data_sent"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_NONIP_RECVFROM" Option="nonip_recvfrom"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_PDP_ACT_OR_DEACT_RESULT_IND" Option="pdp_act_deact_result"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_PDP_MODIFY_RESULT" Option="pdp_modify_result"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_PIN_RESULT_IND" Option="pin_result_ind"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_PIN_STATUS_IND" Option="pin_status"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_PLMN_SELECT_RESULT_IND" Option="plmn_select_result"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_PSM_STATUS_IND" Option="psm_status"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_RADIO_COMMAND_ABORT_IND" Option="abort_result"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_REGISTRATION_STATUS_IND" Option="cereg_status"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_SERVICE_RECOVERY" Option="service_recovery"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_SMS_CMD_RESULT_IND" Option="sms_cmd_result_ind"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_SMS_CMT_PDU_IND" Option="sms_cmt_pdu_ind"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_SMS_MGS_RESULT_IND" Option="sms_mgs_result_ind"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_SOCKET_DATA_SENT" Option="socket_data_sent"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_UL_DATA_RESUME_IND" Option="ul_data_resume"/>
+  <UnionSelection Selection="PROTOCOL_TO_APPLICATION_UL_DATA_SUSPEND_IND" Option="ul_data_suspend"/>
+</UnionRule>
+
+<!-- Vaild (or "Present") Constraints -->
+<!-- Association between a field and the matching 'present' flag. -->
+
+<!-- LL1 Valid (or "Present") Constraints. -->
+<ValidRule Message="LL1_BG_MIB_DATA_IND"               Field="rsrp"                    Indicator="measurements_valid"/>
+<ValidRule Message="LL1_BG_MIB_DATA_IND"               Field="rsrq"                    Indicator="measurements_valid"/>
+<ValidRule Message="LL1_MIB_DATA_IND"                  Field="rsrp"                    Indicator="measurements_valid"/>
+<ValidRule Message="LL1_MIB_DATA_IND"                  Field="rsrq"                    Indicator="measurements_valid"/>
+<ValidRule Message="LL1_BG_SIB1_DATA_IND"              Field="rsrp"                    Indicator="measurements_valid"/>
+<ValidRule Message="LL1_BG_SIB1_DATA_IND"              Field="rsrq"                    Indicator="measurements_valid"/>
+<ValidRule Message="LL1_SIB1_DATA_IND"                 Field="rsrp"                    Indicator="measurements_valid"/>
+<ValidRule Message="LL1_SIB1_DATA_IND"                 Field="rsrq"                    Indicator="measurements_valid"/>
+
+<ValidRule Message="LL1_CONNECTED_CONFIG_REQ"          Field="cfg_params"              Indicator="valid"/>
+<ValidRule Message="LL1_CONNECTED_CONFIG_REQ"          Field="offset_x2"               Indicator="valid"/>
+<ValidRule Message="LL1_CONNECTED_CONFIG_REQ"          Field="earfcn"                  Indicator="valid"/>
+<ValidRule Message="LL1_CARRIER_SEL_INFO"              Field="offset_x2"               Indicator="valid"/>
+<ValidRule Message="LL1_CARRIER_SEL_INFO"              Field="earfcn"                  Indicator="valid"/>
+<ValidRule Message="LL1_IDLE_CONFIG_REQ"               Field="offset_x2"               Indicator="valid"/>
+<ValidRule Message="LL1_IDLE_CONFIG_REQ"               Field="earfcn"                  Indicator="valid"/>
+
+<!-- Ideally for values of num_valid_subframes of 10 and 40 we would display 2 and 5 bytes of valid_subframes,
+     But rules don't offer that flexibility so we just suppress the valid_subframes field when num_valid_subframes is zero. -->
+<ValidRule Message="LL1_COMMON_NON_ANCHOR_INFO"        Field="valid_subframes"         Indicator="num_valid_subframes"/>
+<ValidRule Message="LL1_CONNECTED_CONFIG_REQ"          Field="valid_subframes"         Indicator="num_valid_subframes"/>
+<ValidRule Message="LL1_IDLE_CONFIG_REQ"               Field="valid_subframes"         Indicator="num_valid_subframes"/>
+<ValidRule Message="LL1_SI_INFO_READ_REQ"              Field="valid_subframes"         Indicator="num_valid_subframes"/>
+
+<ValidRule Message="LL1_IDLE_CONFIG_REQ"               Field="anchor_weight"           Indicator="num_non_anchor_carriers"/>
+
+<ValidRule Message="LL1_IDLE_CONFIG_REQ"               Field="gap_cfg"                 Indicator="gap_cfg_present"/>
+<ValidRule Message="LL1_IDLE_CONFIG_REQ"               Field="p_max"                   Indicator="p_max_present"/>
+<ValidRule Message="LL1_CONNECTED_CONFIG_REQ"          Field="gap_cfg"                 Indicator="gap_cfg_present"/>
+<ValidRule Message="LL1_CONNECTED_CONFIG_REQ"          Field="p_max"                   Indicator="p_max_present"/>
+
+<ValidRule Message="LL1_LOG_FREQ_ERROR_TIME_CONVERSION" Field="time_rtc_ticks"         Indicator="reftime_is_valid"/>
+<ValidRule Message="LL1_LOG_FREQ_ERROR_TIME_CONVERSION" Field="time_rf_ticks"          Indicator="reftime_is_valid"/>
+<ValidRule Message="LL1_LOG_FREQ_ERROR_TIME_CONVERSION" Field="frame_time"             Indicator="reftime_is_valid"/>
+
+<ValidRule Message="LL1_MSG3_CQI_REPORT"               Field="num_reps_short"          Indicator="short_cqi_used"/>
+
+<ValidRule Message="LL1_OTDOA_LOCATION_INFO_IND"       Field="ref_quality"             Indicator="valid"/>
+<ValidRule Message="LL1_OTDOA_LOCATION_INFO_IND"       Field="measurement"             Indicator="valid"/>
+
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="periodicity"                Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="starting_subframe"          Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="sub_carriers_offset"        Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="num_sub_carriers"           Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="mt_subcarrier_start_range"  Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="num_repetitions_ra"         Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="pdcch_start_subframe"       Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="pdcch_offset_ra"            Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="num_cbra_start_subcarriers" Indicator="cfg_valid"/>
+<ValidRule Message="LL1_RACH_NON_ANCHOR_INFO"          Field="npdcch_carrier_index"       Indicator="cfg_valid"/>
+
+<ValidRule Message="LL1_SI_INFO_READ_REQ"              Field="valid_subframes"         Indicator="num_valid_subframes"/>
+
+<ValidRule Message="LL1_TIMING_ADVANCE_REQ"            Field="ta"                      Indicator="timing_advance_ce"/>
+
+<!-- RRC Valid (or "Present") Constraints. -->
+<ValidRule Message="RRC_EST_REJ"                       Field="ext_wait_timer_value"    Indicator="ext_wait_timer_value_present"/>
+<ValidRule Message="RRC_ECID_NCELL_MEAS_IND"           Field="global_cell_id"          Indicator="global_cell_id_present"/>
+<ValidRule Message="RRC_ECID_PCELL_MEAS_IND"           Field="global_cell_id"          Indicator="global_cell_id_present"/>
+<ValidRule Message="RRC_DBG_RESELECTION_CANDIDATES"    Field="cellid"                  Indicator="cellid_valid"/>
+<ValidRule Message="RRC_DBG_RESELECTION_MEASUREMENTS"  Field="relaxed_monitoring_met"  Indicator="relaxed_monitoring_support"/>
+
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="mib"                       Indicator="mib_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib1"                      Indicator="sib1_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib2"                      Indicator="sib2_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib3"                      Indicator="sib3_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib4"                      Indicator="sib4_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib5"                      Indicator="sib5_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib14"                     Indicator="sib14_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib16"                     Indicator="sib16_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib22"                     Indicator="sib22_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="sib23"                     Indicator="sib23_valid"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="edt_tbs_info[*]"           Indicator="edt_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="edt_params[*]"             Indicator="edt_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="fmt2_params[*]"            Indicator="fmt2_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="fmt2edt_params[*]"         Indicator="fmt2_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="num_rx_edt_tbs_info"       Indicator="edt_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="num_rx_edt_params"         Indicator="edt_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="num_rx_fmt2_params"        Indicator="fmt2_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="num_rx_fmt2edt_params"     Indicator="fmt2_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="num_rx_fmt2edt_params"     Indicator="edt_cfg_present"/>
+<ValidRule Message="RRC_DBG_SIBS_DB"         Field="edt_small_tbs_subset"      Indicator="edt_cfg_present"/>
+
+</Rules>
+</RulesImport>

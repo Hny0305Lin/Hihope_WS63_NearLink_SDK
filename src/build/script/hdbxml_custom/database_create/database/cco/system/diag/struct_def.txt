@@ -1,0 +1,67 @@
+#include "base_datatype_def.txt"
+
+
+
+
+
+
+
+
+typedef struct {
+} null_stru;
+
+typedef struct {
+    char str[1];
+} str_type;
+
+typedef struct {
+    long data[2];
+} s32_array_2_stru;
+
+typedef struct {
+    long data[3];
+} s32_array_3_stru;
+
+typedef struct {
+    long data[4];
+} s32_array_4_stru;
+
+typedef struct {
+    long data[5];
+} s32_array_5_stru;
+
+typedef struct {
+    long data[6];
+} s32_array_6_stru;
+
+typedef struct {
+    osal_u32 data[2];
+} u32_array_2_stru;
+
+typedef struct {
+    unsigned long data[3];
+} u32_array_3_stru;
+
+typedef struct {
+    osal_u32 data[4];
+} u32_array_4_stru;
+
+typedef struct {
+    char str[128];
+} file_type;
+
+typedef struct {
+    char str[1];
+} dump_data_stru;
+
+typedef struct {
+    char str[1];
+} dump_hex_stru;
+
+typedef struct {
+    osal_u32 baud_rate;
+    osal_u8 data_bits; 
+    osal_u8 stop_bits;
+    osal_u8 parity;
+    osal_u8 pad;
+} soc_uart_attr;

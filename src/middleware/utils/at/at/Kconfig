@@ -1,0 +1,38 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2024. All rights reserved.
+#===============================================================================
+config AT_SUPPORT_LOG
+    bool
+    prompt "AT_SUPPORT_LOG"
+    default n
+    help
+        This option means at support log.
+
+config AT_SUPPORT_CMD_ATTR
+    bool
+    prompt "AT_SUPPORT_CMD_ATTR"
+    default n
+    help
+        This option means at support cmd attr.
+
+config AT_SUPPORT_ASYNCHRONOUS
+    bool
+    prompt "AT_SUPPORT_ASYNCHRONOUS"
+    default n
+    help
+        This option means at support asynchronous.
+
+config AT_SUPPORT_NOTIFY_REPORT
+    bool
+    prompt "AT_SUPPORT_NOTIFY_REPORT"
+    default n
+    help
+        This option means at support notify report.
+
+config AT_SUPPORT_ZDIAG
+    bool
+    prompt "AT_SUPPORT_ZDIAG"
+    default n
+    help
+        This option means at support zdiag invocation.

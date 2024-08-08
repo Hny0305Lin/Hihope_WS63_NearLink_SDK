@@ -1,0 +1,24 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+choice
+    prompt "Select pinctrl type"
+    default PINCTRL_USING_CHIPS
+    config PINCTRL_USING_V150
+        bool "Using pinctrl V150."
+    config PINCTRL_USING_CHIPS
+        bool "Using chips definition pinctrl."
+endchoice
+
+config PINCTRL_SUPPORT_IE
+    bool
+    prompt "Set pinctrl support input-enable."
+    default n
+    depends on DRIVER_SUPPORT_PINCTRL
+
+config PINCTRL_SUPPORT_ST
+    bool
+    prompt "Set pinctrl support schmitt-trigger."
+    default n
+    depends on DRIVER_SUPPORT_PINCTRL

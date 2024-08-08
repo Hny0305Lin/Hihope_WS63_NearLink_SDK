@@ -1,0 +1,136 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config MIDDLEWARE_SUPPORT_FTM
+    bool
+    prompt "FTM"
+    default y
+    help
+        This option means support FTM.
+
+config MIDDLEWARE_SUPPORT_NV
+    bool
+    prompt "NV"
+    default y
+    help
+        This option means support nv.
+config MIDDLEWARE_NV_SUPPORT_HSO_ACCESS
+    bool
+    depends on MIDDLEWARE_SUPPORT_NV
+    prompt "NV Support HSO Access"
+    default n
+    help
+        This option means nv support HSO access.
+
+config PARTITION_FEATURE_SUPPORT
+    bool
+    depends on MIDDLEWARE_SUPPORT_NV
+    prompt "NV Support HSO Access"
+    default n
+    help
+        This option means nv support get addr by partition feature.
+
+config MIDDLEWARE_SUPPORT_UPG
+    bool
+    prompt "FOTA"
+    default y
+    help
+        This option means support FOTA.
+
+config MIDDLEWARE_SUPPORT_EXCEPT_DISABLE_WDT
+    bool
+    prompt "Disable wdt after exception"
+    default n
+    help
+        This option means support disable wdt after exception.
+
+choice
+depends on MIDDLEWARE_SUPPORT_UPG
+    prompt "FOTA TYPE"
+    default MIDDLEWARE_SUPPORT_UPG_COMPRESS
+    config MIDDLEWARE_SUPPORT_UPG_COMPRESS
+        bool
+        prompt "FOTA for compress"
+        default y
+        help
+            This option means support FOTA for compress.
+
+    config MIDDLEWARE_SUPPORT_UPG_AB
+        bool
+        prompt "FOTA for AB"
+        default n
+        help
+            This option means support FOTA for AB plane.
+endchoice
+
+config MIDDLEWARE_SUPPORT_UPG_COMPRESS_ENCRY
+    bool
+    prompt "OTA for compress encry"
+    default y
+    depends on MIDDLEWARE_SUPPORT_UPG_COMPRESS
+    help
+        This option means support FOTA for compress encry.
+
+config MIDDLEWARE_SUPPORT_UPG_SAMPLE_VERIFY
+    bool
+    prompt "OTA for sample verify"
+    default n
+    depends on MIDDLEWARE_SUPPORT_UPG
+    help
+        This option means support FOTA for compress encry.
+
+choice
+    prompt "EXCEPTION MODE"
+config MIDDLEWARE_SUPPORT_EXCEPT_REBOOT
+    bool
+    prompt "Reboot after exception"
+    default y
+    help
+        This option means support reboot after exception.
+config MIDDLEWARE_SUPPORT_EXCEPT_WAITFOREVER
+    bool
+    prompt "Wait forever after exception"
+    default n
+    help
+        This option means support wait forever after exception.
+endchoice
+
+config MIDDLEWARE_SUPPORT_LFS
+    bool
+    prompt "littlefs adapt"
+    default n
+    help
+        This option means support little file system.
+config LFS_PARTITION_ID
+    int
+    depends on MIDDLEWARE_SUPPORT_LFS
+    prompt "littlefs flash partition ID"
+    default 0x21
+    help
+        This option means support little file system partition ID.
+config LFS_ADAPT_DEBUG
+    bool
+    depends on MIDDLEWARE_SUPPORT_LFS
+    prompt "littlefs adapt debug print"
+    default n
+    help
+        This option means support little file system debug print.
+config LFS_ADAPT_WARN
+    bool
+    depends on MIDDLEWARE_SUPPORT_LFS
+    prompt "littlefs adapt warn print"
+    default n
+    help
+        This option means support little file system warn print.
+config LFS_ADAPT_ERROR
+    bool
+    depends on MIDDLEWARE_SUPPORT_LFS
+    prompt "littlefs adapt error print"
+    default y
+    help
+        This option means support little file system error print.
+config SUPPORT_CRASHINFO_SAVE_TO_FLASH
+    bool
+    prompt "save crash info into flash"
+    default n

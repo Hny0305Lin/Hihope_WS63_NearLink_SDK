@@ -1,0 +1,69 @@
+config LOSCFG_PLATFORM
+    string
+    default "hi1980_imu"         if LOSCFG_PLATFORM_HI1980_IMU
+    default "hi1980b_imu"        if LOSCFG_PLATFORM_HI1980B_IMU
+    default "hi1980b_ffts"       if LOSCFG_PLATFORM_HI1980B_FFTS
+    default "hi1910b_tsch"       if LOSCFG_PLATFORM_HI1910B_TSCH
+    default "hi1980b_tsch"       if LOSCFG_PLATFORM_HI1980B_TSCH
+    default "hi1980b_vdec"       if LOSCFG_PLATFORM_HI1980B_VDEC
+    default "hi1980_tsch"        if LOSCFG_PLATFORM_HI1980_TSCH
+    default "hi1910_tsch"        if LOSCFG_PLATFORM_HI1910_TSCH
+    default "hi1910p_tsch"       if LOSCFG_PLATFORM_HI1910P_TSCH
+
+choice
+    prompt "Board"
+    depends on LOSCFG_FAMILY_ASCEND
+    default LOSCFG_PLATFORM_HI1980_IMU
+
+config LOSCFG_PLATFORM_HI1980_IMU
+    bool "hi1980_imu"
+    select LOSCFG_ARCH_CORTEX_A53
+    select LOSCFG_PLATFORM_ASCEND
+
+config LOSCFG_PLATFORM_HI1980B_IMU
+    bool "hi1980b_imu"
+    select LOSCFG_ARCH_CORTEX_A53
+    select LOSCFG_PLATFORM_ASCEND
+
+config LOSCFG_PLATFORM_HI1980B_FFTS
+    bool "hi1980b_ffts"
+    select LOSCFG_ARCH_CORTEX_A53
+    select LOSCFG_PLATFORM_ASCEND
+    select LOSCFG_ARM_GIC_LPI_ENABLE
+
+config LOSCFG_PLATFORM_HI1910B_TSCH
+    bool "hi1910b_tsch"
+    select LOSCFG_ARCH_CORTEX_A53
+    select LOSCFG_PLATFORM_ASCEND
+    select LOSCFG_ARM_GIC_LPI_ENABLE
+
+config LOSCFG_PLATFORM_HI1980B_TSCH
+    bool "hi1980b_tsch"
+    select LOSCFG_ARCH_CORTEX_A53
+    select LOSCFG_PLATFORM_ASCEND
+    select LOSCFG_ARM_GIC_LPI_ENABLE
+
+config LOSCFG_PLATFORM_HI1980B_VDEC
+    bool "hi1980b_vdec"
+    select LOSCFG_ARCH_CORTEX_A53
+    select LOSCFG_PLATFORM_ASCEND
+    select LOSCFG_ARM_GIC_LPI_ENABLE
+
+config LOSCFG_PLATFORM_HI1980_TSCH
+    bool "hi1980_tsch"
+    select LOSCFG_ARCH_RAS
+    select LOSCFG_ARCH_CORTEX_A53
+    select LOSCFG_PLATFORM_ASCEND
+    select LOSCFG_ARM_GIC_LPI_ENABLE
+
+config LOSCFG_PLATFORM_HI1910_TSCH
+    bool "hi1910_tsch"
+    select LOSCFG_ARCH_CORTEX_A53
+    select LOSCFG_PLATFORM_ASCEND
+
+config LOSCFG_PLATFORM_HI1910P_TSCH
+    bool "hi1910p_tsch"
+    select LOSCFG_ARCH_CORTEX_R52
+    select LOSCFG_PLATFORM_ASCEND
+endchoice
+

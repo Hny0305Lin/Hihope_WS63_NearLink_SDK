@@ -1,0 +1,34 @@
+config  LOSCFG_COMPAT_CMSIS
+    bool "Enable Cmsis"
+    default y
+    depends on !LOSCFG_KERNEL_SMP
+    help
+      Answer Y to enable LiteOS support cmsis interface.
+
+if LOSCFG_COMPAT_CMSIS
+
+config LOSCFG_COMPAT_CMSIS_VER_1
+    bool "Enable Cmsis Version 1.0"
+    default n
+    select LOSCFG_KERNEL_MEMBOX
+    help
+      The Cmsis Version 1.
+
+config LOSCFG_COMPAT_CMSIS_VER_2
+    bool "Enable Cmsis Version 2.0"
+    default y
+    select LOSCFG_KERNEL_MEM_ALLOC
+    help
+      The Cmsis Version 2.
+
+config LOSCFG_COMPAT_CMSIS_STATIC_ALLOCATION
+    bool "CMSIS Support Static Memory"
+    depends on !LOSCFG_COMPAT_CMSIS_VER_2
+    select LOSCFG_TASK_STACK_STATIC_ALLOCATION
+    select LOSCFG_QUEUE_STATIC_ALLOCATION if LOSCFG_BASE_IPC_QUEUE
+    default n
+    help
+      Answer Y to enable LiteOS support cmsis interface.
+
+endif # LOSCFG_COMPAT_CMSIS
+

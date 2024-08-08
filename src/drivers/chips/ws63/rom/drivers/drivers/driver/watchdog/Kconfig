@@ -1,0 +1,9 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config WATCHDOG_ALREADY_START
+    bool
+    prompt "Watchdog has been started in another binary."
+    default n
+    depends on DRIVER_SUPPORT_WDT

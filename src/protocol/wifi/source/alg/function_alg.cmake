@@ -1,0 +1,7 @@
+function(add_lists_to_property _property_name)
+    set(multiValueArgs wifi_alg_lists)
+    cmake_parse_arguments(my "" "" "${multiValueArgs}" ${ARGN})
+    get_property(temp_var GLOBAL PROPERTY ${_property_name})
+    list(APPEND temp_var ${my_wifi_alg_lists})
+    set_property(GLOBAL PROPERTY ${_property_name} ${temp_var})
+endfunction()

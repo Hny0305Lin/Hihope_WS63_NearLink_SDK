@@ -1,0 +1,73 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2023. All rights reserved.
+#===============================================================================
+config MIDDLEWARE_SUPPORT_PM
+    bool
+    prompt "PM"
+    default y
+    help
+        This option means support pm.
+
+if MIDDLEWARE_SUPPORT_PM
+menu "PM Configuration"
+    comment "Config PM"
+    osource  "middleware/utils/pm/Kconfig"
+endmenu
+endif
+
+config MIDDLEWARE_SUPPORT_DFX
+    bool
+    prompt "DFX"
+    default y
+    help
+        This option means support dfx.
+
+if MIDDLEWARE_SUPPORT_DFX
+menu "Design for Maintainable and Testable Configuration"
+    comment "Config DFM & DFT"
+    osource  "middleware/utils/dfx/Kconfig"
+endmenu
+endif
+
+config MIDDLEWARE_SUPPORT_AT
+    bool
+    prompt "AT"
+    default y
+    help
+        This option means support at command.
+
+if MIDDLEWARE_SUPPORT_AT
+menu "Config AT"
+    comment "Config AT"
+    osource  "middleware/utils/at/Kconfig"
+endmenu
+endif
+
+config MIDDLEWARE_SUPPORT_CODEC
+    bool
+    prompt "Codec"
+    default n
+    help
+        This option means support codec.
+
+if MIDDLEWARE_SUPPORT_CODEC
+menu "Config Codec"
+    comment "Config Codec"
+    osource "middleware/utils/codec/Kconfig"
+endmenu
+endif
+
+config MIDDLEWARE_SUPPORT_UPDATE
+    bool
+    prompt "Update Config"
+    default n
+    help
+        This option means support bt upg.
+
+if MIDDLEWARE_SUPPORT_UPDATE
+    menu "Update Configuration"
+        comment "Config Update"
+        osource  "middleware/utils/update/Kconfig"
+    endmenu
+    endif

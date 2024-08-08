@@ -1,0 +1,181 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+
+choice
+    prompt "CONFIG_BGLE_RAM_SIZE_16/32/64K, choose one of them"
+
+config BGLE_RAM_SIZE_16K
+    bool "16K"
+
+config BGLE_RAM_SIZE_32K
+    bool "32K"
+
+config BGLE_RAM_SIZE_64K
+    bool "64K"
+
+endchoice
+
+
+# 这里应该 depends on WiFi的radar特性宏
+choice
+    prompt "CONFIG_RADAR_SENSOR_RX_MEM_SIZE_8/16/24/32K, choose one of them"
+
+config RADAR_SENSOR_RX_MEM_8K
+    bool "8K"
+
+config RADAR_SENSOR_RX_MEM_16K
+    bool "16K"
+
+config RADAR_SENSOR_RX_MEM_24K
+    bool "24K"
+
+config RADAR_SENSOR_RX_MEM_32K
+    bool "32K"
+
+endchoice
+
+config LWIP_COMPILE_PATH
+    string
+    prompt"CONFIGURE LWIP COMPILE PATH"
+    --help--
+        configure lwip compile path
+
+config PRINTF_BUFFER_DYNAMIC
+    bool
+    prompt "support long size print over 128 Bytes"
+    default y
+
+config UART0_BAUDRATE
+    int
+    prompt "cfg uart0's baudrate"
+    range 9600 10000000
+    default 115200
+
+config UART1_BAUDRATE
+    int
+    prompt "cfg uart1's baudrate"
+    range 9600 10000000
+    default 115200
+
+config UART2_BAUDRATE
+    int
+    prompt "cfg uart2's baudrate"
+    range 9600 10000000
+    default 115200
+
+config DEBUG_UART
+    int
+    prompt "debug uart, select 3 means don't use this func"
+    range 0 3
+    default 0
+
+config DEBUG_UART_BAUDRATE
+    int
+    prompt "debug uart's baudrate, default selected based on UARTx_BAUDRATE"
+    default UART0_BAUDRATE if DEBUG_UART = 0
+    default UART1_BAUDRATE if DEBUG_UART = 1
+    default UART2_BAUDRATE if DEBUG_UART = 2
+    depends on DEBUG_UART < 3
+
+config LOG_UART
+    int
+    prompt "log uart, select 3 means don't use this func"
+    range 0 3
+    default 1
+
+config LOG_UART_BAUDRATE
+    int
+    prompt "log uart's baudrate, default selected based on UARTx_BAUDRATE"
+    default UART0_BAUDRATE if LOG_UART = 0
+    default UART1_BAUDRATE if LOG_UART = 1
+    default UART2_BAUDRATE if LOG_UART = 2
+    depends on LOG_UART < 3
+
+config AT_UART
+    int
+    prompt "at uart, select 3 means don't use this func"
+    range 0 3
+    default 0
+
+config AT_UART_BAUDRATE
+    int
+    prompt "at uart's baudrate, default selected based on UARTx_BAUDRATE"
+    default UART0_BAUDRATE if AT_UART = 0
+    default UART1_BAUDRATE if AT_UART = 1
+    default UART2_BAUDRATE if AT_UART = 2
+    depends on AT_UART < 3
+
+config WVT_UART
+    int
+    prompt "wvt uart, select 3 means don't use this func"
+    range 0 3
+    default 2
+
+config WVT_UART_BAUDRATE
+    int
+    prompt "wvt uart's baudrate, default selected based on UARTx_BAUDRATE"
+    default UART0_BAUDRATE if WVT_UART = 0
+    default UART1_BAUDRATE if WVT_UART = 1
+    default UART2_BAUDRATE if WVT_UART = 2
+    depends on WVT_UART < 3
+
+config TESTSUIT_UART
+    int
+    prompt "testsuit uart, select 3 means don't use this func"
+    range 0 3
+    default 0
+
+config TESTSUIT_UART_BAUDRATE
+    int
+    prompt "wvt uart's baudrate, default selected based on UARTx_BAUDRATE"
+    default UART0_BAUDRATE if TESTSUIT_UART = 0
+    default UART1_BAUDRATE if TESTSUIT_UART = 1
+    default UART2_BAUDRATE if TESTSUIT_UART = 2
+    default 0 if TESTSUIT_UART = 3
+    depends on TESTSUIT_UART < 3
+
+config REG_WHITELIST
+    bool
+    prompt "access to registers in the whitelist"
+    default y
+
+config UART0_SUPPORT_WRITE_MUTEX
+    int
+    prompt "uart0 support write mutex"
+    range 0 1
+    default 1
+
+config UART1_SUPPORT_WRITE_MUTEX
+    int
+    prompt "uart1 support write mutex"
+    range 0 1
+    default 1
+
+config UART2_SUPPORT_WRITE_MUTEX
+    int
+    prompt "uart2 support write mutex"
+    range 0 1
+    default 1
+
+config UART_SUPPORT_PORTTING_IRQ
+    bool
+    prompt "support uart portting irq"
+    default n
+
+config PM_SUPPORT_WKUP_UART
+    int
+    prompt "PM config wakeup uart"
+    range 0 2
+    default 1
+
+config PM_SUPPORT_POWER_EXCEPTION_DEBUG
+    bool
+    prompt "PM support power exception debug"
+    default n
+
+config PM_SUPPORT_SRV_DECOUPLING
+    bool
+    prompt "PM support service decoupling"
+    default n

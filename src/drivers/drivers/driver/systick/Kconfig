@@ -1,0 +1,9 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config SYSTICK_SUPPORT_LPM
+    bool
+    prompt "Systick Support low power mode, supend and reusme"
+    default n
+    depends on DRIVER_SUPPORT_SYSTICK

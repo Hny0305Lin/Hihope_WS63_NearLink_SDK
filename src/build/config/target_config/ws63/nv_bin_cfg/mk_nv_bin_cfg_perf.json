@@ -1,0 +1,11 @@
+{
+    "OUT_BIN_DIR" : "output/ws63/acore/nv_bin",
+    "OUT_BIN_NAME" : "ws63_all_nv.bin",
+    "OUT_BACKUP_BIN_NAME" : "ws63_all_nv_backup.bin",
+    "BUILD_TEMP_PATH" : "output/ws63",
+
+    "NV_TARGET_JSON_PATH" : "middleware/chips/ws63/nv/nv_config/cfg/nv_target_perf.json",
+    "NV_RELATIVE_PATH" : "output/ws63/acore/nv_bin/temp",
+    "NV_DEFAULT_CFG_DIR" : "middleware/chips/ws63/nv/nv_config/cfg",
+    "DATABASE_TXT_FILE" : "output/ws63/acore/nv_bin/temp"
+}

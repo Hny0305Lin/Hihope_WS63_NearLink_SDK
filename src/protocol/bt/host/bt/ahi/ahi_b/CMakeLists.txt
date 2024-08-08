@@ -1,0 +1,5 @@
+if((${CHIP} MATCHES "bs25") AND (DEFINED ROM_COMPONENT))
+    include(ahi_b_rom.cmake)
+else()
+    include(ahi_b.cmake)
+endif()

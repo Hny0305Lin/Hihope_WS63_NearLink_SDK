@@ -1,0 +1,15 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config PMP_USING_RISCV_31
+    bool
+    prompt "Using the RISC-V31"
+    default n
+    depends on DRIVER_SUPPORT_PMP
+
+config PMP_USING_RISCV_70
+    bool
+    prompt "Using the RISC-V70"
+    default n
+    depends on DRIVER_SUPPORT_PMP

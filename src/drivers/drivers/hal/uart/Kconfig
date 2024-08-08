@@ -1,0 +1,53 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config UART_DLF_SIZE
+    int
+    prompt "UART_DLF_SIZE"
+    range 4 6
+    default 4
+    depends on DRIVER_SUPPORT_UART
+
+config UART_USING_V120
+    bool
+    prompt "Using UART V120"
+    default y
+    depends on DRIVER_SUPPORT_UART
+
+config UART_USING_V151
+    bool
+    prompt "Using UART V151"
+    default y
+    depends on DRIVER_SUPPORT_UART
+
+config UART_USING_V100
+    bool
+    prompt "Using UART V100"
+    default n
+    depends on DRIVER_SUPPORT_UART
+
+config UART_BAUDSET_WAITTIMES_LIMIT
+    int
+    prompt "the wait loop times when change baudrate for uartv100"
+    default 1000
+    depends on UART_USING_V100
+
+config UART_IP_VERSION_V151_PRO
+    bool
+    prompt "the uart ip version from svn version for uartv151 PRO"
+    default n
+    depends on UART_USING_V151
+
+config UART_RX_EMPTY_TRIG_H
+    int
+    prompt "the rx empty high trigger for uartv151 PRO"
+    range 0 3
+    default 2
+    depends on UART_IP_VERSION_V151_PRO
+
+config UART_USING_LP_UART
+    bool
+    prompt "Using LP_UART"
+    default n
+    depends on DRIVER_SUPPORT_UART

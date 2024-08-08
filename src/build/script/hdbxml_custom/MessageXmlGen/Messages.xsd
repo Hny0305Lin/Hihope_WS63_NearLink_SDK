@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/xmlDefinition.xsd" elementFormDefault="qualified" targetNamespace="http://tempuri.org/xmlDefinition.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DebugInformation" type="tns:MessagesAndRules" />
+  <xs:complexType name="MessagesAndRules">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CommonLogHeader" nillable="true" type="tns:LogHeaderType" />
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="Core" nillable="true" type="tns:ArrayOfCoresType" />
+    </xs:sequence>
+    <xs:attribute name="SequenceNumbersSupported" type="xs:boolean" />
+    <xs:attribute name="MulticoreLoggingSupported" type="xs:boolean" />
+    <xs:attribute name="FirmwareVersion" type="xs:string" />
+    <xs:attribute name="Distribution" type="xs:string" />
+    <xs:attribute name="SocXMLVersion" type="xs:integer" />
+  </xs:complexType>
+  
+  <xs:element name="CommonLogHeader" type="tns:LogHeaderType" />
+  <xs:complexType name="LogHeaderType">
+    <xs:attribute name="LogIndexMask" type="xs:string" />
+  </xs:complexType>
+
+  <xs:element name="Core" type="tns:ArrayOfCoresType" />
+  <xs:complexType name="ArrayOfCoresType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Messages" nillable="true" type="tns:ArrayOfMessagesType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StructureDictionary" nillable="true" type="tns:ArrayOfStructureType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EnumsDictionary" nillable="true" type="tns:ArrayOfEnumsType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Rules" nillable="true" type="tns:ArrayOfRulesTypes" />
+    </xs:sequence>
+    <xs:attribute name="CoreName" type="xs:string" />
+    <xs:attribute name="ImageName" type="xs:string" />
+    <xs:attribute name="BootImage" type="xs:boolean" />
+  </xs:complexType>
+
+  <xs:element name="Messages" type="tns:ArrayOfMessagesType" />
+  <xs:complexType name="ArrayOfMessagesType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:messageType" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="StructureDictionary" type="tns:ArrayOfStructureType" />
+  <xs:complexType name="ArrayOfStructureType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Structure" nillable="true" type="tns:structureType" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="EnumsDictionary" type="tns:ArrayOfEnumsType" />
+  <xs:complexType name="ArrayOfEnumsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EnumsEntry" nillable="true" type="tns:enumEntryType" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="EnumsEntry" type="tns:enumEntryType" />
+  <xs:complexType name="enumEntryType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="Enum" nillable="true" type="tns:enumType" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Message" type="tns:messageType" />
+  <xs:complexType name="messageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Field" type="tns:fieldType" />
+    </xs:sequence>
+      <xs:attribute name="Name" type="xs:string" />
+      <xs:attribute name="MessageID" type="xs:string" />
+      <xs:attribute name="MessageType" type="xs:string" />
+      <xs:attribute name="Type" type="xs:string" />
+      <xs:attribute name="Offset" type="xs:long" />
+      <xs:attribute name="Size" type="xs:long" />
+      <xs:attribute name="Length" type="xs:long" />
+  </xs:complexType>
+
+  <xs:element name="Structure" type="tns:structureType" />
+  <xs:complexType name="structureType" >
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Field" type="tns:fieldType" />
+    </xs:sequence>
+    <xs:attribute name="Type" type="xs:string" />
+    <xs:attribute name="FieldType" type="xs:string" />
+    <xs:attribute name="Size" type="xs:long" />
+  </xs:complexType>
+
+  <xs:element name="Field" type="tns:fieldType" />
+  <xs:complexType name="fieldType" >
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Field" type="tns:fieldType" />
+    </xs:sequence>
+    <xs:attribute name="FieldName" type="xs:string" />
+    <xs:attribute name="Type" type="xs:string" />
+    <xs:attribute name="FieldType" type="xs:string" />
+    <xs:attribute name="Offset" type="xs:long" />
+    <xs:attribute name="Size" type="xs:long" />
+    <xs:attribute name="Length" type="xs:long" />
+    <xs:attribute name="Enum" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfFieldType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Field" nillable="true" type="tns:fieldType" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="Enum" type="tns:enumType" />
+  <xs:complexType name="enumType" >
+    <xs:attribute name="Name" type="xs:string" />
+    <xs:attribute name="Value" type="xs:long" />
+  </xs:complexType>
+
+  <xs:element name="Rules" type="tns:ArrayOfRulesTypes"/>
+  <xs:complexType name="ArrayOfRulesTypes">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LengthRule" type="tns:LengthRule" />
+        <xs:element name="UnionRule" type="tns:UnionRule" />
+        <xs:element name="ValidRule" type="tns:ValidRule" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="LengthRule" type="tns:LengthRule"/>
+  <xs:complexType name="LengthRule" >
+    <xs:attribute name="Message" type="xs:string" />
+    <xs:attribute name="Array" type="xs:string" />
+    <xs:attribute name="Length" type="xs:string" />
+    <xs:attribute name="IsVariable" type="xs:boolean" default="false"/>
+  </xs:complexType>
+
+  <xs:element name="ValidRule" type="tns:ValidRule"/>
+  <xs:complexType name="ValidRule" >
+    <xs:attribute name="Message" type="xs:string" />
+    <xs:attribute name="Field" type="xs:string" />
+    <xs:attribute name="Indicator" type="xs:string" />
+  </xs:complexType>
+  
+  <xs:element name="UnionRule" type="tns:UnionRule" />
+  <xs:complexType name="UnionRule" >
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" name="UnionSelection" type="tns:UnionSelection" />
+    </xs:sequence>
+    <xs:attribute name="Message" type="xs:string" />
+    <xs:attribute name="Union" type="xs:string" />
+    <xs:attribute name="Selector" type="xs:string" />
+  </xs:complexType>
+  
+  <xs:element name="UnionSelection" type="tns:UnionSelection"/>
+  <xs:complexType name="UnionSelection" >
+    <xs:attribute name="Selection" type="xs:string" />
+    <xs:attribute name="Option" type="xs:string" />
+  </xs:complexType>
+  
+</xs:schema>

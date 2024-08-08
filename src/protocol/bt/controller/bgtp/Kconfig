@@ -1,0 +1,62 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+
+config USING_BLE_LEGACY_ADV_V1
+    bool
+    prompt "Using ble legacy adv v1."
+    default n
+
+config USING_BLE_ADV_EXTENDED_ADV_V1
+    bool
+    prompt "Using ble extended adv v1."
+    default n
+
+config USING_BLE_EXT_SECONARY_ADV_V1
+    bool
+    prompt "Using ble ext seconary adv v1."
+    default n
+    depends on USING_BLE_ADV_EXTENDED_ADV_V1
+
+config USING_BLE_PERIODIC_ADV_V1
+    bool
+    prompt "Using ble periodic adv v1."
+    default n
+    depends on USING_BLE_ADV_EXTENDED_ADV_V1 && USING_BLE_EXT_SECONARY_ADV_V1
+
+config USING_BLE_LEGACY_SCAN_V1
+    bool
+    prompt "Using ble legacy scan v1."
+    default n
+
+config USING_BLE_EXTENDED_SCAN_V1
+    bool
+    prompt "Using ble extended scan v1."
+    default n
+
+config USING_BLE_PERIODIC_SYNC_V1
+    bool
+    prompt "Using ble periodic sync v1."
+    default n
+    depends on USING_BLE_EXTENDED_SCAN_V1
+
+config USING_BLE_LEGACY_INITIATE_V1
+    bool
+    prompt "Using ble legacy initiate v1."
+    default n
+
+config USING_BLE_EXTENDED_INITIATE_V1
+    bool
+    prompt "Using ble extended initiate v1."
+    default n
+
+config USING_BLE_PWR_CTRL_V1
+    bool
+    prompt "Using ble power control v1."
+    default n
+
+config USING_BLE_TEST_MODE_V1
+    bool
+    prompt "Using ble test mode v1."
+    default n

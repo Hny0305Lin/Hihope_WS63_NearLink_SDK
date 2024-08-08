@@ -1,0 +1,28 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+config PWM_CHANNEL
+    int
+    prompt "Choose PWM Test Channel."
+    depends on SAMPLE_SUPPORT_PWM
+    default 0
+
+config PWM_GROUP_ID
+    int
+    prompt "Choose PWM Test Group ID."
+    depends on SAMPLE_SUPPORT_PWM && PWM_USING_V151
+    default 0
+
+config PWM_PIN
+    int
+    prompt "Choose PWM pin."
+    depends on SAMPLE_SUPPORT_PWM
+    default 20
+
+config PWM_PIN_MODE
+    int
+    prompt "Choose PWM pin mode."
+    default 3
+    depends on SAMPLE_SUPPORT_PWM
+

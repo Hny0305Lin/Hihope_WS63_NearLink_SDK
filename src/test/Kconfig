@@ -1,0 +1,18 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2022-2022. All rights reserved.
+#===============================================================================
+config TEST_SUPPORT_TESTSUITE
+    bool
+    prompt "TESTSUITE"
+    default y
+    help
+        This option means support testsuite.
+
+if TEST_SUPPORT_TESTSUITE
+menu "Testsuite Configuration"
+    comment "Config Testsuite"
+    osource  "test/common/testsuite/Kconfig"
+    osource  "test/platform/testsuite/Kconfig"
+endmenu
+endif
