@@ -1,0 +1,9 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+config PINCTRL_USE_PIN
+    int
+    prompt "Choose Pinctrl use pin."
+    depends on SAMPLE_SUPPORT_PINCTRL
+    default 2

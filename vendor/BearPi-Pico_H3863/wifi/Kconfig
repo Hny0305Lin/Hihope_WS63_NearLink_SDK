@@ -1,0 +1,13 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+config SAMPLE_SUPPORT_STA_SAMPLE
+    bool "Support WIFI STA Sample"
+
+config SAMPLE_SUPPORT_SOFTAP_SAMPLE
+    bool "Support WIFI SoftAP Sample."
+    
+config SAMPLE_SUPPORT_UDP_CLIENT_SAMPLE
+    bool "Support UDP Client Sample."
+    

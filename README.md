@@ -9,12 +9,13 @@
 |                          开发板名称                          | 硬件资料                                                     | 软件资料     | 购买链接                                                     | 开发板介绍                                                   |
 | :----------------------------------------------------------: | ------------------------------------------------------------ | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | HiHope_NearLink_DK3863E_V03<img src="docs/pic/tools/image-20240809164437807.png" alt="image-20240809164437807" style="zoom: 50%;" /> | [扩展板硬件资料](https://gitee.com/HiSpark/fbb_ws63/tree/master/docs/hardware/HiHope_NearLink_DK_WS63E_V03) | 参考示例教程 | [开发板购买链接](https://main.m.taobao.com/security-h5-detail/home?id=808369265492&spm=a2141.7631565.tbshopmod-guess_your_like.808369265492&scm=1007.18373.317678.0&pvid=fdb854bd-99a3-4b65-955b-392bdf0c083e&fromNormal=true) | 基于海思WS63E解决方案的一款高度集成的2.4Ghz SoC Wi-Fi、BLE、SLE的开发板，支持Liteos、OpenHarmony轻量系统 |
+| BearPi-Pico_H3863<img src="docs/pic/BearPi-Pico_H3863/bearpi_pico_h3863.png" alt="image-20240809164437807" style="zoom: 50%;" /> | [扩展板硬件资料](https://gitee.com/HiSpark/fbb_ws63/tree/master/docs/hardware/BearPi-Pico_H3863) | 参考示例教程 | [开发板购买链接](https://item.taobao.com/item.htm?id=821386760379) | BearPi-Pico H3863是一款基于高度集成2.4GHz Wi-Fi6 、BLE、SLE为主控芯片的核心板，具有灵活的数字接口，集成高性能 32bit 微处理器（MCU），硬件安全引擎以及丰富的外设接口，外设接口包括 SPI、UART、I2C、PWM、GPIO，支持 6 路 13bit 分辨率 ADC，内置 SRAM 和合封 Flash，并支持在 Flash 上运行程序支持Liteos、OpenHarmony轻量系统 |
 
 ## 目录介绍
 
 | 目录   | 介绍                                                         |
 | ------ | ------------------------------------------------------------ |
-| docs   | 存放芯片手册、IO复用关系表、HiHope_NearLink_DK3863E_V03硬件原理图 |
+| docs   | 存放芯片手册、IO复用关系表、硬件原理图 |
 | src    | SDK源码目录                                                  |
 | tools  | 开发工具及环境搭建指南                                       |
 | vendor | 存放对应开发板案例                                           |
@@ -240,6 +241,98 @@ HiHope_NearLink_DK3863E_V03提供了以下Demo供开发参考：
 </table>
 
 
+
+BearPi-Pico H3863提供了以下Demo供开发参考：
+
+<table  width="990" border="0" cellpadding="0" cellspacing="0" style='border-collapse:collapse;table-layout:fixed;'>
+ <tr height="18" style='height:13.50pt;'>
+  <td width="140" x:str><strong>一级分类</strong></td>
+  <td width="170" x:str><strong>子分类</strong></td>
+  <td width="680" colspan="6" align="center" x:str><strong>应用示例</strong></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td width="140" align="center" rowspan="6" style='height:27.00pt' x:str>
+<strong>基础驱动</strong></td>
+  <td x:str><strong>I2C</strong></td>
+  <td width="170" x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/study/6.I2C%20%E9%A9%B1%E5%8A%A8OLED%E5%B1%8F%E5%B9%95%E6%B5%8B%E8%AF%95.html">I2C驱动OLED屏幕案例</a></td>
+
+  <td width="170" x:str><a href=""></a></td>
+  <td width="170" x:str><a href=""></a></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>SPI</strong></td>
+  <td x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/study/7.SPI%20%E9%A9%B1%E5%8A%A8OLED%E5%B1%8F%E5%B9%95%E6%B5%8B%E8%AF%95.html">SPI驱动OLED屏幕案例</a></td>
+
+  <td ></td>
+  <td ></td>
+ </tr>
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>UART</strong></td>
+  <td x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/study/5.UART%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%B5%8B%E8%AF%95.html">开发板UART自发自收</a></td>
+  <td ></td>
+  <td ></td>
+ </tr>
+
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>ADC</strong></td>
+  <td x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/study/4.ADC%E9%87%87%E6%A0%B7%E6%B5%8B%E8%AF%95.html">ADC案例</a></td>
+
+  <td ></td>
+  <td ></td>
+ </tr>
+
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>PWM</strong></td>
+  <td x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/study/3.PWM%E8%BE%93%E5%87%BA%E6%B5%8B%E8%AF%95.html">PWM案例</a></td>
+
+  <td ></td>
+  <td ></td>
+ </tr>
+
+ <tr height="18" style='height:13.50pt;'>
+  <td x:str><strong>GPIO</strong></td>
+  <td x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/study/1.GPIO%E7%82%B9%E4%BA%AELED%E7%81%AF%E6%B5%8B%E8%AF%95.html">点亮LED灯案例</a></td>
+  <td x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/study/2.GPIO%E6%8C%89%E9%94%AE%E4%B8%AD%E6%96%AD%E6%B5%8B%E8%AF%95.html">按键案例</a></td>
+  
+
+  <td ></td>
+ </tr>
+
+  <tr height="18" style='height:13.50pt;'>
+  <td width="140" align="center" rowspan="1" style='height:27.00pt' x:str>
+<strong>星闪</strong></td>
+  <td x:str><strong>SLE</strong></td>
+  <td width="170" x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/SLE%E4%B8%B2%E5%8F%A3%E9%80%8F%E4%BC%A0%E6%B5%8B%E8%AF%95.html">SLE串口透传</a></td>
+  <td width="170" x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/SLE%E7%BD%91%E5%85%B3%E9%80%8F%E4%BC%A0%E6%B5%8B%E8%AF%95.html">SLE网关透传</a></td>
+
+  <td width="170" x:str><a href=""></a></td>
+
+ </tr>
+  <tr height="18" style='height:13.50pt;'>
+  <td width="140" align="center" rowspan="1" style='height:27.00pt' x:str>
+<strong>BLE</strong></td>
+  <td x:str><strong>BLE</strong></td>
+    <td width="170" x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/BLE%E4%B8%B2%E5%8F%A3%E9%80%8F%E4%BC%A0%E6%B5%8B%E8%AF%95.html">BLE串口透传</a></td>
+  <td width="170" x:str><a href=""></a></td>
+  <td width="170" x:str><a href=""></a></td>
+
+ </tr>
+  <tr height="18" style='height:13.50pt;'>
+  <td width="140" align="center" rowspan="1" style='height:27.00pt' x:str>
+<strong>Wi-Fi</strong></td>
+  <td x:str><strong>Wi-Fi</strong></td>
+  <td width="170" x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/Wi-Fi%20STA%20%E8%BF%9E%E6%8E%A5%E6%97%A0%E7%BA%BF%E7%83%AD%E7%82%B9%E6%B5%8B%E8%AF%95.html">Wi-Fi STA</a></td>
+  <td width="170" x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/Wi-Fi%20SoftAP%20%E5%BC%80%E5%90%AF%E6%97%A0%E7%BA%BF%E7%83%AD%E7%82%B9%E6%B5%8B%E8%AF%95.html">Wi-Fi AP</a></td>
+  <td width="170" x:str><a href="https://www.bearpi.cn/core_board/bearpi/pico/h3863/software/Wi-Fi%20UDP%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%8B%E8%AF%95.html">Wi-Fi UDP客户端</a></td>
+
+ </tr>
+ </tr>
+ <tr>
+<![if supportMisalignedColumns]>
+   <tr height="18" style="display:none;">
+   </tr>
+  <![endif]>
+</table>
 
 ## 参与贡献
 
