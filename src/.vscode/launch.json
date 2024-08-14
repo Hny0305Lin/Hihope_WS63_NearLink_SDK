@@ -1,0 +1,57 @@
+{
+    "configurations": [
+        {
+            "type": "deveco-device-tool-debug",
+            "request": "launch",
+            "debugInitPath": "${workspaceFolder}/.vscode",
+            "servertype": "jlink",
+            "toolchainBinDir": "${command:toolsPath}\\Windows\\cc_riscv32_musl_fp_win\\bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "serverArgs": [
+                "-singlerun",
+                "-nogui",
+                "-if",
+                "swd",
+                "-port",
+                "3333",
+                "-swoport",
+                "50001",
+                "-telnetport",
+                "50002",
+                "-device",
+                "RISC-V",
+                "-jlinkscriptfile",
+                "c:\\Program Files\\HiSpark Studio\\resources\\app\\extensions\\huawei.hisparkprojectwizard-0.0.4\\resources\\connect\\CFBB\\ws63\\connectCore.JLinkScript"
+            ],
+            "name": "GDB Launch (Download and Reset Program)",
+            "executable": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.elf",
+            "runToEntryPoint": "main"
+        },
+        {
+            "type": "deveco-device-tool-debug",
+            "request": "attach",
+            "debugInitPath": "${workspaceFolder}/.vscode",
+            "servertype": "jlink",
+            "toolchainBinDir": "${command:toolsPath}\\Windows\\cc_riscv32_musl_fp_win\\bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "serverArgs": [
+                "-singlerun",
+                "-nogui",
+                "-if",
+                "swd",
+                "-port",
+                "3333",
+                "-swoport",
+                "50001",
+                "-telnetport",
+                "50002",
+                "-device",
+                "RISC-V",
+                "-jlinkscriptfile",
+                "c:\\Program Files\\HiSpark Studio\\resources\\app\\extensions\\huawei.hisparkprojectwizard-0.0.4\\resources\\connect\\CFBB\\ws63\\connectCore.JLinkScript"
+            ],
+            "name": "GDB Attach (Attach to Running Program)",
+            "executable": "./output/ws63/acore/ws63-liteos-app/ws63-liteos-app.elf"
+        }
+    ]
+}

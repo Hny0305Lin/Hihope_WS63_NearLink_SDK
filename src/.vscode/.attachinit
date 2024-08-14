@@ -1,0 +1,20 @@
+echo debug_tool = jlink\n
+echo Initializing remote target...\n
+target extended-remote :3333
+monitor clrbp
+monitor halt
+tbreak pcore_main
+tbreak acore_main
+tbreak main
+tbreak app_main
+define pio_restart_target
+monitor clrbp
+monitor halt
+tbreak pcore_main
+tbreak acore_main
+tbreak main
+tbreak app_main
+monitor reset
+load
+echo Initialization completed\n
+end
