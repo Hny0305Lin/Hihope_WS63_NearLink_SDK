@@ -1,0 +1,10 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+
+config PWM_PIN
+int
+    prompt "Choose PWM pin."
+    depends on SAMPLE_SUPPORT_PWM
+    default 2

@@ -1,0 +1,53 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+config SAMPLE_SUPPORT_SPI_MASTER
+    bool
+    prompt "Support SPI Master Sample."
+    default y
+    depends on SAMPLE_SUPPORT_SPI
+    help
+        This option means support SPI Master Sample.
+
+config SPI_MASTER_BUS_ID
+    int
+    prompt "Choose SPI master bus id."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 0
+
+config SPI_DI_MASTER_PIN
+    int
+    prompt "Choose SPI DI master pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 11
+
+config SPI_DO_MASTER_PIN
+    int
+    prompt "Choose SPI DO master pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 9
+
+config SPI_CLK_MASTER_PIN
+    int
+    prompt "Choose SPI CLK master pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 7
+
+config SPI_CS_MASTER_PIN
+    int
+    prompt "Choose SPI CS master pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 8
+
+config OLED_RES_PIN
+    int
+    prompt "Choose OLED RES pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 6
+
+config OLED_DC_PIN
+    int
+    prompt "Choose OLED DC pin."
+    depends on SAMPLE_SUPPORT_SPI_MASTER
+    default 10

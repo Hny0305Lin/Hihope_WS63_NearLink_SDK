@@ -1,0 +1,164 @@
+[
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/adc",
+      "chip": "WS63",
+      "buildDef": "",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/blinky",
+      "chip": "WS63",
+      "buildDef": "CONFIG_BLINKY_PIN=2, CONFIG_BLINKY_DURATION_MS=500",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/button",
+      "chip": "WS63",
+      "buildDef": "CONFIG_BUTTON_PIN=0",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/i2c",
+      "chip": "WS63",
+      "buildDef": "CONFIG_SAMPLE_SUPPORT_I2C_MASTER=y, CONFIG_I2C_MASTER_BUS_ID=1, CONFIG_I2C_SCL_MASTER_PIN=15, CONFIG_I2C_SDA_MASTER_PIN=16",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/pinctrl",
+      "chip": "WS63",
+      "buildDef": "CONFIG_PINCTRL_USE_PIN=2",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/pwm",
+      "chip": "WS63",
+      "buildDef": "CONFIG_PWM_PIN=2",
+      "needSmoke": "false"
+    },
+    {
+        "buildTarget": "ws63-liteos-app",
+        "relativePath": "peripheral/spi",
+        "chip": "WS63",
+        "buildDef": "CONFIG_SAMPLE_SUPPORT_SPI_MASTER=y, CONFIG_SPI_MASTER_BUS_ID=0, CONFIG_SPI_DI_MASTER_PIN=11, CONFIG_SPI_DO_MASTER_PIN=9, CONFIG_SPI_CLK_MASTER_PIN=7, CONFIG_SPI_CS_MASTER_PIN=8, CONFIG_OLED_RES_PIN=6, CONFIG_OLED_DC_PIN=10",
+        "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/systick",
+      "chip": "WS63",
+      "buildDef": "",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/tasks",
+      "chip": "WS63",
+      "buildDef": "",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/tcxo",
+      "chip": "WS63",
+      "buildDef": "",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/timer",
+      "chip": "WS63",
+      "buildDef": "",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/uart",
+      "chip": "WS63",
+      "buildDef": "CONFIG_UART_BUS_ID=1, CONFIG_UART_TXD_PIN=15, CONFIG_UART_RXD_PIN=16, CONFIG_UART_POLL_TRANSFER_MODE=1",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/uart",
+      "chip": "WS63",
+      "buildDef": "CONFIG_UART_BUS_ID=1, CONFIG_UART_TXD_PIN=15, CONFIG_UART_RXD_PIN=16, CONFIG_UART_INT_TRANSFER_MODE=1",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/watchdog",
+      "chip": "WS63",
+      "buildDef": "CONFIG_WDT_KICK_SAMPLE=1",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "products/ble_uart",
+      "chip": "WS63",
+      "buildDef": "CONFIG_SAMPLE_SUPPORT_BLE_UART_SERVER=y,CONFIG_BLE_UART_BUS=0",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "products/ble_uart",
+      "chip": "WS63",
+      "buildDef": "CONFIG_SAMPLE_SUPPORT_BLE_UART_CLIENT=y,CONFIG_BLE_UART_BUS=0",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "products/sle_gateway",
+      "chip": "WS63",
+      "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_GATEWAY_SERVER=y, CONFIG_SLE_GATEWAY_BUS=0, CONFIG_UART_TXD_PIN=17, CONFIG_UART_RXD_PIN=18, CONFIG_SUPPORT_SLE_PERIPHERAL=1,CONFIG_SAMPLE_SUPPORT_SLE_GATEWAY_SERVER=1",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "products/sle_gateway",
+      "chip": "WS63",
+      "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_GATEWAY_CLIENT=y,CONFIG_SLE_GATEWAY_BUS=0,CONFIG_UART_TXD_PIN=17,CONFIG_UART_RXD_PIN=18,CONFIG_SUPPORT_SLE_CENTRAL=1,CONFIG_SAMPLE_SUPPORT_SLE_GATEWAY_CLIENT=1",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "products/sle_uart",
+      "chip": "WS63",
+      "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_UART_SERVER=y,CONFIG_SLE_UART_BUS=0, CONFIG_UART_TXD_PIN=17, CONFIG_UART_RXD_PIN=18, CONFIG_SAMPLE_SUPPORT_NORMAL_TYPE=1, CONFIG_SUPPORT_SLE_PERIPHERAL=1,CONFIG_SAMPLE_SUPPORT_SLE_UART_SERVER=1",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "products/sle_uart",
+      "chip": "WS63",
+      "buildDef": "CONFIG_SAMPLE_SUPPORT_SLE_UART_CLIENT=y, CONFIG_SLE_UART_BUS=0, CONFIG_UART_TXD_PIN=17, CONFIG_UART_RXD_PIN=18, CONFIG_SAMPLE_SUPPORT_NORMAL_TYPE=1, CONFIG_SUPPORT_SLE_CENTRAL=1,CONFIG_SAMPLE_SUPPORT_SLE_UART_CLIENT=1",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "wifi/softap_sample",
+      "chip": "WS63",
+      "buildDef": "",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "wifi/sta_sample",
+      "chip": "WS63",
+      "buildDef": "",
+      "needSmoke": "false"
+    },
+    {
+      "buildTarget": "ws63-liteos-app",
+      "relativePath": "peripheral/udp_client",
+      "chip": "WS63",
+      "buildDef": "",
+      "needSmoke": "false"
+    }
+  ]
+  

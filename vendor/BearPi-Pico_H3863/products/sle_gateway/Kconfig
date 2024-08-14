@@ -1,0 +1,42 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+
+config SLE_GATEWAY_BUS
+    int
+    prompt "Set the UART BUS of the currrent sample."
+    default 0
+    depends on SAMPLE_SUPPORT_SLE_GETAWAY
+    help
+        This option means the UART BUS of the currrent sample.
+
+config UART_TXD_PIN
+    int
+    prompt "Choose UART TXD pin."
+    depends on SAMPLE_SUPPORT_SLE_GETAWAY
+    default 17
+
+config UART_RXD_PIN
+    int
+    prompt "Choose UART RXD pin."
+    depends on SAMPLE_SUPPORT_SLE_GETAWAY
+    default 18
+
+choice
+    prompt "Select sle uart type"
+    default SAMPLE_SUPPORT_SLE_GATEWAY_SERVER
+    config SAMPLE_SUPPORT_SLE_GATEWAY_SERVER
+        bool "Enable SLE GATEWAY Server sample."
+    config SAMPLE_SUPPORT_SLE_GATEWAY_CLIENT
+        bool "Enable SLE GATEWAY Client sample."
+endchoice
+
+config SUPPORT_SLE_PERIPHERAL
+    bool
+    default y if (SAMPLE_SUPPORT_SLE_GATEWAY_SERVER)
+
+
+config SUPPORT_SLE_CENTRAL
+    bool
+    default y if (SAMPLE_SUPPORT_SLE_GATEWAY_CLIENT)

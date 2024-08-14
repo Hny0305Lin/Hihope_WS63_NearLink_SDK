@@ -1,0 +1,62 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+
+config SLE_UART_BUS
+    int
+    prompt "Set the UART BUS of the currrent sample."
+    default 0
+    depends on SAMPLE_SUPPORT_SLE_UART
+    help
+        This option means the UART BUS of the currrent sample.
+
+config UART_TXD_PIN
+    int
+    prompt "Choose UART TXD pin."
+    depends on SAMPLE_SUPPORT_SLE_UART
+    default 17
+
+config UART_RXD_PIN
+    int
+    prompt "Choose UART RXD pin."
+    depends on SAMPLE_SUPPORT_SLE_UART
+    default 18
+
+choice
+    prompt "Select sle uart type"
+    default SAMPLE_SUPPORT_SLE_UART_SERVER
+    config SAMPLE_SUPPORT_SLE_UART_SERVER
+        bool "Enable SLE UART Server sample."
+    config SAMPLE_SUPPORT_SLE_UART_CLIENT
+        bool "Enable SLE UART Client sample."
+endchoice
+
+menu "Select SLE UART sample mode"
+choice
+    prompt "Select sle uart sample type"
+    default SAMPLE_SUPPORT_NORMAL_TYPE
+    config SAMPLE_SUPPORT_NORMAL_TYPE
+        bool "Enable SLE UART normal sample."
+    config SAMPLE_SUPPORT_LOW_LATENCY_TYPE
+        bool "Enable SLE UART low latency sample."
+endchoice
+
+config SAMPLE_SUPPORT_PERFORMANCE_TYPE
+    bool
+    prompt "Set the currrent sample in PERFORMANCE mode."
+    default n
+    depends on SAMPLE_SUPPORT_LOW_LATENCY_TYPE
+    help
+        This option means the currrent sample is in performance mode.
+endmenu
+
+
+config SUPPORT_SLE_PERIPHERAL
+    bool
+    default y if (SAMPLE_SUPPORT_SLE_UART_SERVER)
+
+
+config SUPPORT_SLE_CENTRAL
+    bool
+    default y if (SAMPLE_SUPPORT_SLE_UART_CLIENT)
