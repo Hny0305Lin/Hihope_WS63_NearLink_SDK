@@ -1,0 +1,209 @@
+The target system is: Generic -  - 
+The host system is: Windows - 10.0.19043 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/riscv32-linux-musl-gcc.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "C:/Users/lmj-m/Documents/fbb_ws63/src/output/ws63/acore/ws63-flashboot/CMakeFiles/3.20.5/CompilerIdC/a.out"
+
+Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+riscv32-linux-musl-gcc.exe (build ver102.010 2024-04-2) 7.3.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/riscv32-linux-musl-g++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+
+The CXX compiler identification is GNU, found in "C:/Users/lmj-m/Documents/fbb_ws63/src/output/ws63/acore/ws63-flashboot/CMakeFiles/3.20.5/CompilerIdCXX/CMakeCXXCompilerId.o"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/Users/lmj-m/Documents/fbb_ws63/src/output/ws63/acore/ws63-flashboot/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/PROGRA~1/HiSpark Studio/tools/Windows/ninja/ninja.exe cmTC_b08ac && [1/2] Building C object CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj
+Using built-in specs.
+COLLECT_GCC=C:\Users\lmj-m\Documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\riscv32-linux-musl-gcc.exe
+Target: riscv32-linux-musl
+Configured with: /devcloud/workspace/cc_source/build/cc_riscv32_musl_win/../../open_source/cc_riscv32_musl_win_build_src/gcc/configure --build=x86_64-pc-linux-gnu --host=i686-w64-mingw32 --target=riscv32-linux-musl --with-arch=rv32imc --prefix=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win --disable-multilib --disable-__cxa_atexit --with-gnu-as --with-gnu-ld --disable-libmudflap --enable-libgomp --enable-libssp --disable-threads --enable-shared --with-abi=ilp32 --enable-poison-system-directories --enable-symvers=gnu --with-pkgversion='build ver102.010 2024-04-2' --enable-languages=c,c++ --with-headers=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot/usr/include --with-sysroot=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot --with-build-sysroot=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot --with-gmp=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-mpfr=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-mpc=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-isl=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-build-time-tools=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/riscv32-linux-musl/bin --libdir=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/lib --disable-libitm
+Thread model: single
+gcc version 7.3.0 (build ver102.010 2024-04-2) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj' '-c' '-march=rv32imc' '-mabi=ilp32'
+ c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/cc1.exe -quiet -v -iprefix c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../lib/gcc/riscv32-linux-musl/7.3.0/ -isysroot c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot C:/Users/lmj-m/AppData/Local/Programs/Python/Python311/Lib/site-packages/cmake/data/share/cmake-3.20/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -march=rv32imc -mabi=ilp32 -auxbase-strip CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj -version -o C:\Users\lmj-m\AppData\Local\Temp\ccdS14Be.s
+GNU C11 (build ver102.010 2024-04-2) version 7.3.0 (riscv32-linux-musl)
+	compiled by GNU C version 10.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version UNKNOWN-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/../../../../include"
+ignoring duplicate directory "c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/../../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/include"
+ignoring duplicate directory "c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/../../lib/gcc/riscv32-linux-musl/7.3.0/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/include
+ c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../lib/gcc/riscv32-linux-musl/7.3.0/include
+ c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot/usr/include
+End of search list.
+GNU C11 (build ver102.010 2024-04-2) version 7.3.0 (riscv32-linux-musl)
+	compiled by GNU C version 10.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version UNKNOWN-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: daf603f27daf7d4f718989faf434c0e8
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj' '-c' '-march=rv32imc' '-mabi=ilp32'
+ c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/bin/as.exe -v --traditional-format -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj C:\Users\lmj-m\AppData\Local\Temp\ccdS14Be.s
+GNU assembler version 2.38 (riscv32-linux-musl) using BFD version (build ver102.010 2024-04-2) 2.38
+COMPILER_PATH=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/bin/
+LIBRARY_PATH=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj' '-c' '-march=rv32imc' '-mabi=ilp32'
+[2/2] Linking C executable cmTC_b08ac
+Using built-in specs.
+COLLECT_GCC=C:\Users\lmj-m\Documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\riscv32-linux-musl-gcc.exe
+COLLECT_LTO_WRAPPER=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/lto-wrapper.exe
+Target: riscv32-linux-musl
+Configured with: /devcloud/workspace/cc_source/build/cc_riscv32_musl_win/../../open_source/cc_riscv32_musl_win_build_src/gcc/configure --build=x86_64-pc-linux-gnu --host=i686-w64-mingw32 --target=riscv32-linux-musl --with-arch=rv32imc --prefix=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win --disable-multilib --disable-__cxa_atexit --with-gnu-as --with-gnu-ld --disable-libmudflap --enable-libgomp --enable-libssp --disable-threads --enable-shared --with-abi=ilp32 --enable-poison-system-directories --enable-symvers=gnu --with-pkgversion='build ver102.010 2024-04-2' --enable-languages=c,c++ --with-headers=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot/usr/include --with-sysroot=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot --with-build-sysroot=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot --with-gmp=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-mpfr=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-mpc=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-isl=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-build-time-tools=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/riscv32-linux-musl/bin --libdir=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/lib --disable-libitm
+Thread model: single
+gcc version 7.3.0 (build ver102.010 2024-04-2) 
+COMPILER_PATH=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/bin/
+LIBRARY_PATH=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib/;c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b08ac' '-march=rv32imc' '-mabi=ilp32'
+ c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/collect2.exe -plugin c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/liblto_plugin-0.dll -plugin-opt=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\lmj-m\AppData\Local\Temp\ccIpi9Fa.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-musl-riscv32-sf.so.1 -o cmTC_b08ac c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/crt1.o c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crti.o c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtbegin.o -Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0 -Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc -Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib -Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtend.o c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b08ac' '-march=rv32imc' '-mabi=ilp32'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/include]
+    add: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/include]
+    add: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/include]
+  end of search list found
+  collapse include dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/include] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/riscv32-linux-musl/include]
+  collapse include dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/include] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/include]
+  collapse include dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/include] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/sysroot/usr/include]
+  implicit include dirs: [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/riscv32-linux-musl/include;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/include;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/sysroot/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(riscv32-linux-musl-ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: C:/Users/lmj-m/Documents/fbb_ws63/src/output/ws63/acore/ws63-flashboot/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):C:/PROGRA~1/HiSpark Studio/tools/Windows/ninja/ninja.exe cmTC_b08ac && [1/2] Building C object CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=C:\Users\lmj-m\Documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\riscv32-linux-musl-gcc.exe]
+  ignore line: [Target: riscv32-linux-musl]
+  ignore line: [Configured with: /devcloud/workspace/cc_source/build/cc_riscv32_musl_win/../../open_source/cc_riscv32_musl_win_build_src/gcc/configure --build=x86_64-pc-linux-gnu --host=i686-w64-mingw32 --target=riscv32-linux-musl --with-arch=rv32imc --prefix=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win --disable-multilib --disable-__cxa_atexit --with-gnu-as --with-gnu-ld --disable-libmudflap --enable-libgomp --enable-libssp --disable-threads --enable-shared --with-abi=ilp32 --enable-poison-system-directories --enable-symvers=gnu --with-pkgversion='build ver102.010 2024-04-2' --enable-languages=c,c++ --with-headers=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot/usr/include --with-sysroot=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot --with-build-sysroot=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot --with-gmp=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-mpfr=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-mpc=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-isl=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-build-time-tools=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/riscv32-linux-musl/bin --libdir=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/lib --disable-libitm]
+  ignore line: [Thread model: single]
+  ignore line: [gcc version 7.3.0 (build ver102.010 2024-04-2) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj' '-c' '-march=rv32imc' '-mabi=ilp32']
+  ignore line: [ c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/cc1.exe -quiet -v -iprefix c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../lib/gcc/riscv32-linux-musl/7.3.0/ -isysroot c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot C:/Users/lmj-m/AppData/Local/Programs/Python/Python311/Lib/site-packages/cmake/data/share/cmake-3.20/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -march=rv32imc -mabi=ilp32 -auxbase-strip CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj -version -o C:\Users\lmj-m\AppData\Local\Temp\ccdS14Be.s]
+  ignore line: [GNU C11 (build ver102.010 2024-04-2) version 7.3.0 (riscv32-linux-musl)]
+  ignore line: [	compiled by GNU C version 10.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version UNKNOWN-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/../../../../include"]
+  ignore line: [ignoring duplicate directory "c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/../../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/include"]
+  ignore line: [ignoring duplicate directory "c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/../../lib/gcc/riscv32-linux-musl/7.3.0/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/include]
+  ignore line: [ c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../lib/gcc/riscv32-linux-musl/7.3.0/include]
+  ignore line: [ c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot/usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C11 (build ver102.010 2024-04-2) version 7.3.0 (riscv32-linux-musl)]
+  ignore line: [	compiled by GNU C version 10.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version UNKNOWN-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: daf603f27daf7d4f718989faf434c0e8]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj' '-c' '-march=rv32imc' '-mabi=ilp32']
+  ignore line: [ c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/bin/as.exe -v --traditional-format -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj C:\Users\lmj-m\AppData\Local\Temp\ccdS14Be.s]
+  ignore line: [GNU assembler version 2.38 (riscv32-linux-musl) using BFD version (build ver102.010 2024-04-2) 2.38]
+  ignore line: [COMPILER_PATH=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/bin/]
+  ignore line: [LIBRARY_PATH=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj' '-c' '-march=rv32imc' '-mabi=ilp32']
+  ignore line: [[2/2] Linking C executable cmTC_b08ac]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=C:\Users\lmj-m\Documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\riscv32-linux-musl-gcc.exe]
+  ignore line: [COLLECT_LTO_WRAPPER=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/lto-wrapper.exe]
+  ignore line: [Target: riscv32-linux-musl]
+  ignore line: [Configured with: /devcloud/workspace/cc_source/build/cc_riscv32_musl_win/../../open_source/cc_riscv32_musl_win_build_src/gcc/configure --build=x86_64-pc-linux-gnu --host=i686-w64-mingw32 --target=riscv32-linux-musl --with-arch=rv32imc --prefix=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win --disable-multilib --disable-__cxa_atexit --with-gnu-as --with-gnu-ld --disable-libmudflap --enable-libgomp --enable-libssp --disable-threads --enable-shared --with-abi=ilp32 --enable-poison-system-directories --enable-symvers=gnu --with-pkgversion='build ver102.010 2024-04-2' --enable-languages=c,c++ --with-headers=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot/usr/include --with-sysroot=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot --with-build-sysroot=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/sysroot --with-gmp=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-mpfr=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-mpc=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-isl=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/obj/host-libs/usr --with-build-time-tools=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/riscv32-linux-musl/bin --libdir=/devcloud/workspace/cc_source/build/cc_riscv32_musl_win/riscv32_musl_win_build_dir/cc_riscv32_musl_win/lib --disable-libitm]
+  ignore line: [Thread model: single]
+  ignore line: [gcc version 7.3.0 (build ver102.010 2024-04-2) ]
+  ignore line: [COMPILER_PATH=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/bin/]
+  ignore line: [LIBRARY_PATH=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib/]
+  ignore line: [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b08ac' '-march=rv32imc' '-mabi=ilp32']
+  link line: [ c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/collect2.exe -plugin c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/liblto_plugin-0.dll -plugin-opt=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\lmj-m\AppData\Local\Temp\ccIpi9Fa.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-musl-riscv32-sf.so.1 -o cmTC_b08ac c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/crt1.o c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crti.o c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtbegin.o -Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0 -Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc -Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib -Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtend.o c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtn.o]
+    arg [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/collect2.exe] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/liblto_plugin-0.dll] ==> ignore
+    arg [-plugin-opt=c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../libexec/gcc/riscv32-linux-musl/7.3.0/lto-wrapper.exe] ==> ignore
+    arg [-plugin-opt=-fresolution=C:\Users\lmj-m\AppData\Local\Temp\ccIpi9Fa.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--sysroot=c:\users\lmj-m\documents\fbb_ws63\src\tools\bin\compiler\riscv\cc_riscv32_musl_100\cc_riscv32_musl_win\bin\../sysroot] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-melf32lriscv] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-musl-riscv32-sf.so.1] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_b08ac] ==> ignore
+    arg [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/crt1.o] ==> obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/crt1.o]
+    arg [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crti.o] ==> obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crti.o]
+    arg [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtbegin.o] ==> obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtbegin.o]
+    arg [-Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0] ==> dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0]
+    arg [-Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc] ==> dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc]
+    arg [-Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib] ==> dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib]
+    arg [-Lc:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib] ==> dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib]
+    arg [CMakeFiles/cmTC_b08ac.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtend.o] ==> obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtend.o]
+    arg [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtn.o] ==> obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtn.o]
+  collapse obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib/crt1.o] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/sysroot/usr/lib/crt1.o]
+  collapse obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crti.o] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/crti.o]
+  collapse obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtbegin.o] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/crtbegin.o]
+  collapse obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtend.o] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/crtend.o]
+  collapse obj [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/crtn.o] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/crtn.o]
+  collapse library dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0]
+  collapse library dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc]
+  collapse library dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../lib/gcc/riscv32-linux-musl/7.3.0/../../../../riscv32-linux-musl/lib] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/riscv32-linux-musl/lib]
+  collapse library dir [c:/users/lmj-m/documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/bin/../sysroot/usr/lib] ==> [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/sysroot/usr/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit objs: [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/sysroot/usr/lib/crt1.o;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/crti.o;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/crtbegin.o;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/crtend.o;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0/crtn.o]
+  implicit dirs: [C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc/riscv32-linux-musl/7.3.0;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/lib/gcc;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/riscv32-linux-musl/lib;C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_win/sysroot/usr/lib]
+  implicit fwks: []
+
+

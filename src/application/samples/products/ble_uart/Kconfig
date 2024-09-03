@@ -1,0 +1,21 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+
+config BLE_UART_BUS
+    int
+    prompt "Set the UART BUS of the currrent sample."
+    default 0
+    depends on SAMPLE_SUPPORT_BLE_UART
+    help
+        This option means the UART BUS of the currrent sample.
+
+choice
+      prompt "Select ble uart type"
+      default SAMPLE_SUPPORT_BLE_UART_SERVER
+      config SAMPLE_SUPPORT_BLE_UART_SERVER
+          bool "Enable BLE UART Server sample."
+      config SAMPLE_SUPPORT_BLE_UART_CLIENT
+          bool "Enable BLE UART Client sample."
+endchoice

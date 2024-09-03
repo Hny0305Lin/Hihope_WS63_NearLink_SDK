@@ -1,0 +1,61 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) @CompanyNameMagicTag 2023-2023. All rights reserved.
+#===============================================================================
+config ENABLE_ALL_PRODUCTS_SAMPLE
+    bool
+    prompt "Enable all the sample of product, it's just for build."
+    default n
+    depends on ENABLE_PRODUCTS_SAMPLE
+    select SAMPLE_SUPPORT_BLE_UART
+    select SAMPLE_SUPPORT_SLE_UART
+    select SAMPLE_SUPPORT_SLE_GETAWAY
+    help
+        This option means enable all the sample of product, it is just for build.
+
+
+
+config SAMPLE_SUPPORT_BLE_UART
+    bool
+    prompt "Support BLE UART sample."
+    default n
+    depends on ENABLE_PRODUCTS_SAMPLE
+    help
+        This option means support BLE UART Sample.
+
+if SAMPLE_SUPPORT_BLE_UART
+menu "BLE UART Sample Configuration"
+    osource "application/samples/products/ble_uart/Kconfig"
+endmenu
+endif
+
+
+
+config SAMPLE_SUPPORT_SLE_UART
+    bool
+    prompt "Support SLE UART sample."
+    default n
+    depends on ENABLE_PRODUCTS_SAMPLE
+    help
+        This option means support SLE UART Sample.
+
+if SAMPLE_SUPPORT_SLE_UART
+menu "SLE UART Sample Configuration"
+    osource "application/samples/products/sle_uart/Kconfig"
+endmenu
+endif
+
+config SAMPLE_SUPPORT_SLE_GETAWAY
+    bool
+    prompt "Support SLE GATEWAY sample."
+    default n
+    depends on ENABLE_PRODUCTS_SAMPLE
+    help
+        This option means support SLE GATEWAY Sample.
+
+if SAMPLE_SUPPORT_SLE_GETAWAY
+menu "SLE GATEWAY Sample Configuration"
+    osource "application/samples/products/sle_gateway/Kconfig"
+endmenu
+endif
+
