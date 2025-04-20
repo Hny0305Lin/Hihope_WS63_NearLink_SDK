@@ -87,7 +87,8 @@ target = {
             "cjson",
             'xo_trim_port',
             "mqtt",
-            "coap"
+            "coap",
+            "course_experiment"
         ],
         'ccflags': [
             "-DBOARD_ASIC", '-DPRE_ASIC',

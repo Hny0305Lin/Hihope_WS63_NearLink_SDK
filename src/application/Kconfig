@@ -13,3 +13,14 @@ config SAMPLE_ENABLE
 if SAMPLE_ENABLE
 osource "application/samples/Kconfig"
 endif
+
+config COURSE_EXPERIMENT_ENABLE
+    bool
+    prompt "Enable course experiment."
+    default n
+    help
+        This option means support course experiment.
+
+if COURSE_EXPERIMENT_ENABLE
+osource "application/course_experiment/Kconfig"
+endif

@@ -29,9 +29,9 @@ Ninja
 -DBUILD_PLATFORM=windows
 -DTARGET_COMMAND=ws63-flashboot
 -DBUILD_LEVEL=normal
--DCMAKE_TOOLCHAIN_FILE=C:\Users\lmj-m\Documents\fbb_ws63\src\build\toolchains\riscv32_musl_100.cmake
--DPY_PATH=C:\Users\lmj-m\AppData\Local\Programs\Python\Python311\python.exe
-C:\Users\lmj-m\Documents\fbb_ws63\src
+-DCMAKE_TOOLCHAIN_FILE=C:\dsc\src\build\toolchains\riscv32_musl_100.cmake
+-DPY_PATH=D:\anaconda\python.exe
+C:\dsc\src
 -DPRODUCT_TYPE=default
 -DROM_CHECK=False
 -DPKG_TARGET_NAME=ws63-flashboot

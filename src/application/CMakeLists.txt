@@ -12,7 +12,7 @@ add_subdirectory_if_exist(samples)
 add_subdirectory_if_exist(ux)
 add_subdirectory_if_exist(wstp)
 add_subdirectory_if_exist(cfbb)
-
+add_subdirectory_if_exist(course_experiment)
 if("${CHIP}" STREQUAL "socmn1")
     add_subdirectory_if_exist(melody)
 else()

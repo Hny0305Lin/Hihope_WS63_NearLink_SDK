@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/lmj-m/Documents/fbb_ws63/src/drivers/chips/ws63/boot
+# Install script for directory: C:/dsc/src/drivers/chips/ws63/boot
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -32,18 +32,24 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "TRUE")
 endif()
 
-# Set default install directory permissions.
+# Set path to fallback-tool for dependency-resolution.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Users/lmj-m/Documents/fbb_ws63/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_fp_win/bin/riscv32-linux-musl-objdump.exe")
+  set(CMAKE_OBJDUMP "C:/dsc/src/tools/bin/compiler/riscv/cc_riscv32_musl_100/cc_riscv32_musl_fp_win/bin/riscv32-linux-musl-objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/lmj-m/Documents/fbb_ws63/src/output/ws63/acore/ws63-liteos-app/drivers/chips/ws63/boot/boot_config/cmake_install.cmake")
+  include("C:/dsc/src/output/ws63/acore/ws63-liteos-app/drivers/chips/ws63/boot/boot_config/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/lmj-m/Documents/fbb_ws63/src/output/ws63/acore/ws63-liteos-app/drivers/chips/ws63/boot/boot_porting/cmake_install.cmake")
+  include("C:/dsc/src/output/ws63/acore/ws63-liteos-app/drivers/chips/ws63/boot/boot_porting/cmake_install.cmake")
 endif()
 
+string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
+       "${CMAKE_INSTALL_MANIFEST_FILES}")
+if(CMAKE_INSTALL_LOCAL_ONLY)
+  file(WRITE "C:/dsc/src/output/ws63/acore/ws63-liteos-app/drivers/chips/ws63/boot/install_local_manifest.txt"
+     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
+endif()

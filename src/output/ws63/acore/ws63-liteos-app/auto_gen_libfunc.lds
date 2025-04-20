@@ -120,6 +120,7 @@
     func(*libxo_trim_port.a:*.o) \
     func(*libmqtt.a:*.o) \
     func(*libcoap.a:*.o) \
+    func(*libcourse_experiment.a:*.o) \
     func(*libhal_i2c.a:*.o) \
     func(*libi2c.a:*.o) \
     func(*libi2c_porting.a:*.o) \
